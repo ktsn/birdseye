@@ -1,5 +1,3 @@
-import App from '@/main'
+import birdseye from '@/main'
 
-new App({
-  el: '#app'
-})
+birdseye('#app')

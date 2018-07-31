@@ -1,19 +1,26 @@
+process.env.VUE_CLI_CSS_SHADOW_MODE = true
+
 module.exports = {
-  chainWebpack: config => {
-    config.output.filename('app.js')
-
-    if (process.env.NODE_ENV === 'production') {
-      // prettier-ignore
-      config.optimization
-        .splitChunks(false)
-
-      // prettier-ignore
-      config
-        .plugin("extract-css")
-        .tap(() => [{
-          filename: "[name].css"
-        }]);
+  css: {
+    loaderOptions: {
+      postcss: {
+        config: {
+          path: __dirname
+        }
+      }
     }
+  },
+
+  chainWebpack: config => {
+    // prettier-ignore
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+        .loader('vue-loader')
+        .tap(options => {
+          options.shadowMode = true
+          return options
+        })
   },
 
   configureWebpack: config => {
