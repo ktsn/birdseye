@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/working/repo
   docker:
-    - image: circleci/node:8.9.4
+    - image: circleci/node:8.11.3
 
 jobs:
   install:
@@ -14,16 +14,16 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v1-dependencies-
 
       - run: npm install
 
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "package-lock.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - persist_to_workspace:
           root: ~/working
@@ -35,14 +35,14 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/working
-      - run: npm run build
+      - run: yarn build
 
   test:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/working
-      - run: npm run test
+      - run: yarn test
 
 workflows:
   version: 2
