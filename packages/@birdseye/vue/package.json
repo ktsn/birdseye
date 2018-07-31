@@ -1,0 +1,60 @@
+{
+  "name": "@birdseye/vue",
+  "version": "0.0.0",
+  "author": "katashin",
+  "description": "Vue.js integration of Birdseye",
+  "keywords": [
+    "Birdseye",
+    "Vue.js",
+    "component",
+    "styleguide"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/ktsn/birdseye/packages/@birdseye/vue",
+  "bugs": "https://github.com/ktsn/birdseye/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ktsn/birdseye.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run test && npm run build",
+    "clean": "rm -rf lib",
+    "build": "tsc -p src",
+    "dev": "jest --watch",
+    "lint": "eslint --ext js,ts src test",
+    "lint:fix": "eslint --fix --ext js,ts src test",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "/test/.+\\.spec\\.(js|ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.test.json"
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.0",
+    "eslint": "^5.2.0",
+    "eslint-config-ktsn-typescript": "^1.1.0",
+    "jest": "^23.4.1",
+    "prettier": "1.13.7",
+    "prettier-config-ktsn": "^1.0.0",
+    "ts-jest": "^23.0.1",
+    "typescript": "^2.9.2"
+  }
+}
