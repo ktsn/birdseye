@@ -16,6 +16,7 @@ export default function birdseye(el: string | Element) {
   wrapper!.appendChild(app)
 
   new Vue({
-    el: content
+    el: content,
+    render: h => h('p', 'placeholder')
   })
 }

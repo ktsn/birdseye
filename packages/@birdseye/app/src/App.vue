@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="birdseye-app">
     Hello
     <div ref="slot" />
   </div>
@@ -18,15 +18,14 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-@import '~k-css/k.css';
+<style src="k-css/k.css">
+</style>
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+<style scoped>
+.birdseye-app {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
