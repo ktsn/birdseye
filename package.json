@@ -1,0 +1,7 @@
+{
+  "name": "birdseye",
+  "private": true,
+  "workspaces": [
+    "packages/@birdseye/*"
+  ]
+}
