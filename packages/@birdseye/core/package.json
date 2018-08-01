@@ -14,7 +14,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/ktsn/birdseye/packages/@birdseye/core",
+  "homepage": "https://github.com/ktsn/birdseye",
   "bugs": "https://github.com/ktsn/birdseye/issues",
   "repository": {
     "type": "git",

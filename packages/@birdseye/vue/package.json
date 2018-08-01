@@ -16,7 +16,7 @@
     "lib",
     "webpack-loader.js"
   ],
-  "homepage": "https://github.com/ktsn/birdseye/packages/@birdseye/vue",
+  "homepage": "https://github.com/ktsn/birdseye",
   "bugs": "https://github.com/ktsn/birdseye/issues",
   "repository": {
     "type": "git",
