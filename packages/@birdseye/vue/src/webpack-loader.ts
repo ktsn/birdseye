@@ -5,7 +5,7 @@ const vueBirdseyeLoader: loader.Loader = function(source, map) {
     this.callback(
       null,
       [
-        'export default function(Comonent) {',
+        'export default function(Component) {',
         `  Component.options.__birdseye = ${JSON.stringify(
           JSON.parse(String(source))
         )}`,

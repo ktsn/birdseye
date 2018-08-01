@@ -19,7 +19,7 @@ describe('webpack loader', () => {
     `,
       (_err, result) => {
         expect(result).toMatchInlineSnapshot(`
-"export default function(Comonent) {
+"export default function(Component) {
   Component.options.__birdseye = {\\"name\\":\\"Test\\"}
 }"
 `)
