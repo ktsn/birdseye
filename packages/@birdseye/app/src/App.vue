@@ -5,7 +5,10 @@
         <li
           v-for="decl in declarations"
           :key="decl.name">
-          <strong>{{ decl.name }}</strong>
+          <router-link
+            :to="{ name: 'preview', params: { component: decl.name } }">
+            {{ decl.name }}
+          </router-link>
 
           <ul>
             <li

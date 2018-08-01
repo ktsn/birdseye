@@ -11,7 +11,7 @@ export default Vue.extend({
 
     pattern: {
       type: String,
-      required: true
+      default: null
     },
 
     declarations: {
@@ -30,7 +30,7 @@ export default Vue.extend({
     targetPattern(): ComponentPattern | undefined {
       const decl = this.targetDeclaration
 
-      if (!decl) return
+      if (!decl || !this.pattern) return
 
       return decl.patterns.filter(p => {
         return p.name === this.pattern
@@ -39,12 +39,12 @@ export default Vue.extend({
   },
 
   render(h): VNode {
-    if (!this.targetDeclaration || !this.targetPattern) {
+    if (!this.targetDeclaration) {
       return h()
     }
 
     const { Wrapper } = this.targetDeclaration
-    const { props, data } = this.targetPattern
+    const { props, data } = this.targetPattern || { props: {}, data: {} }
 
     return h(Wrapper, {
       props: {
