@@ -31,7 +31,8 @@
     "@vue/web-component-wrapper": "^1.2.0",
     "k-css": "^2.0.0",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-transition-components": "^0.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",

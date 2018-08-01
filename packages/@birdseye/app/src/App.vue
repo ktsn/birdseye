@@ -51,6 +51,7 @@ export default Vue.extend({
   --color-preview-background: #fff;
   --width-side: 280px;
   --padding-preview: 20px;
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 </style>
 

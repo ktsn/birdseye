@@ -6,30 +6,34 @@ exports[`NavSide highlight current component 1`] = `
     <a href="#/Foo" class="anchor current">
       Foo
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Foo/Pattern%201" class="child-anchor">
-          Pattern 1
-        </a>
-      </li>
-      <li class="child-item">
-        <a href="#/Foo/Pattern%202" class="child-anchor">
-          Pattern 2
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Foo/Pattern%201" class="child-anchor">
+            Pattern 1
+          </a>
+        </li>
+        <li class="child-item">
+          <a href="#/Foo/Pattern%202" class="child-anchor">
+            Pattern 2
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
   <li class="item">
     <a href="#/Bar" class="anchor">
       Bar
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Bar/Pattern%201" class="child-anchor">
-          Pattern 1
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" style="display: none;" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Bar/Pattern%201" class="child-anchor">
+            Pattern 1
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
 </ul>
 `;
@@ -40,30 +44,34 @@ exports[`NavSide highlight current pattern 1`] = `
     <a href="#/Foo" class="anchor">
       Foo
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Foo/Pattern%201" class="child-anchor current">
-          Pattern 1
-        </a>
-      </li>
-      <li class="child-item">
-        <a href="#/Foo/Pattern%202" class="child-anchor">
-          Pattern 2
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Foo/Pattern%201" class="child-anchor current">
+            Pattern 1
+          </a>
+        </li>
+        <li class="child-item">
+          <a href="#/Foo/Pattern%202" class="child-anchor">
+            Pattern 2
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
   <li class="item">
     <a href="#/Bar" class="anchor">
       Bar
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Bar/Pattern%201" class="child-anchor">
-          Pattern 1
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" style="display: none;" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Bar/Pattern%201" class="child-anchor">
+            Pattern 1
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
 </ul>
 `;
@@ -74,30 +82,34 @@ exports[`NavSide renders declarations 1`] = `
     <a href="#/Foo" class="anchor">
       Foo
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Foo/Pattern%201" class="child-anchor">
-          Pattern 1
-        </a>
-      </li>
-      <li class="child-item">
-        <a href="#/Foo/Pattern%202" class="child-anchor">
-          Pattern 2
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" style="display: none;" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Foo/Pattern%201" class="child-anchor">
+            Pattern 1
+          </a>
+        </li>
+        <li class="child-item">
+          <a href="#/Foo/Pattern%202" class="child-anchor">
+            Pattern 2
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
   <li class="item">
     <a href="#/Bar" class="anchor">
       Bar
     </a>
-    <ul class="child-list">
-      <li class="child-item">
-        <a href="#/Bar/Pattern%201" class="child-anchor">
-          Pattern 1
-        </a>
-      </li>
-    </ul>
+    <div class="child-wrapper" style="display: none;" name="child">
+      <ul class="child-list">
+        <li class="child-item">
+          <a href="#/Bar/Pattern%201" class="child-anchor">
+            Pattern 1
+          </a>
+        </li>
+      </ul>
+    </div>
   </li>
 </ul>
 `;

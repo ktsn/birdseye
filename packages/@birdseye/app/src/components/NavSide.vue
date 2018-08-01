@@ -11,19 +11,25 @@
         {{ decl.name }}
       </router-link>
 
-      <ul class="child-list">
-        <li
-          v-for="p in decl.patterns"
-          :key="p.name"
-          class="child-item">
-          <router-link
-            class="child-anchor"
-            :class="{ current: isCurrent(decl.name, p.name) }"
-            :to="previewRoute(decl.name, p.name)">
-            {{ p.name }}
-          </router-link>
-        </li>
-      </ul>
+      <TransitionDisclosure name="child">
+        <div
+          v-show="component === decl.name"
+          class="child-wrapper">
+          <ul class="child-list">
+            <li
+              v-for="p in decl.patterns"
+              :key="p.name"
+              class="child-item">
+              <router-link
+                class="child-anchor"
+                :class="{ current: isCurrent(decl.name, p.name) }"
+                :to="previewRoute(decl.name, p.name)">
+                {{ p.name }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </TransitionDisclosure>
     </li>
   </ul>
 </template>
@@ -32,9 +38,14 @@
 import Vue from 'vue'
 import { Location } from 'vue-router'
 import { ComponentDeclaration } from '@birdseye/core'
+import { TransitionDisclosure } from 'vue-transition-components'
 
 export default Vue.extend({
   name: 'NavSide',
+
+  components: {
+    TransitionDisclosure
+  },
 
   props: {
     component: {
@@ -88,8 +99,19 @@ export default Vue.extend({
   font-weight: bold;
 }
 
+/**
+ * Children
+ */
+.child-list {
+  padding-top: 6px;
+}
+
 .child-item {
-  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.child-item:last-child {
+  margin-bottom: 0;
 }
 
 .child-anchor {
@@ -97,10 +119,21 @@ export default Vue.extend({
   padding-left: 20px;
 }
 
+/**
+ * Hover / Current
+ */
 .anchor:hover,
 .anchor.current,
 .child-anchor:hover,
 .child-anchor.current {
   color: var(--color-main);
+}
+
+/**
+ * Transition
+ */
+.child-enter-active,
+.child-leave-active {
+  transition: height 400ms var(--ease-out-cubic);
 }
 </style>
