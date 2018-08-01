@@ -10,9 +10,10 @@ interface BirdseyeOptions {
 }
 
 const appTagName = 'birdseye-app'
+const Root = Vue.extend({ router })
 
 Vue.config.ignoredElements = [appTagName]
-window.customElements.define(appTagName, wrap(Vue, App.extend({ router })))
+window.customElements.define(appTagName, wrap(Root, App))
 
 export default function birdseye(
   el: string | Element,
@@ -30,7 +31,6 @@ export default function birdseye(
   app.declarations = declarations
 
   const compOptions: ComponentOptions<Vue> = {
-    router,
     render: h =>
       // Preview.vue
       h('router-view', {
@@ -44,5 +44,5 @@ export default function birdseye(
     ;(compOptions as any).shadowRoot = options.__shadowRoot
   }
 
-  new Vue(compOptions).$mount(content)
+  new Root(compOptions).$mount(content)
 }
