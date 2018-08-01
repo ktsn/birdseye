@@ -8,7 +8,7 @@
     "core"
   ],
   "license": "MIT",
-  "main": "dist/core.cjs.js",
+  "main": "dist/core.es.js",
   "module": "dist/core.es.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run release",
     "clean": "rm -rf dist",
     "play": "poi --open --config play.config.js",
-    "build": "bili",
+    "build": "rollup -c",
     "build:play": "poi build --config play.config.js",
     "lint": "eslint --ext js,ts,vue src test",
     "lint:fix": "npm run lint -- --fix",
@@ -36,13 +36,13 @@
   "devDependencies": {
     "@types/jest": "^23.3.0",
     "@vue/test-utils": "^1.0.0-beta.20",
-    "bili": "^3.1.2",
     "eslint": "^5.1.0",
     "eslint-config-ktsn-vue": "^1.0.1",
     "jest": "^23.4.1",
     "poi": "^10.2.9",
     "prettier": "1.14.0",
     "prettier-config-ktsn": "^1.0.0",
+    "rollup": "^0.63.4",
     "rollup-plugin-css-only": "^0.4.0",
     "rollup-plugin-typescript2": "^0.16.1",
     "rollup-plugin-vue": "^4.3.1",
