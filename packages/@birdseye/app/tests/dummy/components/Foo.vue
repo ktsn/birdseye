@@ -21,6 +21,14 @@ export default {
 }
 </script>
 
+<style scoped>
+.message {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+</style>
+
 <birdseye>
 {
   "name": "Foo component",

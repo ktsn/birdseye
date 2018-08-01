@@ -1,8 +1,13 @@
-import Vue from 'vue'
+import Vue, { ComponentOptions } from 'vue'
 import wrap from '@vue/web-component-wrapper'
 import { ComponentDeclaration } from '@birdseye/core'
 import router from './router'
 import App from './App.vue'
+
+interface BirdseyeOptions {
+  // @internal
+  __shadowRoot?: HTMLElement
+}
 
 const appTagName = 'birdseye-app'
 
@@ -11,7 +16,8 @@ window.customElements.define(appTagName, wrap(Vue, App.extend({ router })))
 
 export default function birdseye(
   el: string | Element,
-  declarations: ComponentDeclaration[]
+  declarations: ComponentDeclaration[],
+  options: BirdseyeOptions = {}
 ): void {
   const app = document.createElement(appTagName) as any
 
@@ -23,8 +29,7 @@ export default function birdseye(
 
   app.declarations = declarations
 
-  new Vue({
-    el: content,
+  const compOptions: ComponentOptions<Vue> = {
     router,
     render: h =>
       // Preview.vue
@@ -33,5 +38,11 @@ export default function birdseye(
           declarations
         }
       })
-  })
+  }
+
+  if (options.__shadowRoot) {
+    ;(compOptions as any).shadowRoot = options.__shadowRoot
+  }
+
+  new Vue(compOptions).$mount(content)
 }

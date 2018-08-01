@@ -5,6 +5,9 @@ import style from './style.css'
 const load = ctx => ctx.keys().map(ctx)
 const components = load(require.context('./components', true, /\.vue$/))
 
+// For debug
 style.__inject__(document.head)
 
-birdseye('#app', instrument(components))
+birdseye('#app', instrument(components), {
+  __shadowRoot: document.head
+})
