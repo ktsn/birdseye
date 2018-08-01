@@ -4,6 +4,10 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
