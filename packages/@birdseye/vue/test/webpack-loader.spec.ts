@@ -1,9 +1,14 @@
 import loader from '../src/webpack-loader'
 
-function test(content: string, cb: (err: Error, result: string) => void): void {
+function test(
+  content: string,
+  lang: string | null,
+  cb: (err: Error, result: string) => void
+): void {
   loader.call(
     {
-      callback: cb
+      callback: cb,
+      resourceQuery: lang ? '?lang=' + lang : ''
     },
     content
   )
@@ -12,11 +17,10 @@ function test(content: string, cb: (err: Error, result: string) => void): void {
 describe('webpack loader', () => {
   it('injects birdseye content', done => {
     test(
-      `
-    {
-      "name": "Test"
-    }
-    `,
+      `{
+        "name": "Test"
+      }`,
+      null,
       (_err, result) => {
         expect(result).toMatchInlineSnapshot(`
 "export default function(Component) {
@@ -29,8 +33,18 @@ describe('webpack loader', () => {
   })
 
   it('emit parse error', () => {
-    test(`{ "name": "Test", }`, err => {
+    test(`{ "name": "Test", }`, null, err => {
       expect(err.name).toBe('SyntaxError')
+    })
+  })
+
+  it('loads yaml data', () => {
+    test(`name: Test`, 'yaml', (_err, result) => {
+      expect(result).toMatchInlineSnapshot(`
+"export default function(Component) {
+  Component.options.__birdseye = {\\"name\\":\\"Test\\"}
+}"
+`)
     })
   })
 })
