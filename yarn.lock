@@ -40,7 +40,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.0.0-beta.40":
+"@babel/core@^7.0.0-beta.40", "@babel/core@^7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.55.tgz#9e17c34b5ac855e427c98f570915a17fcc6bab4a"
   dependencies:
@@ -1492,7 +1492,7 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@vue/preload-webpack-plugin/-/preload-webpack-plugin-1.0.0.tgz#08f156532909824da2aad258e151742d1e8f822e"
 
-"@vue/test-utils@^1.0.0-beta.20":
+"@vue/test-utils@^1.0.0-beta.20", "@vue/test-utils@^1.0.0-beta.23":
   version "1.0.0-beta.23"
   resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.0.0-beta.23.tgz#d6ead08f524c745255ecf3f1675e66149a014ef9"
   dependencies:
@@ -5952,7 +5952,7 @@ jest-worker@^23.2.0:
   dependencies:
     merge-stream "^1.0.1"
 
-jest@^23.4.0, jest@^23.4.1:
+jest@^23.4.0, jest@^23.4.1, jest@^23.4.2:
   version "23.4.2"
   resolved "https://registry.yarnpkg.com/jest/-/jest-23.4.2.tgz#1fae3ed832192143070ae85156b25cea891a1260"
   dependencies:
@@ -7901,7 +7901,7 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.20, postcss@^6.0.23:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postcss@^7.0.0:
+postcss@^7.0.0, postcss@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.2.tgz#7b5a109de356804e27f95a960bef0e4d5bc9bb18"
   dependencies:
