@@ -1,0 +1,5 @@
+---
+  root: true
+  extends: ktsn-vue
+  rules:
+    no-unused-vars: ["error", { varsIgnorePattern: "^VueConstructor$" }]

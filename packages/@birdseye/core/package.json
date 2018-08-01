@@ -1,0 +1,56 @@
+{
+  "name": "@birdseye/core",
+  "version": "0.0.0",
+  "author": "katashin",
+  "description": "Core modules of Birdseye",
+  "keywords": [
+    "Birdseye",
+    "core"
+  ],
+  "license": "MIT",
+  "main": "dist/core.cjs.js",
+  "module": "dist/core.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/ktsn/birdseye/packages/@birdseye/core",
+  "bugs": "https://github.com/ktsn/birdseye/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ktsn/birdseye.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run release",
+    "clean": "rm -rf dist",
+    "play": "poi --open --config play.config.js",
+    "build": "bili",
+    "build:play": "poi build --config play.config.js",
+    "lint": "eslint --ext js,ts,vue src test",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest",
+    "test:dev": "jest --watch",
+    "release": "npm run test && npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "bili": "^3.1.2",
+    "eslint": "^5.1.0",
+    "eslint-config-ktsn-vue": "^1.0.1",
+    "jest": "^23.4.1",
+    "poi": "^10.2.9",
+    "prettier": "1.14.0",
+    "prettier-config-ktsn": "^1.0.0",
+    "rollup-plugin-css-only": "^0.4.0",
+    "rollup-plugin-typescript2": "^0.16.1",
+    "rollup-plugin-vue": "^4.3.1",
+    "ts-jest": "^23.0.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^2.9.2",
+    "vue": "^2.5.16",
+    "vue-jest": "^2.6.0",
+    "vue-play": "^3.2.1"
+  }
+}
