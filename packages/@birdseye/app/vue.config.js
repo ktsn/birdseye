@@ -21,6 +21,15 @@ module.exports = {
           options.shadowMode = true
           return options
         })
+
+    if (process.env.NODE_ENV !== 'production') {
+      // prettier-ignore
+      config.module
+        .rule('birdseye-vue')
+          .resourceQuery(/blockType=birdseye/)
+          .use('birdseye-vue-loader')
+            .loader('@birdseye/vue/webpack-loader')
+    }
   },
 
   configureWebpack: config => {

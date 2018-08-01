@@ -1,14 +1,41 @@
 <template>
   <div class="birdseye-app">
-    Hello
+    <aside>
+      <ul>
+        <li
+          v-for="decl in declarations"
+          :key="decl.name">
+          <strong>{{ decl.name }}</strong>
+
+          <ul>
+            <li
+              v-for="p in decl.patterns"
+              :key="p.name">
+              <router-link
+                :to="{ name: 'preview', params: { component: decl.name, pattern: p.name } }">
+                {{ p.name }}
+              </router-link>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
     <div ref="slot" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { ComponentDeclaration } from '@birdseye/core'
 
 export default Vue.extend({
+  props: {
+    declarations: {
+      type: Array as () => ComponentDeclaration[],
+      default: () => []
+    }
+  },
+
   mounted() {
     // Hack for avoid processing slot in Vue
     const slot = document.createElement('slot')
