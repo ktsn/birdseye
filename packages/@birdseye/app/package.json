@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve tests/dummy/main.js",
     "build": "vue-cli-service build --target lib --name app src/main.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"

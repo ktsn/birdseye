@@ -30,11 +30,5 @@ module.exports = {
           .use('birdseye-vue-loader')
             .loader('@birdseye/vue/webpack-loader')
     }
-  },
-
-  configureWebpack: config => {
-    if (process.env.NODE_ENV !== 'production') {
-      config.entry = ['./tests/dummy/main.js']
-    }
   }
 }
