@@ -31,7 +31,7 @@
     "test": "npm run lint && npm run test:unit",
     "test:unit": "jest",
     "test:dev": "jest --watch",
-    "release": "npm run test && npm run clean && npm run build"
+    "release": "npm run clean && npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
