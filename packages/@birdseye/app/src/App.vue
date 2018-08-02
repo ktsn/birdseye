@@ -52,6 +52,8 @@ export default Vue.extend({
   --width-side: 280px;
   --padding-preview: 20px;
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    'Segoe UI', sans-serif;
 }
 </style>
 
@@ -62,10 +64,6 @@ export default Vue.extend({
   right: 0;
   top: 0;
   bottom: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .app-inner {
@@ -75,6 +73,11 @@ export default Vue.extend({
 }
 
 .app-side {
+  all: initial;
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   overflow: auto;
   flex: none;
   padding: 20px;
