@@ -29,12 +29,14 @@ Then, update the webpack config in `vue.config.js`:
 ```js
 module.exports = {
   chainWebpack: config => {
-    // Process <birdseye> custom block with @birdseye/vue/webpack-loader
-    config.module
-      .rule('birdseye-vue')
-        .resourceQuery(/blockType=birdseye/)
-        .use('birdseye-vue-loader')
-          .loader('@birdseye/vue/webpack-loader')
+    if (process.env.NODE_ENV !== 'production') {
+      // Process <birdseye> custom block with @birdseye/vue/webpack-loader
+      config.module
+        .rule('birdseye-vue')
+          .resourceQuery(/blockType=birdseye/)
+          .use('birdseye-vue-loader')
+            .loader('@birdseye/vue/webpack-loader')
+    }
   },
 }
 ```
