@@ -13,6 +13,7 @@
 
       <TransitionDisclosure name="child">
         <div
+          v-if="!isEmptyPatterns(decl)"
           v-show="component === decl.name"
           class="child-wrapper">
           <ul class="child-list">
@@ -80,6 +81,10 @@ export default Vue.extend({
 
     isCurrent(component: string, pattern: string | null = null): boolean {
       return this.component === component && this.pattern === pattern
+    },
+
+    isEmptyPatterns(component: ComponentDeclaration): boolean {
+      return !component.patterns || component.patterns.length === 0
     }
   }
 })

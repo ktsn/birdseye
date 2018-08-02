@@ -77,4 +77,24 @@ describe('NavSide', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('avoid including children dom when patterns are empty', () => {
+    const wrapper = mount(NavSide, {
+      localVue,
+      propsData: {
+        declarations: [
+          {
+            name: 'Empty'
+          },
+          {
+            name: 'Empty Selected',
+            patterns: []
+          }
+        ],
+        component: 'Empty Selected'
+      }
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

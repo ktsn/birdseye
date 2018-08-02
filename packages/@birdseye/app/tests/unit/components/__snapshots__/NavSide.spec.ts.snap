@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NavSide avoid including children dom when patterns are empty 1`] = `
+<ul class="nav-side">
+  <li class="item">
+    <a href="#/Empty" class="anchor">
+      Empty
+    </a>
+    <!---->
+  </li>
+  <li class="item">
+    <a href="#/Empty%20Selected" class="anchor current">
+      Empty Selected
+    </a>
+    <!---->
+  </li>
+</ul>
+`;
+
 exports[`NavSide highlight current component 1`] = `
 <ul class="nav-side">
   <li class="item">
