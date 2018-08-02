@@ -20,6 +20,9 @@
     "url": "https://github.com/ktsn/birdseye.git"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve tests/dummy/main.js",
     "build": "vue-cli-service build --target lib --name app src/main.ts",

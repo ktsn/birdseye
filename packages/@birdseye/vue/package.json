@@ -22,6 +22,9 @@
     "type": "git",
     "url": "https://github.com/ktsn/birdseye.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run test && npm run build",
     "clean": "rm -rf lib",
