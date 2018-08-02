@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "katashin",
   "description": "Application of Birdseye",
   "keywords": [
@@ -30,7 +30,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@birdseye/core": "0.0.0",
+    "@birdseye/core": "^0.1.0",
     "@vue/web-component-wrapper": "^1.2.0",
     "k-css": "^2.0.0",
     "vue": "^2.5.16",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
-    "@birdseye/vue": "0.0.0",
+    "@birdseye/vue": "^0.1.0",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
