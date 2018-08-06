@@ -168,6 +168,7 @@ describe('Wrap', () => {
     const Wrapper = wrap(Test)
 
     const wrapper = shallowMount(Wrapper, {
+      localVue,
       propsData: {
         props: {},
         data: {}
