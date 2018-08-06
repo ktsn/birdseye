@@ -1,8 +1,10 @@
 import Vue, { VNode } from 'vue'
-import { shallowMount } from '@vue/test-utils'
-import { wrap } from '../src/instrument'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { createInstrument } from '../src/instrument'
 
 describe('Wrap', () => {
+  const { wrap } = createInstrument(Vue)
+
   const Dummy = Vue.extend({
     name: 'Dummy',
 
@@ -150,5 +152,49 @@ describe('Wrap', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.find('#baz').text()).toBe('')
+  })
+
+  it('can be injected Vue constructor', () => {
+    const localVue = createLocalVue()
+    localVue.prototype.$test = 'injected'
+
+    const Test = {
+      render(h: Function): any {
+        return h('div', (this as any).$test)
+      }
+    }
+
+    const { wrap } = createInstrument(localVue)
+    const Wrapper = wrap(Test)
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {},
+        data: {}
+      }
+    })
+    expect(wrapper.text()).toBe('injected')
+  })
+
+  it('can be injected root constructor options', () => {
+    const { wrap } = createInstrument(Vue, {
+      test: 'injected'
+    } as any)
+
+    const Test = {
+      render(h: Function): any {
+        return h('div', (this as any).$root.$options.test)
+      }
+    }
+
+    const Wrapper = wrap(Test)
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {},
+        data: {}
+      }
+    })
+    expect(wrapper.text()).toBe('injected')
   })
 })
