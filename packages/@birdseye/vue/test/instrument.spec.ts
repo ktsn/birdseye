@@ -1,8 +1,10 @@
 import Vue from 'vue'
-import { instrument } from '../src/instrument'
+import { createInstrument } from '../src/instrument'
 
 describe('Instrument', () => {
   let Dummy: any
+
+  const { instrument } = createInstrument(Vue)
 
   beforeEach(() => {
     Dummy = {
