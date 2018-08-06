@@ -20,18 +20,26 @@ describe('Wrap', () => {
 
     data() {
       return {
-        baz: true
+        baz: 'baz'
       }
     },
 
     render(h): VNode {
-      return h()
+      const el = (id: string, content: any) => {
+        return h('div', { attrs: { id } }, [content])
+      }
+
+      return h('div', [
+        el('foo', this.foo),
+        el('bar', this.bar),
+        el('baz', this.baz)
+      ])
     }
   })
 
   const Wrapper = wrap(Dummy)
 
-  it('applies initial props and data', () => {
+  it('applies initial props and data', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -39,22 +47,19 @@ describe('Wrap', () => {
           bar: 123
         },
         data: {
-          baz: false
+          baz: 'baz data'
         }
       }
     })
 
-    const dummy = wrapper.find(Dummy)
-    expect(dummy.props()).toEqual({
-      foo: 'test',
-      bar: 123
-    })
-    expect(dummy.vm.$data).toEqual({
-      baz: false
-    })
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('#foo').text()).toBe('test')
+    expect(wrapper.find('#bar').text()).toBe('123')
+    expect(wrapper.find('#baz').text()).toBe('baz data')
   })
 
-  it('updates props', () => {
+  it('updates props', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -62,7 +67,7 @@ describe('Wrap', () => {
           bar: 123
         },
         data: {
-          baz: false
+          baz: 'baz data'
         }
       }
     })
@@ -74,15 +79,12 @@ describe('Wrap', () => {
       }
     })
 
-    const dummy = wrapper.find(Dummy)
+    await wrapper.vm.$nextTick()
 
-    expect(dummy.props()).toEqual({
-      foo: 'updated',
-      bar: 123
-    })
+    expect(wrapper.find('#foo').text()).toBe('updated')
   })
 
-  it('updates data', () => {
+  it('updates data', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -90,25 +92,23 @@ describe('Wrap', () => {
           bar: 123
         },
         data: {
-          baz: false
+          baz: 'baz data'
         }
       }
     })
 
     wrapper.setProps({
       data: {
-        baz: true
+        baz: 'baz updated'
       }
     })
 
-    const dummy = wrapper.find(Dummy)
+    await wrapper.vm.$nextTick()
 
-    expect(dummy.vm.$data).toEqual({
-      baz: true
-    })
+    expect(wrapper.find('#baz').text()).toBe('baz updated')
   })
 
-  it('removes props', () => {
+  it('removes props', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -125,15 +125,12 @@ describe('Wrap', () => {
       }
     })
 
-    const dummy = wrapper.find(Dummy)
+    await wrapper.vm.$nextTick()
 
-    expect(dummy.props()).toEqual({
-      foo: 'test',
-      bar: 0
-    })
+    expect(wrapper.find('#bar').text()).toBe('0')
   })
 
-  it('removes data', () => {
+  it('removes data', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -150,10 +147,8 @@ describe('Wrap', () => {
       data: {}
     })
 
-    const dummy = wrapper.find(Dummy)
+    await wrapper.vm.$nextTick()
 
-    expect(dummy.vm.$data).toEqual({
-      baz: undefined
-    })
+    expect(wrapper.find('#baz').text()).toBe('')
   })
 })
