@@ -3,21 +3,23 @@
     <div class="app-inner">
       <aside class="app-side">
         <NavSide
-          :declarations="declarations"
-          :component="$route.params.component"
-          :pattern="$route.params.pattern" />
+          :nav="nav"
+          :meta="$route.params.meta"
+          :pattern="$route.params.pattern"
+        />
       </aside>
 
       <main
         ref="slot"
-        class="app-preview" />
+        class="app-preview"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { ComponentDeclaration } from '@birdseye/core'
+import { ComponentMeta } from '@birdseye/core'
 import NavSide from './components/NavSide.vue'
 
 export default Vue.extend({
@@ -26,8 +28,8 @@ export default Vue.extend({
   },
 
   props: {
-    declarations: {
-      type: Array as () => ComponentDeclaration[],
+    nav: {
+      type: Array as () => ComponentMeta[],
       default: () => []
     }
   },

@@ -1,5 +1,5 @@
 import Vue, { Component, VueConstructor, VNode, ComponentOptions } from 'vue'
-import { ComponentDeclaration } from '@birdseye/core'
+import { normalizeMeta, ComponentDeclaration } from '@birdseye/core'
 
 export function createInstrument(
   Vue: VueConstructor,
@@ -15,15 +15,14 @@ export function createInstrument(
       typeof Component === 'function' ? (Component as any).options : Component
 
     const Wrapper = wrap(Component)
-    const meta = options.__birdseye || {
-      name: options.name || '<Anonymus Component>',
-      patterns: []
-    }
+    const meta = options.__birdseye || {}
 
     return {
       Wrapper,
-      name: meta.name,
-      patterns: meta.patterns
+      meta: normalizeMeta({
+        name: meta.name || options.name,
+        patterns: meta.patterns
+      })
     }
   }
 

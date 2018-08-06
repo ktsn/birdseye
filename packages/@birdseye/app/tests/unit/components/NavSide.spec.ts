@@ -3,7 +3,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import NavSide from '@/components/NavSide.vue'
 
 describe('NavSide', () => {
-  const declarations = [
+  const nav = [
     {
       name: 'Foo',
       patterns: [
@@ -32,7 +32,7 @@ describe('NavSide', () => {
       routes: [
         {
           name: 'preview',
-          path: '/:component/:pattern?',
+          path: '/:meta/:pattern?',
           component: {},
           props: true
         }
@@ -46,7 +46,7 @@ describe('NavSide', () => {
     const wrapper = mount(NavSide, {
       localVue,
       propsData: {
-        declarations
+        nav
       }
     })
 
@@ -57,8 +57,8 @@ describe('NavSide', () => {
     const wrapper = mount(NavSide, {
       localVue,
       propsData: {
-        declarations,
-        component: 'Foo'
+        nav,
+        meta: 'Foo'
       }
     })
 
@@ -69,8 +69,8 @@ describe('NavSide', () => {
     const wrapper = mount(NavSide, {
       localVue,
       propsData: {
-        declarations,
-        component: 'Foo',
+        nav,
+        meta: 'Foo',
         pattern: 'Pattern 1'
       }
     })
@@ -82,16 +82,17 @@ describe('NavSide', () => {
     const wrapper = mount(NavSide, {
       localVue,
       propsData: {
-        declarations: [
+        nav: [
           {
-            name: 'Empty'
+            name: 'Empty',
+            patterns: []
           },
           {
             name: 'Empty Selected',
             patterns: []
           }
         ],
-        component: 'Empty Selected'
+        meta: 'Empty Selected'
       }
     })
 

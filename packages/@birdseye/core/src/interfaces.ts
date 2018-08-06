@@ -2,6 +2,10 @@ import { VueConstructor } from 'vue'
 
 export interface ComponentDeclaration {
   Wrapper: VueConstructor
+  meta: ComponentMeta
+}
+
+export interface ComponentMeta {
   name: string
   patterns: ComponentPattern[]
 }

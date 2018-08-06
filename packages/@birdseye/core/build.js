@@ -1,4 +1,5 @@
 const pkg = require('./package.json')
+const { rollup } = require('rollup')
 const vue = require('rollup-plugin-vue').default
 const css = require('rollup-plugin-css-only')
 const ts = require('rollup-plugin-typescript2')
@@ -17,12 +18,10 @@ function capitalize(name) {
   return camelized[0].toUpperCase() + camelized.slice(1)
 }
 
-module.exports = {
+const base = {
   input: 'src/index.ts',
   output: {
-    file: 'dist/core.es.js',
     banner,
-    format: 'es',
     exports: 'named',
     moduleName: capitalize(pkg.name),
     global: {
@@ -47,3 +46,23 @@ module.exports = {
     })
   ]
 }
+
+async function build(type) {
+  const start = Date.now()
+
+  const bundle = await rollup(base)
+
+  const file = `dist/core.${type}.js`
+  await bundle.write(
+    Object.assign({}, base.output, {
+      file,
+      format: type
+    })
+  )
+
+  const end = Date.now()
+
+  console.log(`\u001b[32mcreated ${file} in ${(end - start) / 1000}s\u001b[0m`)
+}
+
+build('cjs').then(() => build('es'))
