@@ -5,9 +5,9 @@
       :key="decl.name"
       class="item">
       <router-link
-        class="anchor"
         :class="{ current: isCurrent(decl.name) }"
-        :to="previewRoute(decl.name)">
+        :to="previewRoute(decl.name)"
+        class="anchor">
         {{ decl.name }}
       </router-link>
 
@@ -22,9 +22,9 @@
               :key="p.name"
               class="child-item">
               <router-link
-                class="child-anchor"
                 :class="{ current: isCurrent(decl.name, p.name) }"
-                :to="previewRoute(decl.name, p.name)">
+                :to="previewRoute(decl.name, p.name)"
+                class="child-anchor">
                 {{ p.name }}
               </router-link>
             </li>

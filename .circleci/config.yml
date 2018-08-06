@@ -35,14 +35,14 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/working
-      - run: yarn build
+      - run: npx lerna run build
 
   test:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/working
-      - run: yarn test
+      - run: npx lerna run test
 
 workflows:
   version: 2

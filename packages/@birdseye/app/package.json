@@ -26,9 +26,11 @@
   "scripts": {
     "serve": "vue-cli-service serve tests/dummy/main.js",
     "build": "vue-cli-service build --target lib --name app src/main.ts",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --no-fix",
+    "lint:fix": "vue-cli-service lint",
+    "test": "yarn lint && yarn test:unit",
     "test:unit": "vue-cli-service test:unit",
-    "prepublishOnly": "yarn lint && yarn test:unit && yarn build"
+    "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
     "@birdseye/core": "^0.1.0",

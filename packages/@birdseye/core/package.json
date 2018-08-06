@@ -31,7 +31,7 @@
     "build:play": "poi build --config play.config.js",
     "lint": "eslint --ext js,ts,vue src test",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run lint && npm run test:unit",
+    "test": "npm run lint",
     "test:unit": "jest",
     "test:dev": "jest --watch",
     "release": "npm run clean && npm run build"
