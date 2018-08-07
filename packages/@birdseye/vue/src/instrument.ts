@@ -67,18 +67,33 @@ export function createInstrument(
       },
 
       methods: {
+        collectDefaultData(): Record<string, any> {
+          const child = this.$refs.child as Vue
+          const data = child.$options.data
+
+          if (typeof data !== 'function') {
+            return {}
+          }
+
+          return data.call(child)
+        },
+
         applyData(newData: Record<string, any>): void {
           const child = this.$refs.child as Vue
+          const defaultData = this.collectDefaultData()
+
           Object.keys(child.$data).forEach(key => {
-            child.$data[key] = newData[key]
+            child.$data[key] = key in newData ? newData[key] : defaultData[key]
           })
         }
       },
 
       watch: {
-        data(newData: Record<string, any>) {
-          this.applyData(newData)
-        }
+        data: 'applyData'
+      },
+
+      updated() {
+        this.applyData(this.data)
       },
 
       mounted() {

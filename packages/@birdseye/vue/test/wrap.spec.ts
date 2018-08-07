@@ -132,7 +132,69 @@ describe('Wrap', () => {
     expect(wrapper.find('#bar').text()).toBe('0')
   })
 
-  it('removes data', async () => {
+  it('removes data with undefined', async () => {
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {
+          foo: 'test',
+          bar: 42
+        },
+        data: {
+          baz: 'baz'
+        }
+      }
+    })
+
+    wrapper.setProps({
+      data: {
+        baz: undefined
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('#baz').text()).toBe('')
+  })
+
+  it('uses props value for default data', async () => {
+    const Test = Vue.extend({
+      props: ['foo'],
+      data() {
+        return {
+          bar: this.foo
+        }
+      },
+      render(h): any {
+        return h('div', ['data - ' + this.bar])
+      }
+    })
+
+    const wrapper = shallowMount(wrap(Test), {
+      propsData: {
+        props: {
+          foo: 'first'
+        },
+        data: {}
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.text()).toBe('data - first')
+
+    wrapper.setProps({
+      props: {
+        foo: 'second'
+      },
+      data: {}
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.text()).toBe('data - second')
+  })
+
+  it('does not remove data when not specified', async () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
@@ -151,7 +213,7 @@ describe('Wrap', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find('#baz').text()).toBe('')
+    expect(wrapper.find('#baz').text()).toBe('baz')
   })
 
   it('can be injected Vue constructor', () => {
