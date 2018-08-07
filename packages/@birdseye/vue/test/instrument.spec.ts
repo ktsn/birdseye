@@ -14,16 +14,10 @@ describe('Instrument', () => {
     }
   })
 
-  it('provides placeholder if there are no meta data', () => {
-    const result = instrument(Dummy)
-    expect(result.name).toBe('<Anonymus Component>')
-    expect(result.patterns).toEqual([])
-  })
-
   it('uses component name if available', () => {
     Dummy.name = 'Dummy'
     const result = instrument(Dummy)
-    expect(result.name).toBe('Dummy')
+    expect(result.meta.name).toBe('Dummy')
   })
 
   it('extracts meta data', () => {
@@ -42,8 +36,8 @@ describe('Instrument', () => {
       ]
     }
     const result = instrument(Dummy)
-    expect(result.name).toBe(Dummy.__birdseye.name)
-    expect(result.patterns).toEqual(Dummy.__birdseye.patterns)
+    expect(result.meta.name).toBe(Dummy.__birdseye.name)
+    expect(result.meta.patterns).toEqual(Dummy.__birdseye.patterns)
   })
 
   it('extracts from constructor', () => {
@@ -63,7 +57,7 @@ describe('Instrument', () => {
       ]
     }
     const result = instrument(Ctor)
-    expect(result.name).toBe(Ctor.options.__birdseye.name)
-    expect(result.patterns).toEqual(Ctor.options.__birdseye.patterns)
+    expect(result.meta.name).toBe(Ctor.options.__birdseye.name)
+    expect(result.meta.patterns).toEqual(Ctor.options.__birdseye.patterns)
   })
 })

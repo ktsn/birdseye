@@ -1,5 +1,10 @@
 import Vue, { Component, VueConstructor, VNode, ComponentOptions } from 'vue'
-import { ComponentDeclaration } from '@birdseye/core'
+import {
+  normalizeMeta,
+  ComponentDeclaration,
+  ComponentDataInfo,
+  ComponentDataType
+} from '@birdseye/core'
 
 export function createInstrument(
   Vue: VueConstructor,
@@ -14,27 +19,50 @@ export function createInstrument(
     const options =
       typeof Component === 'function' ? (Component as any).options : Component
 
-    const Wrapper = wrap(Component)
-    const meta = options.__birdseye || {
-      name: options.name || '<Anonymus Component>',
-      patterns: []
-    }
+    const rawMeta = options.__birdseye || {}
+    const meta = normalizeMeta({
+      name: rawMeta.name || options.name,
+      props: rawMeta.props,
+      data: rawMeta.data,
+      patterns: rawMeta.patterns
+    })
+
+    const Wrapper = wrap(Component, meta.props)
 
     return {
       Wrapper,
-      name: meta.name,
-      patterns: meta.patterns
+      meta
     }
   }
 
-  function wrap(Component: Component): VueConstructor {
+  function wrap(
+    Component: Component,
+    metaProps: Record<string, ComponentDataInfo> = {}
+  ): VueConstructor {
     // We need to mount an individual root so that the users can inject
     // some object to the internal root.
     const InternalRoot = Vue.extend({
       data() {
         return {
-          props: {},
-          data: {}
+          props: {} as Record<string, any>,
+          data: {} as Record<string, any>
+        }
+      },
+
+      computed: {
+        filledProps(): Record<string, any> {
+          const filled = { ...this.props }
+          Object.keys(metaProps).forEach(key => {
+            if (filled[key] != null) {
+              return
+            }
+            const meta = metaProps[key]
+            filled[key] =
+              meta.defaultValue != null
+                ? meta.defaultValue
+                : inferValueFromType(meta.type)
+          })
+          return filled
         }
       },
 
@@ -59,7 +87,7 @@ export function createInstrument(
 
       render(h): VNode {
         return h(Component, {
-          props: this.props,
+          props: this.filledProps,
           ref: 'child'
         })
       }
@@ -114,5 +142,28 @@ export function createInstrument(
         return h('div')
       }
     })
+  }
+}
+
+function inferValueFromType(
+  type: ComponentDataType | ComponentDataType[]
+): any {
+  if (Array.isArray(type)) {
+    return inferValueFromType(type[0])
+  }
+
+  switch (type) {
+    case 'string':
+      return ''
+    case 'number':
+      return 0
+    case 'boolean':
+      return false
+    case 'object':
+      return {}
+    case 'array':
+      return []
+    default:
+      return undefined
   }
 }

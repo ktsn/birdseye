@@ -1,30 +1,35 @@
 <template>
   <ul class="nav-side">
     <li
-      v-for="decl in declarations"
-      :key="decl.name"
-      class="item">
+      v-for="m in nav"
+      :key="m.name"
+      class="item"
+    >
       <router-link
-        :class="{ current: isCurrent(decl.name) }"
-        :to="previewRoute(decl.name)"
-        class="anchor">
-        {{ decl.name }}
+        :class="{ current: isCurrent(m.name) }"
+        :to="previewRoute(m.name)"
+        class="anchor"
+      >
+        {{ m.name }}
       </router-link>
 
       <TransitionDisclosure name="child">
         <div
-          v-if="!isEmptyPatterns(decl)"
-          v-show="component === decl.name"
-          class="child-wrapper">
+          v-if="!isEmptyPatterns(m)"
+          v-show="meta === m.name"
+          class="child-wrapper"
+        >
           <ul class="child-list">
             <li
-              v-for="p in decl.patterns"
+              v-for="p in m.patterns"
               :key="p.name"
-              class="child-item">
+              class="child-item"
+            >
               <router-link
-                :class="{ current: isCurrent(decl.name, p.name) }"
-                :to="previewRoute(decl.name, p.name)"
-                class="child-anchor">
+                :class="{ current: isCurrent(m.name, p.name) }"
+                :to="previewRoute(m.name, p.name)"
+                class="child-anchor"
+              >
                 {{ p.name }}
               </router-link>
             </li>
@@ -38,7 +43,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Location } from 'vue-router'
-import { ComponentDeclaration } from '@birdseye/core'
+import { ComponentMeta } from '@birdseye/core'
 import { TransitionDisclosure } from 'vue-transition-components'
 
 export default Vue.extend({
@@ -49,7 +54,7 @@ export default Vue.extend({
   },
 
   props: {
-    component: {
+    meta: {
       type: String,
       default: null
     },
@@ -59,17 +64,17 @@ export default Vue.extend({
       default: null
     },
 
-    declarations: {
-      type: Array as () => ComponentDeclaration[],
+    nav: {
+      type: Array as () => ComponentMeta[],
       required: true
     }
   },
 
   methods: {
-    previewRoute(component: string, pattern?: string): Location {
+    previewRoute(meta: string, pattern?: string): Location {
       const to: Location = {
         name: 'preview',
-        params: { component }
+        params: { meta }
       }
 
       if (pattern) {
@@ -79,12 +84,12 @@ export default Vue.extend({
       return to
     },
 
-    isCurrent(component: string, pattern: string | null = null): boolean {
-      return this.component === component && this.pattern === pattern
+    isCurrent(meta: string, pattern: string | null = null): boolean {
+      return this.meta === meta && this.pattern === pattern
     },
 
-    isEmptyPatterns(component: ComponentDeclaration): boolean {
-      return !component.patterns || component.patterns.length === 0
+    isEmptyPatterns(meta: ComponentMeta): boolean {
+      return meta.patterns.length === 0
     }
   }
 })

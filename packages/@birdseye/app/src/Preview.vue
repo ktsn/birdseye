@@ -4,7 +4,7 @@ import { ComponentDeclaration, ComponentPattern } from '@birdseye/core'
 
 export default Vue.extend({
   props: {
-    component: {
+    meta: {
       type: String,
       required: true
     },
@@ -23,7 +23,7 @@ export default Vue.extend({
   computed: {
     targetDeclaration(): ComponentDeclaration | undefined {
       return this.declarations.filter(d => {
-        return d.name === this.component
+        return d.meta.name === this.meta
       })[0]
     },
 
@@ -32,7 +32,7 @@ export default Vue.extend({
 
       if (!decl || !this.pattern) return
 
-      return decl.patterns.filter(p => {
+      return decl.meta.patterns.filter(p => {
         return p.name === this.pattern
       })[0]
     }

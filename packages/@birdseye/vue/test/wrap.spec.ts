@@ -198,4 +198,78 @@ describe('Wrap', () => {
     })
     expect(wrapper.text()).toBe('injected')
   })
+
+  it('fills props value from meta default value', () => {
+    const Test = Vue.extend({
+      props: {
+        foo: {
+          type: String,
+          default: 'test'
+        }
+      },
+
+      render(h) {
+        return h('div', this.foo)
+      }
+    })
+
+    const Wrapper = wrap(Test, {
+      foo: { type: ['string'], defaultValue: 'test1' }
+    })
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: { props: {}, data: {} }
+    })
+
+    expect(wrapper.text()).toBe('test1')
+  })
+
+  it('fills props value from meta type', () => {
+    const Test = Vue.extend({
+      props: {
+        foo: Number
+      },
+
+      render(h) {
+        return h('div', String(this.foo))
+      }
+    })
+
+    const Wrapper = wrap(Test, {
+      foo: { type: ['number'] }
+    })
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: { props: {}, data: {} }
+    })
+
+    expect(wrapper.text()).toBe('0')
+  })
+
+  it('does not overwrite specified props with default value', () => {
+    const Test = Vue.extend({
+      props: {
+        foo: {
+          type: String
+        }
+      },
+
+      render(h) {
+        return h('div', this.foo)
+      }
+    })
+
+    const Wrapper = wrap(Test, {
+      foo: { type: ['string'], defaultValue: 'test' }
+    })
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: { foo: 'foo' },
+        data: {}
+      }
+    })
+
+    expect(wrapper.text()).toBe('foo')
+  })
 })

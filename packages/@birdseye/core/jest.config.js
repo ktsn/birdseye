@@ -4,6 +4,7 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest'
   },
   setupFiles: ['<rootDir>/test/setup.ts'],
+  testURL: 'http://localhost',
   testRegex: '/test/.+\\.spec\\.(js|ts)$',
   moduleNameMapper: {
     '^@/(.+)$': '<rootDir>/src/$1',

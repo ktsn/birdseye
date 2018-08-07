@@ -8,7 +8,7 @@ export default new Router({
   routes: [
     {
       name: 'preview',
-      path: '/:component/:pattern?',
+      path: '/:meta/:pattern?',
       component: Preview,
       props: true
     }

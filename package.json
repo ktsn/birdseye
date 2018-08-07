@@ -4,6 +4,11 @@
   "workspaces": [
     "packages/@birdseye/*"
   ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap && yarn build",
+    "test": "lerna run test",
+    "build": "lerna run build"
+  },
   "devDependencies": {
     "lerna": "^3.0.0-rc.0"
   }

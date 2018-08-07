@@ -15,11 +15,19 @@ const vueBirdseyeLoader: loader.Loader = function(source, map) {
       meta = JSON.parse(String(source))
     }
 
+    const extractPropsReq = loaderUtils.stringifyRequest(
+      this,
+      '@birdseye/vue/lib/runtime/extract-props'
+    )
+
     this.callback(
       null,
       [
+        `import extractProps from ${extractPropsReq}`,
         'export default function(Component) {',
+        '  var props = extractProps(Component.options.props)',
         `  Component.options.__birdseye = ${JSON.stringify(meta)}`,
+        '  Component.options.__birdseye.props = props',
         '}'
       ].join('\n'),
       map
