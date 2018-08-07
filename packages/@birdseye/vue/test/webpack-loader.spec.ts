@@ -1,3 +1,4 @@
+import * as path from 'path'
 import loader from '../src/webpack-loader'
 
 function test(
@@ -7,6 +8,7 @@ function test(
 ): void {
   loader.call(
     {
+      context: path.resolve(__dirname, '../'),
       callback: cb,
       resourceQuery: lang ? '?lang=' + lang : ''
     },
@@ -23,8 +25,11 @@ describe('webpack loader', () => {
       null,
       (_err, result) => {
         expect(result).toMatchInlineSnapshot(`
-"export default function(Component) {
+"import extractProps from \\"@birdseye/vue/lib/runtime/extract-props\\"
+export default function(Component) {
+  var props = extractProps(Component.options.props)
   Component.options.__birdseye = {\\"name\\":\\"Test\\"}
+  Component.options.__birdseye.props = props
 }"
 `)
         done()
@@ -41,8 +46,11 @@ describe('webpack loader', () => {
   it('loads yaml data', () => {
     test(`name: Test`, 'yaml', (_err, result) => {
       expect(result).toMatchInlineSnapshot(`
-"export default function(Component) {
+"import extractProps from \\"@birdseye/vue/lib/runtime/extract-props\\"
+export default function(Component) {
+  var props = extractProps(Component.options.props)
   Component.options.__birdseye = {\\"name\\":\\"Test\\"}
+  Component.options.__birdseye.props = props
 }"
 `)
     })
