@@ -23,6 +23,9 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - packages/@birdseye/core/node_modules
+            - packages/@birdseye/app/node_modules
+            - packages/@birdseye/vue/node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - persist_to_workspace:
