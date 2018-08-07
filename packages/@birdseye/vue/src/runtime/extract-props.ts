@@ -25,7 +25,8 @@ export default function extractProps(
     if (def && typeof def === 'object' && !Array.isArray(def)) {
       res[name] = {
         type: toTypeStrings(def.type),
-        defaultValue: def.default
+        defaultValue:
+          typeof def.default !== 'function' ? def.default : undefined
       }
     } else {
       res[name] = { type: toTypeStrings(def) }

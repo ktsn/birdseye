@@ -52,6 +52,23 @@ describe('Extract props', () => {
     })
   })
 
+  it('does not extract default value from function', () => {
+    const props = extractProps({
+      foo: {
+        default: () => ['foo', 'bar']
+      }
+    })
+    expect(props).toEqual({
+      foo: {
+        type: [],
+        // since it needs component instance as `this`,
+        // we should not choose function style default value.
+        // it will be provided by Vue.js side in any cases.
+        defaultValue: undefined
+      }
+    })
+  })
+
   describe('types', () => {
     it('string', () => {
       const props = extractProps({
