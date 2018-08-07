@@ -5,6 +5,8 @@ describe('Meta', () => {
     const meta = normalizeMeta({})
 
     expect(meta.name).toBe('<AnonymusComponent>')
+    expect(meta.props).toEqual({})
+    expect(meta.data).toEqual({})
     expect(meta.patterns).toEqual([])
   })
 
