@@ -30,13 +30,6 @@ jobs:
           paths:
             - repo
 
-  build:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/working
-      - run: yarn build
-
   test:
     <<: *defaults
     steps:
@@ -49,9 +42,6 @@ workflows:
   build_and_test:
     jobs:
       - install
-      - build:
-          requires:
-            - install
       - test:
           requires:
             - install

@@ -5,7 +5,7 @@
     "packages/@birdseye/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap && yarn build",
     "test": "lerna run test",
     "build": "lerna run build"
   },
