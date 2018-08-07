@@ -65,4 +65,9 @@ async function build(type) {
   console.log(`\u001b[32mcreated ${file} in ${(end - start) / 1000}s\u001b[0m`)
 }
 
-build('cjs').then(() => build('es'))
+build('cjs')
+  .then(() => build('es'))
+  .catch(err => {
+    console.error(String(err))
+    process.exit(1)
+  })
