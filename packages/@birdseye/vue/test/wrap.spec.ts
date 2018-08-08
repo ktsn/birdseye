@@ -216,7 +216,7 @@ describe('Wrap', () => {
     expect(wrapper.find('#baz').text()).toBe('baz')
   })
 
-  it('can be injected Vue constructor', () => {
+  it('can be injected Vue constructor', async () => {
     const localVue = createLocalVue()
     localVue.prototype.$test = 'injected'
 
@@ -236,10 +236,13 @@ describe('Wrap', () => {
         data: {}
       }
     })
+
+    await wrapper.vm.$nextTick()
+
     expect(wrapper.text()).toBe('injected')
   })
 
-  it('can be injected root constructor options', () => {
+  it('can be injected root constructor options', async () => {
     const { wrap } = createInstrument(Vue, {
       test: 'injected'
     } as any)
@@ -258,10 +261,13 @@ describe('Wrap', () => {
         data: {}
       }
     })
+
+    await wrapper.vm.$nextTick()
+
     expect(wrapper.text()).toBe('injected')
   })
 
-  it('fills props value from meta default value', () => {
+  it('fills props value from meta default value', async () => {
     const Test = Vue.extend({
       props: {
         foo: {
@@ -283,10 +289,12 @@ describe('Wrap', () => {
       propsData: { props: {}, data: {} }
     })
 
+    await wrapper.vm.$nextTick()
+
     expect(wrapper.text()).toBe('test1')
   })
 
-  it('fills props value from meta type', () => {
+  it('fills props value from meta type', async () => {
     const Test = Vue.extend({
       props: {
         foo: Number
@@ -305,10 +313,12 @@ describe('Wrap', () => {
       propsData: { props: {}, data: {} }
     })
 
+    await wrapper.vm.$nextTick()
+
     expect(wrapper.text()).toBe('0')
   })
 
-  it('does not overwrite specified props with default value', () => {
+  it('does not overwrite specified props with default value', async () => {
     const Test = Vue.extend({
       props: {
         foo: {
@@ -331,6 +341,8 @@ describe('Wrap', () => {
         data: {}
       }
     })
+
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.text()).toBe('foo')
   })
