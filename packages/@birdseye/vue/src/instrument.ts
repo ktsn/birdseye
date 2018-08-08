@@ -10,6 +10,84 @@ export function createInstrument(
   Vue: VueConstructor,
   rootOptions: ComponentOptions<any> = {}
 ) {
+  // We need to mount an individual root so that the users can inject
+  // some object to the internal root.
+  const Root = Vue.extend({
+    data() {
+      return {
+        props: {} as Record<string, any>,
+        data: {} as Record<string, any>
+      }
+    },
+
+    methods: {
+      collectDefaultData(): Record<string, any> {
+        const child = this.$refs.child as Vue
+        const data = child.$options.data
+
+        if (typeof data !== 'function') {
+          return {}
+        }
+
+        return data.call(child)
+      },
+
+      applyData(newData: Record<string, any>): void {
+        const child = this.$refs.child as Vue
+        if (child) {
+          const defaultData = this.collectDefaultData()
+
+          Object.keys(child.$data).forEach(key => {
+            child.$data[key] = key in newData ? newData[key] : defaultData[key]
+          })
+        }
+      },
+
+      updateComponent(component: Component | null): void {
+        const vm: any = this
+        vm.component = component
+        this.$forceUpdate()
+      }
+    },
+
+    watch: {
+      data: 'applyData'
+    },
+
+    created() {
+      const vm: any = this
+      vm.component = null
+    },
+
+    updated() {
+      this.applyData(this.data)
+    },
+
+    mounted() {
+      this.applyData(this.data)
+    },
+
+    render(h): VNode {
+      const vm: any = this
+      if (!vm.component) {
+        return h()
+      }
+
+      return h(vm.component, {
+        props: this.props,
+        ref: 'child'
+      })
+    }
+  })
+
+  // We need to immediately mount root instance to let devtools detect it
+  // To make sure devtools to detect root instance, we need to create placeholder
+  // element and attach root instance to it.
+  const root = new Root(rootOptions).$mount()
+  const placeholder: any = document.createComment('Birdseye placeholder')
+  placeholder.__vue__ = root
+  document.body.appendChild(placeholder)
+
   return {
     instrument,
     wrap
@@ -39,13 +117,18 @@ export function createInstrument(
     Component: Component,
     metaProps: Record<string, ComponentDataInfo> = {}
   ): VueConstructor {
-    // We need to mount an individual root so that the users can inject
-    // some object to the internal root.
-    const InternalRoot = Vue.extend({
-      data() {
-        return {
-          props: {} as Record<string, any>,
-          data: {} as Record<string, any>
+    return Vue.extend({
+      name: 'ComponentWrapper',
+
+      props: {
+        props: {
+          type: Object,
+          required: true
+        },
+
+        data: {
+          type: Object,
+          required: true
         }
       },
 
@@ -66,91 +149,28 @@ export function createInstrument(
         }
       },
 
-      methods: {
-        collectDefaultData(): Record<string, any> {
-          const child = this.$refs.child as Vue
-          const data = child.$options.data
-
-          if (typeof data !== 'function') {
-            return {}
-          }
-
-          return data.call(child)
-        },
-
-        applyData(newData: Record<string, any>): void {
-          const child = this.$refs.child as Vue
-          const defaultData = this.collectDefaultData()
-
-          Object.keys(child.$data).forEach(key => {
-            child.$data[key] = key in newData ? newData[key] : defaultData[key]
-          })
-        }
-      },
-
       watch: {
-        data: 'applyData'
-      },
-
-      updated() {
-        this.applyData(this.data)
-      },
-
-      mounted() {
-        this.applyData(this.data)
-      },
-
-      render(h): VNode {
-        return h(Component, {
-          props: this.filledProps,
-          ref: 'child'
-        })
-      }
-    })
-
-    return Vue.extend({
-      name: 'ComponentWrapper',
-
-      props: {
-        props: {
-          type: Object,
-          required: true
-        },
-
-        data: {
-          type: Object,
-          required: true
-        }
-      },
-
-      watch: {
-        props(newProps: Record<string, any>): void {
-          const vm: any = this
-          vm.internalRoot.props = newProps
+        filledProps(newProps: Record<string, any>): void {
+          root.props = newProps
         },
 
         data(newData: Record<string, any>): void {
-          const vm: any = this
-          vm.internalRoot.data = newData
+          root.data = newData
         }
       },
 
       created() {
-        const vm: any = this
-        const root = (vm.internalRoot = new InternalRoot(rootOptions))
-        root.props = this.props
+        root.props = this.filledProps
         root.data = this.data
       },
 
       mounted() {
-        const root = (this as any).internalRoot
-        root.$mount()
+        root.updateComponent(Component)
         this.$el.appendChild(root.$el)
       },
 
       beforeDestroy() {
-        const vm: any = this
-        vm.internalRoot.$destroy()
+        root.updateComponent(null)
       },
 
       render(h): VNode {
