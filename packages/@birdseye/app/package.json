@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "katashin",
   "description": "Application of Birdseye",
   "keywords": [
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
-    "@birdseye/vue": "^0.1.4",
+    "@birdseye/vue": "^0.1.5",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
