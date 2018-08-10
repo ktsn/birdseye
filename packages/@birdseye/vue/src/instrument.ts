@@ -141,7 +141,7 @@ export function createInstrument(
             }
             const meta = metaProps[key]
             filled[key] =
-              meta.defaultValue != null
+              'defaultValue' in meta
                 ? meta.defaultValue
                 : inferValueFromType(meta.type)
           })

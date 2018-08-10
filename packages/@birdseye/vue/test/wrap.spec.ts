@@ -1,5 +1,6 @@
 import Vue, { VNode } from 'vue'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { ComponentDataType } from '@birdseye/core'
 import { createInstrument } from '../src/instrument'
 
 describe('Wrap', () => {
@@ -267,83 +268,60 @@ describe('Wrap', () => {
     expect(wrapper.text()).toBe('injected')
   })
 
-  it('fills props value from meta default value', async () => {
-    const Test = Vue.extend({
-      props: {
-        foo: {
-          type: String,
-          default: 'test'
+  describe('props default', () => {
+    async function test(
+      meta: { type: ComponentDataType[]; defaultValue?: any },
+      prop: any,
+      expected: any
+    ) {
+      const Test = Vue.extend({
+        props: ['__test__'],
+
+        render(h) {
+          const rendered =
+            typeof this.__test__ === 'object'
+              ? JSON.stringify(this.__test__)
+              : this.__test__
+          return h('div', rendered)
         }
-      },
+      })
 
-      render(h) {
-        return h('div', this.foo)
-      }
-    })
+      const Wrapper = wrap(Test, {
+        __test__: meta
+      })
 
-    const Wrapper = wrap(Test, {
-      foo: { type: ['string'], defaultValue: 'test1' }
-    })
-
-    const wrapper = shallowMount(Wrapper, {
-      propsData: { props: {}, data: {} }
-    })
-
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.text()).toBe('test1')
-  })
-
-  it('fills props value from meta type', async () => {
-    const Test = Vue.extend({
-      props: {
-        foo: Number
-      },
-
-      render(h) {
-        return h('div', String(this.foo))
-      }
-    })
-
-    const Wrapper = wrap(Test, {
-      foo: { type: ['number'] }
-    })
-
-    const wrapper = shallowMount(Wrapper, {
-      propsData: { props: {}, data: {} }
-    })
-
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.text()).toBe('0')
-  })
-
-  it('does not overwrite specified props with default value', async () => {
-    const Test = Vue.extend({
-      props: {
-        foo: {
-          type: String
+      const wrapper = shallowMount(Wrapper, {
+        propsData: {
+          props:
+            prop === undefined
+              ? {}
+              : {
+                  __test__: prop
+                },
+          data: {}
         }
-      },
+      })
 
-      render(h) {
-        return h('div', this.foo)
-      }
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.text()).toBe(expected)
+    }
+
+    it('fills props value from meta default value', () => {
+      return test({ type: ['string'], defaultValue: 'test' }, undefined, 'test')
     })
 
-    const Wrapper = wrap(Test, {
-      foo: { type: ['string'], defaultValue: 'test' }
+    it('fills props value from meta type', () => {
+      return test({ type: ['number'] }, undefined, '0')
     })
 
-    const wrapper = shallowMount(Wrapper, {
-      propsData: {
-        props: { foo: 'foo' },
-        data: {}
-      }
+    it('does not auto fills props value when default is specified even if it is null or undefined', async () => {
+      await test({ type: ['array'], defaultValue: null }, undefined, 'null')
+      await test({ type: ['array'], defaultValue: undefined }, undefined, '')
     })
 
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.text()).toBe('foo')
+    it('does not overwrite specified props with default value', () => {
+      return test({ type: ['string'], defaultValue: 'test' }, 'foo', 'foo')
+    })
   })
 })

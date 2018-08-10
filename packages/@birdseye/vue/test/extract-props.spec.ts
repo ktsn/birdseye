@@ -52,6 +52,27 @@ describe('Extract props', () => {
     })
   })
 
+  it('extracts null / undefined as default', () => {
+    const props = extractProps({
+      foo: {
+        default: null
+      },
+      bar: {
+        default: undefined
+      }
+    })
+    expect(props).toEqual({
+      foo: {
+        type: [],
+        defaultValue: null
+      },
+      bar: {
+        type: [],
+        defaultValue: undefined
+      }
+    })
+  })
+
   it('does not extract default value from function', () => {
     const props = extractProps({
       foo: {

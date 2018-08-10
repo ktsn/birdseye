@@ -24,9 +24,11 @@ export default function extractProps(
     const def = props[name]
     if (def && typeof def === 'object' && !Array.isArray(def)) {
       res[name] = {
-        type: toTypeStrings(def.type),
-        defaultValue:
-          typeof def.default !== 'function' ? def.default : undefined
+        type: toTypeStrings(def.type)
+      }
+
+      if ('default' in def && typeof def.default !== 'function') {
+        res[name].defaultValue = def.default
       }
     } else {
       res[name] = { type: toTypeStrings(def) }
