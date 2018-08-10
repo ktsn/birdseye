@@ -30,11 +30,12 @@
     "prepublishOnly": "yarn test",
     "clean": "rm -rf lib",
     "build": "tsc -p src",
-    "dev": "jest --watch",
+    "dev": "yarn build -w",
     "lint": "eslint --ext js,ts src test",
     "lint:fix": "eslint --fix --ext js,ts src test",
     "test": "yarn lint && yarn test:unit",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test:watch": "jest --watch"
   },
   "jest": {
     "transform": {

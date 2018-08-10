@@ -30,6 +30,7 @@
     "lint:fix": "vue-cli-service lint",
     "test": "yarn lint && yarn test:unit",
     "test:unit": "vue-cli-service test:unit",
+    "test:watch": "yarn test:unit --watch",
     "prepare": "yarn build",
     "prepublishOnly": "yarn test"
   },
