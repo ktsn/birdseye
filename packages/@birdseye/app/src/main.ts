@@ -22,7 +22,7 @@ export default function birdseye(
   const wrapper = typeof el === 'string' ? document.querySelector(el) : el
   wrapper!.appendChild(app)
 
-  app.nav = declarations.map(d => d.meta)
+  app.meta = declarations.map(d => d.meta)
 
   new Root({
     el: content,
