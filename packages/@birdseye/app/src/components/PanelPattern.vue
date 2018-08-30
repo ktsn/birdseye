@@ -1,14 +1,14 @@
 <template>
   <div class="panel-pattern">
     <PanelPatternGroup
+      :data="props"
       class="group"
       title="props"
-      :data="props"
     />
     <PanelPatternGroup
+      :data="data"
       class="group"
       title="data"
-      :data="data"
     />
   </div>
 </template>
