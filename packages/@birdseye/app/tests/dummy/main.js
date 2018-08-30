@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import birdseye from '@/main'
 import { createInstrument } from '@birdseye/vue'
+import PanelPattern from '@/components/PanelPattern.vue'
 import style from './style.css'
 
 const load = ctx => ctx.keys().map(ctx)
-const components = load(require.context('./components', true, /\.vue$/))
+const components = load(require.context('./components', true, /\.vue$/)).concat(
+  PanelPattern
+)
 
 // For debug
 style.__inject__(document.head)
