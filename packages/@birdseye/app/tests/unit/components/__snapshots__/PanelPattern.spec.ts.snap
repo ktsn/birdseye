@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PanelPattern renders for props and data 1`] = `
+<div class="panel-pattern">
+  <div class="group">
+    <p>title: props</p>
+    <p>data: [{"type":["string"],"name":"foo","value":"string value"}]</p>
+  </div>
+  <div class="group">
+    <p>title: data</p>
+    <p>data: [{"type":[],"name":"bar","value":true}]</p>
+  </div>
+</div>
+`;

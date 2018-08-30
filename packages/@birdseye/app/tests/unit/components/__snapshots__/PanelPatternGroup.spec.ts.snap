@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PanelPatternGroup renders no data when data is empty 1`] = `
+<div class="panel-pattern-group"><strong class="title">
+    no data
+  </strong>
+  <p class="no-data">
+    No Data
+  </p>
+</div>
+`;
+
+exports[`PanelPatternGroup renders title and data 1`] = `
+<div class="panel-pattern-group"><strong class="title">
+    title string
+  </strong>
+  <ul class="list">
+    <li class="item"><strong class="name">
+        foo
+      </strong> <span class="value">
+        string value
+      </span></li>
+    <li class="item"><strong class="name">
+        bar
+      </strong> <span class="value">
+        123
+      </span></li>
+  </ul>
+</div>
+`;

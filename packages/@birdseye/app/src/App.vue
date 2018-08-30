@@ -3,34 +3,97 @@
     <div class="app-inner">
       <aside class="app-side">
         <NavSide
-          :nav="nav"
+          :nav="meta"
           :meta="$route.params.meta"
           :pattern="$route.params.pattern"
         />
       </aside>
 
-      <main
-        ref="slot"
-        class="app-preview"
-      />
+      <div class="app-content">
+        <main
+          ref="slot"
+          class="app-preview"
+        />
+
+        <div class="app-panel">
+          <PanelPattern
+            :props="props"
+            :data="data"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { ComponentMeta } from '@birdseye/core'
+import { ComponentMeta, ComponentPattern } from '@birdseye/core'
 import NavSide from './components/NavSide.vue'
+import PanelPattern, { PatternData } from './components/PanelPattern.vue'
 
 export default Vue.extend({
   components: {
-    NavSide
+    NavSide,
+    PanelPattern
   },
 
   props: {
-    nav: {
+    meta: {
       type: Array as () => ComponentMeta[],
       default: () => []
+    }
+  },
+
+  computed: {
+    currentMeta(): ComponentMeta | undefined {
+      const { meta: metaName } = this.$route.params
+      return this.meta.find(m => m.name === metaName)
+    },
+
+    currentPattern(): ComponentPattern | undefined {
+      if (!this.currentMeta) {
+        return
+      }
+
+      const { pattern: patternName } = this.$route.params
+      return this.currentMeta.patterns.find(p => p.name === patternName)
+    },
+
+    props(): PatternData[] {
+      if (!this.currentMeta || !this.currentPattern) {
+        return []
+      }
+
+      const { currentMeta: meta, currentPattern: pattern } = this
+
+      return Object.keys(pattern.props).map(name => {
+        const info = meta.props[name]
+        const value = pattern.props[name]
+        return {
+          type: info ? info.type : [],
+          name,
+          value
+        }
+      })
+    },
+
+    data(): PatternData[] {
+      if (!this.currentMeta || !this.currentPattern) {
+        return []
+      }
+
+      const { currentMeta: meta, currentPattern: pattern } = this
+
+      return Object.keys(pattern.data).map(name => {
+        const info = meta.data[name]
+        const value = pattern.data[name]
+        return {
+          type: info ? info.type : [],
+          name,
+          value
+        }
+      })
     }
   },
 
@@ -51,11 +114,14 @@ export default Vue.extend({
   --color-base: #f1f8fd;
   --color-main: #828bec;
   --color-preview-background: #fff;
+  --color-border: #e0e0e0;
   --width-side: 280px;
   --padding-preview: 20px;
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   --font-family-base: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
     'Segoe UI', sans-serif;
+  --font-size-normal: 14px;
+  --font-size-large: 18px;
 }
 </style>
 
@@ -77,6 +143,7 @@ export default Vue.extend({
 .app-side {
   all: initial;
   font-family: var(--font-family-base);
+  font-size: var(--font-size-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -85,6 +152,20 @@ export default Vue.extend({
   padding: 20px;
   width: var(--width-side);
   background-color: var(--color-base);
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.app-panel {
+  overflow: auto;
+  flex: 0 0 30%;
+  padding: 20px;
+  min-height: 200px;
+  border-top: 1px solid var(--color-border);
 }
 
 .app-preview {
