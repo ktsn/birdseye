@@ -3,7 +3,7 @@
     <component
       :is="componentForType"
       :value="value"
-      @input="$emit('input', ...arguments)"
+      @input="$emit('input', arguments[0])"
     />
     <select
       class="select-type"
