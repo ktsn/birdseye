@@ -92,16 +92,10 @@ patterns:
   - name: String
     props:
       value: string value
-      availableTypes:
-        - string
   - name: Number
     props:
       value: 123
-      availableTypes:
-        - number
   - name: Boolean
     props:
       value: true
-      availableTypes:
-        - boolean
 </birdseye>
