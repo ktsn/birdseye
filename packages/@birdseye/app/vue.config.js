@@ -29,9 +29,9 @@ module.exports = {
 
     // prettier-ignore
     config.module
-        .rule('birdseye-vue')
-          .resourceQuery(/blockType=birdseye/)
-          .use('birdseye-vue-loader')
-            .loader(birdseyeLoader)
+      .rule('birdseye-vue')
+        .resourceQuery(/blockType=birdseye/)
+        .use('birdseye-vue-loader')
+          .loader(birdseyeLoader)
   }
 }
