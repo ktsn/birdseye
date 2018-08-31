@@ -24,11 +24,13 @@ import Vue from 'vue'
 import InputString from './InputString.vue'
 import InputNumber from './InputNumber.vue'
 import InputBoolean from './InputBoolean.vue'
+import InputArray from './InputArray.vue'
 
 const typeToComponentName: Record<string, string> = {
   string: 'InputString',
   number: 'InputNumber',
-  boolean: 'InputBoolean'
+  boolean: 'InputBoolean',
+  array: 'InputArray'
 }
 
 const possibleTypes = Object.keys(typeToComponentName)
@@ -39,7 +41,8 @@ export default Vue.extend({
   components: {
     InputString,
     InputNumber,
-    InputBoolean
+    InputBoolean,
+    InputArray
   },
 
   props: {
@@ -98,4 +101,10 @@ patterns:
   - name: Boolean
     props:
       value: true
+  - name: Array
+    props:
+      value:
+        - foo
+        - 42
+        - true
 </birdseye>

@@ -38,6 +38,18 @@ describe('BaseInput', () => {
       expect(select.value).toBe('boolean')
       expect(wrapper.html()).toMatchSnapshot()
     })
+
+    it('array', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: ['foo', 42, true]
+        }
+      })
+
+      const select = wrapper.find('.select-type').element as HTMLSelectElement
+      expect(select.value).toBe('array')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
   })
 
   describe('events', () => {
