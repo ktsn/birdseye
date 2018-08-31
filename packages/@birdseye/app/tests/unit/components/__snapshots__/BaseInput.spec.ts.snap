@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`BaseInput supported types boolean 1`] = `
+<div class="base-input">
+  <inputboolean-stub value="true"></inputboolean-stub>
+  <select class="select-type">
+    <option value="boolean">boolean</option>
+  </select>
+</div>
+`;
+
 exports[`BaseInput supported types number 1`] = `
 <div class="base-input">
   <inputnumber-stub value="123"></inputnumber-stub>

@@ -28,6 +28,19 @@ describe('BaseInput', () => {
       expect(select.value).toBe('number')
       expect(wrapper.html()).toMatchSnapshot()
     })
+
+    it('boolean', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: true,
+          availableTypes: ['boolean']
+        }
+      })
+
+      const select = wrapper.find('.select-type').element as HTMLSelectElement
+      expect(select.value).toBe('boolean')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
   })
 
   describe('events', () => {
