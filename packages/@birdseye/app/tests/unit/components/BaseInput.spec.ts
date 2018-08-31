@@ -6,8 +6,7 @@ describe('BaseInput', () => {
     it('string', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: 'string value',
-          availableTypes: ['string']
+          value: 'string value'
         }
       })
 
@@ -19,8 +18,7 @@ describe('BaseInput', () => {
     it('number', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: 123,
-          availableTypes: ['number']
+          value: 123
         }
       })
 
@@ -32,8 +30,7 @@ describe('BaseInput', () => {
     it('boolean', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: true,
-          availableTypes: ['boolean']
+          value: true
         }
       })
 

@@ -50,7 +50,7 @@ export default Vue.extend({
 
     availableTypes: {
       type: Array as () => string[],
-      required: true,
+      default: () => possibleTypes,
       validator(types: string[]) {
         return types.every(type => possibleTypes.indexOf(type) >= 0)
       }
