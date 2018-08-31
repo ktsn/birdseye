@@ -11,7 +11,7 @@
       @change="$emit('change-type', $event.target.value)"
     >
       <option
-        v-for="t in availableTypes"
+        v-for="t in realAvailableTypes"
         :key="t"
         :value="t"
       >{{ t }}</option>
@@ -50,7 +50,7 @@ export default Vue.extend({
 
     availableTypes: {
       type: Array as () => string[],
-      default: () => possibleTypes,
+      default: () => [],
       validator(types: string[]) {
         return types.every(type => possibleTypes.indexOf(type) >= 0)
       }
@@ -58,6 +58,15 @@ export default Vue.extend({
   },
 
   computed: {
+    /**
+     * Replace empty array to possibleTypes
+     */
+    realAvailableTypes(): string[] {
+      return this.availableTypes.length === 0
+        ? possibleTypes
+        : this.availableTypes
+    },
+
     typeOfValue(): string {
       if (Array.isArray(this.value)) {
         return 'array'
