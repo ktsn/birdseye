@@ -22,9 +22,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import InputString from './InputString.vue'
+import InputNumber from './InputNumber.vue'
 
 const typeToComponentName: Record<string, string> = {
-  string: 'InputString'
+  string: 'InputString',
+  number: 'InputNumber'
 }
 
 const possibleTypes = Object.keys(typeToComponentName)
@@ -33,7 +35,8 @@ export default Vue.extend({
   name: 'BaseInput',
 
   components: {
-    InputString
+    InputString,
+    InputNumber
   },
 
   props: {
@@ -79,4 +82,9 @@ patterns:
       value: string value
       availableTypes:
         - string
+  - name: Number
+    props:
+      value: 123
+      availableTypes:
+        - number
 </birdseye>
