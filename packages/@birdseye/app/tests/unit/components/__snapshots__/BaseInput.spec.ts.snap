@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseInput supported types string 1`] = `
+<div class="base-input">
+  <inputstring-stub value="string value"></inputstring-stub>
+  <select class="select-type">
+    <option value="string">string</option>
+  </select>
+</div>
+`;
