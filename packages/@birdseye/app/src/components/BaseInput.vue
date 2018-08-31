@@ -6,8 +6,8 @@
       @input="$emit('input', arguments[0])"
     />
     <select
-      class="select-type"
       :value="typeOfValue"
+      class="select-type"
       @change="$emit('change-type', $event.target.value)"
     >
       <option

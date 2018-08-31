@@ -1,8 +1,8 @@
 <template>
   <input
+    :value="value"
     type="text"
     class="input-string"
-    :value="value"
     @input="$emit('input', $event.target.value)"
   >
 </template>

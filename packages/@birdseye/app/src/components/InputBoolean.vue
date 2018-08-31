@@ -1,8 +1,8 @@
 <template>
   <input
+    :checked="value"
     type="checkbox"
     class="input-boolean"
-    :checked="value"
     @change="$emit('input', $event.target.checked)"
   >
 </template>
