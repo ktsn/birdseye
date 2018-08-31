@@ -11,10 +11,10 @@
       @change="$emit('change-type', $event.target.value)"
     >
       <option
-        v-for="t in realAvailableTypes"
-        :key="t"
-        :value="t"
-      >{{ t }}</option>
+        v-for="type in realAvailableTypes"
+        :key="type"
+        :value="type"
+      >{{ type }}</option>
     </select>
   </div>
 </template>
