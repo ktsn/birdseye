@@ -1,0 +1,81 @@
+<template>
+  <div class="input-property-object">
+    <div class="header">
+      <span class="name">{{ name }}</span>
+
+      <div class="type">
+        <BaseInput
+          remove-input
+          :value="value"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="remove-button"
+        aria-label="Remove"
+        @click="$emit('remove')"
+      >-</button>
+    </div>
+
+    <div class="children">
+      <BaseInput
+        remove-types
+        :value="value"
+        @input="$emit('input', arguments[0])"
+      />
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import BaseInput from './BaseInput.vue'
+
+export default Vue.extend({
+  name: 'InputPropertyPrimitive',
+
+  components: {
+    BaseInput
+  },
+
+  props: {
+    name: {
+      type: [String, Number],
+      required: true
+    },
+
+    value: {
+      type: [Array, Object],
+      required: true
+    }
+  },
+
+  beforeCreate() {
+    const components = this.$options.components!
+    // To avoid BaseInput to be undefined due to circlar dependency
+    if (!components.BaseInput) {
+      components.BaseInput = BaseInput
+    }
+  }
+})
+</script>
+
+<style scoped>
+.header {
+  display: flex;
+}
+
+.children {
+  padding-left: 1.5em;
+}
+
+.name {
+  margin-right: 0.5em;
+  font-weight: bold;
+}
+
+.name::after {
+  content: ':';
+}
+</style>

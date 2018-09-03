@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`BaseInput rendering removes input 1`] = `
+<div class="base-input">
+  <!---->
+  <select class="select-type">
+    <option value="string">string</option>
+    <option value="number">number</option>
+    <option value="boolean">boolean</option>
+    <option value="array">array</option>
+  </select>
+</div>
+`;
+
+exports[`BaseInput rendering removes type selector 1`] = `
+<div class="base-input">
+  <inputstring-stub value="foo"></inputstring-stub>
+  <!---->
+</div>
+`;
+
 exports[`BaseInput supported types array 1`] = `
 <div class="base-input">
   <inputarray-stub value="foo,42,true"></inputarray-stub>

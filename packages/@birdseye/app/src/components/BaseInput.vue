@@ -2,10 +2,13 @@
   <div class="base-input">
     <component
       :is="componentForType"
+      v-if="!removeInput"
       :value="value"
       @input="$emit('input', arguments[0])"
     />
+
     <select
+      v-if="!removeTypes"
       :value="typeOfValue"
       class="select-type"
       @change="$emit('change-type', $event.target.value)"
@@ -57,6 +60,16 @@ export default Vue.extend({
       validator(types: string[]) {
         return types.every(type => possibleTypes.indexOf(type) >= 0)
       }
+    },
+
+    removeInput: {
+      type: Boolean,
+      default: false
+    },
+
+    removeTypes: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -107,4 +120,12 @@ patterns:
         - foo
         - 42
         - true
+      removeTypes: true
+  - name: Nested Array
+    props:
+      value:
+        - foo
+        - [1, 2, 3]
+        - [bar, baz]
+      removeTypes: true
 </birdseye>

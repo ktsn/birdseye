@@ -6,19 +6,12 @@
         :key="index"
         class="item"
       >
-        <span class="index">{{ index }}</span>
-
-        <BaseInput
+        <InputProperty
+          :name="index"
           :value="item"
           @input="onInputItem(index, arguments[0])"
+          @remove="onClickRemove(index)"
         />
-
-        <button
-          type="button"
-          class="remove-button"
-          aria-label="Remove"
-          @click="onClickRemove(index)"
-        >-</button>
       </li>
     </ul>
 
@@ -33,21 +26,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import BaseInput from './BaseInput.vue'
+import InputProperty from './InputProperty.vue'
 
 export default Vue.extend({
   name: 'InputArray',
+
+  components: {
+    InputProperty
+  },
 
   props: {
     value: {
       type: Array as () => any[],
       required: true
     }
-  },
-
-  beforeCreate() {
-    // To avoid BaseInput to be undefined due to circlar dependency
-    this.$options.components!.BaseInput = BaseInput
   },
 
   methods: {
@@ -76,19 +68,5 @@ export default Vue.extend({
 <style scoped>
 .input-array {
   display: inline-block;
-}
-
-.item {
-  display: flex;
-  align-items: flex-start;
-}
-
-.index {
-  margin-right: 0.5em;
-  font-weight: bold;
-}
-
-.index::after {
-  content: ':';
 }
 </style>
