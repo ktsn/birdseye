@@ -5,8 +5,8 @@
 
       <div class="type">
         <BaseInput
-          remove-input
           :value="value"
+          remove-input
         />
       </div>
 
@@ -20,8 +20,8 @@
 
     <div class="children">
       <BaseInput
-        remove-types
         :value="value"
+        remove-types
         @input="$emit('input', arguments[0])"
       />
     </div>
