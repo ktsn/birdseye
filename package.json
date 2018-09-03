@@ -10,6 +10,6 @@
     "build": "lerna run build"
   },
   "devDependencies": {
-    "lerna": "^3.0.0-rc.0"
+    "lerna": "^3.2.1"
   }
 }
