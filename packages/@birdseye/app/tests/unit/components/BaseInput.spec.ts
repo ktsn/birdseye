@@ -2,6 +2,28 @@ import { shallowMount } from '@vue/test-utils'
 import BaseInput from '@/components/BaseInput.vue'
 
 describe('BaseInput', () => {
+  describe('rendering', () => {
+    it('removes input', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: 'foo',
+          removeInput: true
+        }
+      })
+      expect(wrapper.html()).toMatchSnapshot()
+    })
+
+    it('removes type selector', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: 'foo',
+          removeTypes: true
+        }
+      })
+      expect(wrapper.html()).toMatchSnapshot()
+    })
+  })
+
   describe('supported types', () => {
     it('string', () => {
       const wrapper = shallowMount(BaseInput, {
@@ -36,6 +58,18 @@ describe('BaseInput', () => {
 
       const select = wrapper.find('.select-type').element as HTMLSelectElement
       expect(select.value).toBe('boolean')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
+
+    it('array', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: ['foo', 42, true]
+        }
+      })
+
+      const select = wrapper.find('.select-type').element as HTMLSelectElement
+      expect(select.value).toBe('array')
       expect(wrapper.html()).toMatchSnapshot()
     })
   })
