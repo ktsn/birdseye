@@ -8,6 +8,7 @@ exports[`BaseInput rendering removes input 1`] = `
     <option value="number">number</option>
     <option value="boolean">boolean</option>
     <option value="array">array</option>
+    <option value="object">object</option>
   </select>
 </div>
 `;
@@ -27,6 +28,7 @@ exports[`BaseInput supported types array 1`] = `
     <option value="number">number</option>
     <option value="boolean">boolean</option>
     <option value="array">array</option>
+    <option value="object">object</option>
   </select>
 </div>
 `;
@@ -39,6 +41,7 @@ exports[`BaseInput supported types boolean 1`] = `
     <option value="number">number</option>
     <option value="boolean">boolean</option>
     <option value="array">array</option>
+    <option value="object">object</option>
   </select>
 </div>
 `;
@@ -51,6 +54,20 @@ exports[`BaseInput supported types number 1`] = `
     <option value="number">number</option>
     <option value="boolean">boolean</option>
     <option value="array">array</option>
+    <option value="object">object</option>
+  </select>
+</div>
+`;
+
+exports[`BaseInput supported types object 1`] = `
+<div class="base-input">
+  <inputobject-stub value="[object Object]"></inputobject-stub>
+  <select class="select-type">
+    <option value="string">string</option>
+    <option value="number">number</option>
+    <option value="boolean">boolean</option>
+    <option value="array">array</option>
+    <option value="object">object</option>
   </select>
 </div>
 `;
@@ -63,6 +80,7 @@ exports[`BaseInput supported types string 1`] = `
     <option value="number">number</option>
     <option value="boolean">boolean</option>
     <option value="array">array</option>
+    <option value="object">object</option>
   </select>
 </div>
 `;
