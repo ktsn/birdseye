@@ -28,12 +28,14 @@ import InputString from './InputString.vue'
 import InputNumber from './InputNumber.vue'
 import InputBoolean from './InputBoolean.vue'
 import InputArray from './InputArray.vue'
+import InputObject from './InputObject.vue'
 
 const typeToComponentName: Record<string, string> = {
   string: 'InputString',
   number: 'InputNumber',
   boolean: 'InputBoolean',
-  array: 'InputArray'
+  array: 'InputArray',
+  object: 'InputObject'
 }
 
 const possibleTypes = Object.keys(typeToComponentName)
@@ -45,7 +47,8 @@ export default Vue.extend({
     InputString,
     InputNumber,
     InputBoolean,
-    InputArray
+    InputArray,
+    InputObject
   },
 
   props: {
@@ -84,12 +87,16 @@ export default Vue.extend({
     },
 
     typeOfValue(): string {
-      if (Array.isArray(this.value)) {
-        return 'array'
+      if (this.value === null) {
+        return 'null'
       }
 
-      if (this.value && typeof this.value === 'object') {
-        return 'object'
+      if (this.value === undefined) {
+        return 'undefined'
+      }
+
+      if (Array.isArray(this.value)) {
+        return 'array'
       }
 
       return typeof this.value
@@ -127,5 +134,24 @@ patterns:
         - foo
         - [1, 2, 3]
         - [bar, baz]
+      removeTypes: true
+  - name: Object
+    props:
+      value:
+        a: foo
+        b: 42
+        c: true
+      removeTypes: true
+  - name: Nested Object
+    props:
+      value:
+        a: foo
+        b:
+          x: 1
+          y: 2
+          z: 3
+        c:
+          test1: bar
+          test2: baz
       removeTypes: true
 </birdseye>
