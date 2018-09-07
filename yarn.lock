@@ -11607,9 +11607,9 @@ vue-jest@^2.6.0:
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-lazy-components-option@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/vue-lazy-components-option/-/vue-lazy-components-option-0.1.0.tgz#acc5bff6115fdebfdf829366157f1251dedc8341"
+vue-lazy-components-option@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vue-lazy-components-option/-/vue-lazy-components-option-0.1.1.tgz#b09409cda1e8c786c74a6be9871cf1863e8010b5"
 
 vue-loader@^15.2.1:
   version "15.2.6"
