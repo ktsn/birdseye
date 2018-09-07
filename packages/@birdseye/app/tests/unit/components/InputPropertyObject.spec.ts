@@ -3,6 +3,10 @@ import InputPropertyObject from '@/components/InputPropertyObject.vue'
 import BaseInput from '@/components/BaseInput.vue'
 
 describe('InputPropertyObject', () => {
+  function findTypeInput(wrapper: Wrapper<any>) {
+    return wrapper.findAll(BaseInput).wrappers.find(w => !w.props().removeType)!
+  }
+
   function findValueInput(wrapper: Wrapper<any>) {
     return wrapper
       .findAll(BaseInput)
@@ -19,6 +23,18 @@ describe('InputPropertyObject', () => {
     wrapper.findAll(BaseInput).wrappers.forEach(input => {
       expect(input.props().value).toEqual(['foo', 'bar'])
     })
+  })
+
+  it('ports available types to the form component', () => {
+    const wrapper = shallowMount(InputPropertyObject, {
+      propsData: {
+        name: 'propname',
+        value: ['test'],
+        availableTypes: ['array', 'object']
+      }
+    })
+    const input = findTypeInput(wrapper)
+    expect(input.props().availableTypes).toEqual(['array', 'object'])
   })
 
   it('listens input events from the form component', () => {

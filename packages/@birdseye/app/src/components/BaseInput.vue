@@ -11,7 +11,7 @@
       v-if="!removeTypes"
       :value="typeOfValue"
       class="select-type"
-      @change="$emit('change-type', $event.target.value)"
+      @change="onChangeType($event.target.value)"
     >
       <option
         v-for="type in realAvailableTypes"
@@ -29,6 +29,8 @@ import InputNumber from './InputNumber.vue'
 import InputBoolean from './InputBoolean.vue'
 import InputArray from './InputArray.vue'
 import InputObject from './InputObject.vue'
+import { emptyValue } from '@/utils'
+import { ComponentDataType } from '@birdseye/core'
 
 const typeToComponentName: Record<string, string> = {
   string: 'InputString',
@@ -107,6 +109,13 @@ export default Vue.extend({
 
     componentForType(): string {
       return typeToComponentName[this.typeOfValue]
+    }
+  },
+
+  methods: {
+    onChangeType(type: ComponentDataType): void {
+      const empty = emptyValue(type)
+      this.$emit('input', empty)
     }
   }
 })

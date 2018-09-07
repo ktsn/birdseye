@@ -15,16 +15,15 @@ exports[`PanelPatternGroup renders title and data 1`] = `
     title string
   </strong>
   <ul class="list">
-    <li class="item"><strong class="name">
-        foo
-      </strong> <span class="value">
-        string value
-      </span></li>
-    <li class="item"><strong class="name">
-        bar
-      </strong> <span class="value">
-        123
-      </span></li>
+    <li class="item">
+      <inputproperty-stub value="string value" name="foo" available-types="string"></inputproperty-stub>
+    </li>
+    <li class="item">
+      <inputproperty-stub value="123" name="bar" available-types="number"></inputproperty-stub>
+    </li>
+    <li class="item">
+      <inputproperty-stub value="test" name="baz" available-types="string,number"></inputproperty-stub>
+    </li>
   </ul>
 </div>
 `;

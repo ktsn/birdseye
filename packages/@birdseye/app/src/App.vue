@@ -19,6 +19,8 @@
           <PanelPattern
             :props="props"
             :data="data"
+            @input-prop="onInputProp"
+            @input-data="onInputData"
           />
         </div>
       </div>
@@ -29,9 +31,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ComponentMeta, ComponentPattern } from '@birdseye/core'
-import AppStore from './store'
+import AppStore, { QualifiedData } from './store'
 import NavSide from './components/NavSide.vue'
-import PanelPattern, { PatternData } from './components/PanelPattern.vue'
+import PanelPattern from './components/PanelPattern.vue'
 
 export default Vue.extend({
   components: {
@@ -55,12 +57,12 @@ export default Vue.extend({
       return this.store ? this.store.state.declarations.map(d => d.meta) : []
     },
 
-    props(): PatternData[] {
+    props(): QualifiedData[] {
       const { meta, pattern } = this.$route.params
       return this.store ? this.store.getQualifiedProps(meta, pattern) : []
     },
 
-    data(): PatternData[] {
+    data(): QualifiedData[] {
       const { meta, pattern } = this.$route.params
       return this.store ? this.store.getQualifiedData(meta, pattern) : []
     }
@@ -71,6 +73,22 @@ export default Vue.extend({
     const slot = document.createElement('slot')
     const wrapper = this.$refs.slot as HTMLElement
     wrapper.appendChild(slot)
+  },
+
+  methods: {
+    onInputProp({ name, value }: { name: string; value: any }): void {
+      if (!this.store) return
+
+      const { meta, pattern } = this.$route.params
+      this.store.updatePropValue(meta, pattern, name, value)
+    },
+
+    onInputData({ name, value }: { name: string; value: any }): void {
+      if (!this.store) return
+
+      const { meta, pattern } = this.$route.params
+      this.store.updateDataValue(meta, pattern, name, value)
+    }
   }
 })
 </script>

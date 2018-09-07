@@ -6,6 +6,7 @@
       <div class="type">
         <BaseInput
           :value="value"
+          :available-types="availableTypes"
           remove-input
         />
       </div>
@@ -51,7 +52,11 @@ export default Vue.extend({
     value: {
       type: [Array, Object],
       required: true
+    },
 
+    availableTypes: {
+      type: Array as () => string[],
+      default: () => []
     }
   }
 })

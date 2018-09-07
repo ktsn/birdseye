@@ -4,6 +4,7 @@
 
     <BaseInput
       :value="value"
+      :available-types="availableTypes"
       @input="$emit('input', arguments[0])"
     />
 
@@ -39,7 +40,11 @@ export default Vue.extend({
     value: {
       type: [String, Number, Boolean],
       default: undefined
+    },
 
+    availableTypes: {
+      type: Array as () => string[],
+      default: () => []
     }
   }
 })
