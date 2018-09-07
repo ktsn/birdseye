@@ -23,19 +23,9 @@ export default Vue.extend({
 
   computed: {
     targetDeclaration(): ComponentDeclaration | undefined {
-      return this.store.state.declarations.filter(d => {
+      return this.store.state.declarations.find(d => {
         return d.meta.name === this.meta
-      })[0]
-    },
-
-    targetPattern(): ComponentPattern | undefined {
-      const decl = this.targetDeclaration
-
-      if (!decl || !this.pattern) return
-
-      return decl.meta.patterns.filter(p => {
-        return p.name === this.pattern
-      })[0]
+      })
     }
   },
 
@@ -45,12 +35,12 @@ export default Vue.extend({
     }
 
     const { Wrapper } = this.targetDeclaration
-    const { props, data } = this.targetPattern || { props: {}, data: {} }
+    const pattern = this.store.getPattern(this.meta, this.pattern)
 
     return h(Wrapper, {
       props: {
-        props,
-        data
+        props: pattern ? pattern.props : {},
+        data: pattern ? pattern.data : {}
       }
     })
   }

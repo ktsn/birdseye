@@ -36,9 +36,8 @@ export interface QualifiedData {
  */
 export default class AppStore extends Store<AppState> {
   getMeta(metaName: string): ComponentMeta | undefined {
-    return this.state.declarations
-      .map(d => d.meta)
-      .find(m => m.name === metaName)
+    const decl = this.state.declarations.find(d => d.meta.name === metaName)
+    return decl && decl.meta
   }
 
   getPattern(
