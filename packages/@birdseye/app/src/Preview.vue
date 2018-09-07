@@ -1,6 +1,7 @@
 <script lang="ts">
 import Vue, { VNode } from 'vue'
 import { ComponentDeclaration, ComponentPattern } from '@birdseye/core'
+import AppStore from './store'
 
 export default Vue.extend({
   props: {
@@ -14,15 +15,15 @@ export default Vue.extend({
       default: null
     },
 
-    declarations: {
-      type: Array as () => ComponentDeclaration[],
+    store: {
+      type: Object as () => AppStore,
       required: true
     }
   },
 
   computed: {
     targetDeclaration(): ComponentDeclaration | undefined {
-      return this.declarations.filter(d => {
+      return this.store.state.declarations.filter(d => {
         return d.meta.name === this.meta
       })[0]
     },

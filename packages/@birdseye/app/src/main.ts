@@ -3,6 +3,7 @@ import wrap from '@vue/web-component-wrapper'
 import { ComponentDeclaration } from '@birdseye/core'
 import LazyComponents from 'vue-lazy-components-option'
 import router from './router'
+import AppStore from './store'
 import App from './App.vue'
 
 Vue.use(LazyComponents)
@@ -25,7 +26,11 @@ export default function birdseye(
   const wrapper = typeof el === 'string' ? document.querySelector(el) : el
   wrapper!.appendChild(app)
 
-  app.meta = declarations.map(d => d.meta)
+  const store = new AppStore({
+    declarations
+  })
+
+  app.store = store
 
   new Root({
     el: content,
@@ -33,7 +38,7 @@ export default function birdseye(
       // Preview.vue
       h('router-view', {
         attrs: {
-          declarations
+          store
         }
       })
   })

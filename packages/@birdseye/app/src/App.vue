@@ -29,6 +29,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ComponentMeta, ComponentPattern } from '@birdseye/core'
+import AppStore from './store'
 import NavSide from './components/NavSide.vue'
 import PanelPattern, { PatternData } from './components/PanelPattern.vue'
 
@@ -39,13 +40,21 @@ export default Vue.extend({
   },
 
   props: {
-    meta: {
-      type: Array as () => ComponentMeta[],
-      default: () => []
+    store: {
+      type: Object as () => AppStore | undefined,
+
+      // Actually required
+      // Since it is wrapped by WebComponents and props are passed
+      // after the component is instantiated, we cannot just use `required`.
+      default: undefined
     }
   },
 
   computed: {
+    meta(): ComponentMeta[] {
+      return this.store ? this.store.state.declarations.map(d => d.meta) : []
+    },
+
     currentMeta(): ComponentMeta | undefined {
       const { meta: metaName } = this.$route.params
       return this.meta.find(m => m.name === metaName)
