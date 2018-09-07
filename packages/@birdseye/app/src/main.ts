@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import wrap from '@vue/web-component-wrapper'
 import { ComponentDeclaration } from '@birdseye/core'
+import LazyComponents from 'vue-lazy-components-option'
 import router from './router'
 import App from './App.vue'
+
+Vue.use(LazyComponents)
 
 const appTagName = 'birdseye-app'
 const Root = Vue.extend({ router })

@@ -40,16 +40,19 @@ const typeToComponentName: Record<string, string> = {
 
 const possibleTypes = Object.keys(typeToComponentName)
 
+const lazyComponents = () => ({
+  InputString,
+  InputNumber,
+  InputBoolean,
+  InputArray,
+  InputObject
+})
+
 export default Vue.extend({
   name: 'BaseInput',
 
-  components: {
-    InputString,
-    InputNumber,
-    InputBoolean,
-    InputArray,
-    InputObject
-  },
+  components: lazyComponents(),
+  lazyComponents,
 
   props: {
     value: {
