@@ -55,54 +55,14 @@ export default Vue.extend({
       return this.store ? this.store.state.declarations.map(d => d.meta) : []
     },
 
-    currentMeta(): ComponentMeta | undefined {
-      const { meta: metaName } = this.$route.params
-      return this.meta.find(m => m.name === metaName)
-    },
-
-    currentPattern(): ComponentPattern | undefined {
-      if (!this.currentMeta) {
-        return
-      }
-
-      const { pattern: patternName } = this.$route.params
-      return this.currentMeta.patterns.find(p => p.name === patternName)
-    },
-
     props(): PatternData[] {
-      if (!this.currentMeta || !this.currentPattern) {
-        return []
-      }
-
-      const { currentMeta: meta, currentPattern: pattern } = this
-
-      return Object.keys(pattern.props).map(name => {
-        const info = meta.props[name]
-        const value = pattern.props[name]
-        return {
-          type: info ? info.type : [],
-          name,
-          value
-        }
-      })
+      const { meta, pattern } = this.$route.params
+      return this.store ? this.store.getQualifiedProps(meta, pattern) : []
     },
 
     data(): PatternData[] {
-      if (!this.currentMeta || !this.currentPattern) {
-        return []
-      }
-
-      const { currentMeta: meta, currentPattern: pattern } = this
-
-      return Object.keys(pattern.data).map(name => {
-        const info = meta.data[name]
-        const value = pattern.data[name]
-        return {
-          type: info ? info.type : [],
-          name,
-          value
-        }
-      })
+      const { meta, pattern } = this.$route.params
+      return this.store ? this.store.getQualifiedData(meta, pattern) : []
     }
   },
 
