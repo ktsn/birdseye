@@ -8,6 +8,7 @@
           :value="value"
           :available-types="availableTypes"
           remove-input
+          @input="$emit('input', arguments[0])"
         />
       </div>
 

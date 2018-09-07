@@ -44,9 +44,14 @@ describe('InputPropertyObject', () => {
         value: ['foo']
       }
     })
-    const input = findValueInput(wrapper)
-    input.vm.$emit('input', ['bar'])
-    expect(wrapper.emitted('input')[0][0]).toEqual(['bar'])
+    const type = findTypeInput(wrapper)
+    type.vm.$emit('input', {})
+
+    const value = findValueInput(wrapper)
+    value.vm.$emit('input', ['bar'])
+
+    expect(wrapper.emitted('input')[0][0]).toEqual({})
+    expect(wrapper.emitted('input')[1][0]).toEqual(['bar'])
   })
 
   it('listens remove events', () => {
