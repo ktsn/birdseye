@@ -13,13 +13,23 @@
         :key="item.name"
         class="item"
       >
-        <strong class="name">
-          {{ item.name }}
-        </strong>
+        <template v-if="isProduction">
+          <strong class="name">
+            {{ item.name }}
+          </strong>
 
-        <span class="value">
-          {{ item.value }}
-        </span>
+          <span class="value">
+            {{ item.value }}
+          </span>
+        </template>
+
+        <InputProperty
+          v-else
+          :name="item.name"
+          :value="item.value"
+          :available-types="item.type"
+          @input="onInput(item.name, arguments[0])"
+        />
       </li>
     </ul>
 
@@ -34,10 +44,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { PatternData } from './PanelPattern.vue'
+import InputProperty from './InputProperty.vue'
+import { QualifiedData } from '@/store'
 
 export default Vue.extend({
   name: 'PanelPatternGroup',
+
+  components: {
+    InputProperty
+  },
 
   props: {
     title: {
@@ -46,8 +61,23 @@ export default Vue.extend({
     },
 
     data: {
-      type: Array as () => PatternData[],
+      type: Array as () => QualifiedData[],
       required: true
+    }
+  },
+
+  computed: {
+    isProduction(): boolean {
+      return process.env.NODE_ENV === 'production'
+    }
+  },
+
+  methods: {
+    onInput(name: string, value: any): void {
+      this.$emit('input', {
+        name,
+        value
+      })
     }
   }
 })

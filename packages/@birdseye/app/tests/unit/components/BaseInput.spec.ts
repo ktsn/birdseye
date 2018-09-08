@@ -1,5 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, Wrapper } from '@vue/test-utils'
 import BaseInput from '@/components/BaseInput.vue'
+import { ComponentDataType } from '@birdseye/core'
 
 describe('BaseInput', () => {
   describe('rendering', () => {
@@ -112,21 +113,48 @@ describe('BaseInput', () => {
       wrapper.find(Test).vm.$emit('input', 'updated')
       expect(wrapper.emitted('input')[0][0]).toBe('updated')
     })
+  })
 
-    it('emits change-type event', () => {
-      const wrapper = shallowMount(BaseInput, {
-        propsData: {
-          value: 'str',
-          availableTypes: ['string', 'number']
-        }
-      })
-
+  describe('will emit input event with empty value when the type is changed', () => {
+    function changeType(wrapper: Wrapper<any>, type: ComponentDataType): void {
       const select = wrapper.find('.select-type')
       const selectEl = select.element as HTMLSelectElement
-      selectEl.value = 'number'
+      selectEl.value = type
       select.trigger('change')
+    }
 
-      expect(wrapper.emitted('change-type')[0][0]).toBe('number')
+    let wrapper: Wrapper<any>
+    beforeEach(() => {
+      wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: 'str'
+        }
+      })
+    })
+
+    it('string', () => {
+      changeType(wrapper, 'string')
+      expect(wrapper.emitted('input')[0][0]).toBe('')
+    })
+
+    it('number', () => {
+      changeType(wrapper, 'number')
+      expect(wrapper.emitted('input')[0][0]).toBe(0)
+    })
+
+    it('boolean', () => {
+      changeType(wrapper, 'boolean')
+      expect(wrapper.emitted('input')[0][0]).toBe(false)
+    })
+
+    it('array', () => {
+      changeType(wrapper, 'array')
+      expect(wrapper.emitted('input')[0][0]).toEqual([])
+    })
+
+    it('object', () => {
+      changeType(wrapper, 'object')
+      expect(wrapper.emitted('input')[0][0]).toEqual({})
     })
   })
 })

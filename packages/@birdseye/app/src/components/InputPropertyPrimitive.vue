@@ -4,6 +4,7 @@
 
     <BaseInput
       :value="value"
+      :available-types="availableTypes"
       @input="$emit('input', arguments[0])"
     />
 
@@ -20,8 +21,15 @@
 import Vue from 'vue'
 import BaseInput from './BaseInput.vue'
 
+const lazyComponents = () => ({
+  BaseInput
+})
+
 export default Vue.extend({
   name: 'InputPropertyPrimitive',
+
+  components: lazyComponents(),
+  lazyComponents,
 
   props: {
     name: {
@@ -32,14 +40,11 @@ export default Vue.extend({
     value: {
       type: [String, Number, Boolean],
       default: undefined
-    }
-  },
+    },
 
-  beforeCreate() {
-    const components = this.$options.components!
-    // To avoid BaseInput to be undefined due to circlar dependency
-    if (!components.BaseInput) {
-      components.BaseInput = BaseInput
+    availableTypes: {
+      type: Array as () => string[],
+      default: () => []
     }
   }
 })

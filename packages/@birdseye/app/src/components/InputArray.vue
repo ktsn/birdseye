@@ -28,12 +28,15 @@
 import Vue from 'vue'
 import InputProperty from './InputProperty.vue'
 
+const lazyComponents = () => ({
+  InputProperty
+})
+
 export default Vue.extend({
   name: 'InputArray',
 
-  components: {
-    InputProperty
-  },
+  components: lazyComponents(),
+  lazyComponents,
 
   props: {
     value: {

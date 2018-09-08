@@ -146,22 +146,28 @@ export function createInstrument(
                 : inferValueFromType(meta.type)
           })
           return filled
+        },
+
+        // We need to clone data to correctly track some dependent value is changed
+        clonedData(): Record<string, any> {
+          return { ...this.data }
         }
       },
 
       watch: {
-        filledProps(newProps: Record<string, any>): void {
-          root.props = newProps
+        filledProps: {
+          handler(newProps: Record<string, any>): void {
+            root.props = newProps
+          },
+          immediate: true
         },
 
-        data(newData: Record<string, any>): void {
-          root.data = newData
+        clonedData: {
+          handler(newData: Record<string, any>): void {
+            root.data = newData
+          },
+          immediate: true
         }
-      },
-
-      created() {
-        root.props = this.filledProps
-        root.data = this.data
       },
 
       mounted() {

@@ -19,6 +19,8 @@
           <PanelPattern
             :props="props"
             :data="data"
+            @input-prop="onInputProp"
+            @input-data="onInputData"
           />
         </div>
       </div>
@@ -29,8 +31,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ComponentMeta, ComponentPattern } from '@birdseye/core'
+import AppStore, { QualifiedData } from './store'
 import NavSide from './components/NavSide.vue'
-import PanelPattern, { PatternData } from './components/PanelPattern.vue'
+import PanelPattern from './components/PanelPattern.vue'
 
 export default Vue.extend({
   components: {
@@ -39,61 +42,29 @@ export default Vue.extend({
   },
 
   props: {
-    meta: {
-      type: Array as () => ComponentMeta[],
-      default: () => []
+    store: {
+      type: Object as () => AppStore | undefined,
+
+      // Actually required
+      // Since it is wrapped by WebComponents and props are passed
+      // after the component is instantiated, we cannot just use `required`.
+      default: undefined
     }
   },
 
   computed: {
-    currentMeta(): ComponentMeta | undefined {
-      const { meta: metaName } = this.$route.params
-      return this.meta.find(m => m.name === metaName)
+    meta(): ComponentMeta[] {
+      return this.store ? this.store.state.declarations.map(d => d.meta) : []
     },
 
-    currentPattern(): ComponentPattern | undefined {
-      if (!this.currentMeta) {
-        return
-      }
-
-      const { pattern: patternName } = this.$route.params
-      return this.currentMeta.patterns.find(p => p.name === patternName)
+    props(): QualifiedData[] {
+      const { meta, pattern } = this.$route.params
+      return this.store ? this.store.getQualifiedProps(meta, pattern) : []
     },
 
-    props(): PatternData[] {
-      if (!this.currentMeta || !this.currentPattern) {
-        return []
-      }
-
-      const { currentMeta: meta, currentPattern: pattern } = this
-
-      return Object.keys(pattern.props).map(name => {
-        const info = meta.props[name]
-        const value = pattern.props[name]
-        return {
-          type: info ? info.type : [],
-          name,
-          value
-        }
-      })
-    },
-
-    data(): PatternData[] {
-      if (!this.currentMeta || !this.currentPattern) {
-        return []
-      }
-
-      const { currentMeta: meta, currentPattern: pattern } = this
-
-      return Object.keys(pattern.data).map(name => {
-        const info = meta.data[name]
-        const value = pattern.data[name]
-        return {
-          type: info ? info.type : [],
-          name,
-          value
-        }
-      })
+    data(): QualifiedData[] {
+      const { meta, pattern } = this.$route.params
+      return this.store ? this.store.getQualifiedData(meta, pattern) : []
     }
   },
 
@@ -102,6 +73,22 @@ export default Vue.extend({
     const slot = document.createElement('slot')
     const wrapper = this.$refs.slot as HTMLElement
     wrapper.appendChild(slot)
+  },
+
+  methods: {
+    onInputProp({ name, value }: { name: string; value: any }): void {
+      if (!this.store) return
+
+      const { meta, pattern } = this.$route.params
+      this.store.updatePropValue(meta, pattern, name, value)
+    },
+
+    onInputData({ name, value }: { name: string; value: any }): void {
+      if (!this.store) return
+
+      const { meta, pattern } = this.$route.params
+      this.store.updateDataValue(meta, pattern, name, value)
+    }
   }
 })
 </script>

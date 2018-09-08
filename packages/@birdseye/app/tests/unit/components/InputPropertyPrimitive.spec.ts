@@ -14,6 +14,18 @@ describe('InputPropertyPrimitive', () => {
     expect(input.props().value).toBe('foo')
   })
 
+  it('ports available types to the form component', () => {
+    const wrapper = shallowMount(InputPropertyPrimitive, {
+      propsData: {
+        name: 'propname',
+        value: 'test',
+        availableTypes: ['string', 'number']
+      }
+    })
+    const input = wrapper.find(BaseInput)
+    expect(input.props().availableTypes).toEqual(['string', 'number'])
+  })
+
   it('listens input events from the form component', () => {
     const wrapper = shallowMount(InputPropertyPrimitive, {
       propsData: {

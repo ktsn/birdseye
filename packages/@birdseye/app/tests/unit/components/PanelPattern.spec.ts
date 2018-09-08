@@ -3,6 +3,7 @@ import PanelPattern from '@/components/PanelPattern.vue'
 
 describe('PanelPattern', () => {
   const StubGroup = {
+    name: 'PanelPatternGroup',
     props: ['title', 'data'],
 
     render(this: any, h: Function): any {
@@ -36,5 +37,59 @@ describe('PanelPattern', () => {
       }
     })
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('propagates events from props', () => {
+    const wrapper = shallowMount(PanelPattern, {
+      propsData: {
+        props: [
+          {
+            type: ['string', 'number'],
+            name: 'foo',
+            value: 'str'
+          }
+        ],
+        data: []
+      },
+      stubs: {
+        PanelPatternGroup: StubGroup
+      }
+    })
+    const group = wrapper.findAll(StubGroup).at(0)
+    group.vm.$emit('input', {
+      name: 'foo',
+      value: 'test'
+    })
+    expect(wrapper.emitted('input-prop')[0][0]).toEqual({
+      name: 'foo',
+      value: 'test'
+    })
+  })
+
+  it('propagates events from data', () => {
+    const wrapper = shallowMount(PanelPattern, {
+      propsData: {
+        props: [],
+        data: [
+          {
+            type: [],
+            name: 'foo',
+            value: 'str'
+          }
+        ]
+      },
+      stubs: {
+        PanelPatternGroup: StubGroup
+      }
+    })
+    const group = wrapper.findAll(StubGroup).at(1)
+    group.vm.$emit('input', {
+      name: 'foo',
+      value: 'test'
+    })
+    expect(wrapper.emitted('input-data')[0][0]).toEqual({
+      name: 'foo',
+      value: 'test'
+    })
   })
 })

@@ -4,11 +4,13 @@
       :data="props"
       class="group"
       title="props"
+      @input="$emit('input-prop', arguments[0])"
     />
     <PanelPatternGroup
       :data="data"
       class="group"
       title="data"
+      @input="$emit('input-data', arguments[0])"
     />
   </div>
 </template>
@@ -17,12 +19,7 @@
 import Vue from 'vue'
 import { ComponentDataType } from '@birdseye/core'
 import PanelPatternGroup from './PanelPatternGroup.vue'
-
-export interface PatternData {
-  type: ComponentDataType[]
-  name: string
-  value: any
-}
+import { QualifiedData } from '@/store'
 
 function patternDataValidator(value: any[]) {
   return value.every(v => {
@@ -41,13 +38,13 @@ export default Vue.extend({
 
   props: {
     props: {
-      type: Array as () => PatternData[],
+      type: Array as () => QualifiedData[],
       required: true,
       validator: patternDataValidator
     },
 
     data: {
-      type: Array as () => PatternData[],
+      type: Array as () => QualifiedData[],
       required: true,
       validator: patternDataValidator
     }
@@ -75,14 +72,18 @@ patterns:
   - name: Normal
     props:
       props:
-        - type: string
+        - type:
+            - string
           name: foo
           value: foo value
       data:
-        - type: number
+        - type:
+            - string
+            - number
           name: bar
           value: 123
-        - type: boolean
+        - type:
+            - boolean
           name: baz
           value: true
 </birdseye>
