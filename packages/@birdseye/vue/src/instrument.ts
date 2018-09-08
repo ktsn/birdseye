@@ -148,7 +148,7 @@ export function createInstrument(
           return filled
         },
 
-        // We need to clone data to collectly track some dependent value is changed
+        // We need to clone data to correctly track some dependent value is changed
         clonedData(): Record<string, any> {
           return { ...this.data }
         }
