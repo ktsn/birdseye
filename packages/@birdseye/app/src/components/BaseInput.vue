@@ -7,18 +7,18 @@
       @input="$emit('input', arguments[0])"
     />
 
-    <select
+    <BaseSelect
       v-if="!removeTypes"
       :value="typeOfValue"
       class="select-type"
-      @change="onChangeType($event.target.value)"
+      @change="onChangeType(arguments[0])"
     >
       <option
         v-for="type in realAvailableTypes"
         :key="type"
         :value="type"
       >{{ type }}</option>
-    </select>
+    </BaseSelect>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ import InputBoolean from './InputBoolean.vue'
 import InputArray from './InputArray.vue'
 import InputObject from './InputObject.vue'
 import InputEmpty from './InputEmpty.vue'
+import BaseSelect from './BaseSelect.vue'
 import { emptyValue } from '@/utils'
 import { ComponentDataType } from '@birdseye/core'
 
@@ -51,7 +52,8 @@ const lazyComponents = () => ({
   InputBoolean,
   InputArray,
   InputObject,
-  InputEmpty
+  InputEmpty,
+  BaseSelect
 })
 
 export default Vue.extend({
@@ -124,6 +126,17 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+.base-input {
+  display: inline-flex;
+  align-items: center;
+}
+
+.select-type:not(:first-child) {
+  margin-left: 10px;
+}
+</style>
 
 <birdseye lang="yml">
 name: BaseInput

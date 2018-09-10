@@ -2,12 +2,14 @@ import Vue from 'vue'
 import birdseye from '@/main'
 import { createInstrument } from '@birdseye/vue'
 import BaseInput from '@/components/BaseInput.vue'
+import BaseInputText from '@/components/BaseInputText.vue'
+import ButtonPlusMinus from '@/components/ButtonPlusMinus.vue'
 import PanelPattern from '@/components/PanelPattern.vue'
 import style from './style.css'
 
 const load = ctx => ctx.keys().map(ctx)
 const components = load(require.context('./components', true, /\.vue$/)).concat(
-  [BaseInput, PanelPattern]
+  [BaseInputText, ButtonPlusMinus, BaseInput, PanelPattern]
 )
 
 // For debug
