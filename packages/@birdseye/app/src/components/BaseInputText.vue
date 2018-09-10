@@ -58,3 +58,15 @@ export default Vue.extend({
   outline: none;
 }
 </style>
+
+<birdseye lang="yml">
+name: BaseInputText
+patterns:
+  - name: with value
+    props:
+      value: text value
+  - name: number type
+    props:
+      type: number
+      value: 42
+</birdseye>
