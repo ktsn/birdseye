@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import InputString from '@/components/InputString.vue'
+import BaseInputText from '@/components/BaseInputText.vue'
 
 describe('InputString', () => {
   it('applies input prop to actual element', () => {
@@ -8,8 +9,8 @@ describe('InputString', () => {
         value: 'prop value'
       }
     })
-    const input = wrapper.find('input').element as HTMLInputElement
-    expect(input.value).toBe('prop value')
+    const input = wrapper.find(BaseInputText)
+    expect(input.props().value).toBe('prop value')
   })
 
   it('ports input event', () => {
@@ -18,10 +19,8 @@ describe('InputString', () => {
         value: 'prop value'
       }
     })
-    const input = wrapper.find('input')
-    const inputEl = input.element as HTMLInputElement
-    inputEl.value = 'updated'
-    input.trigger('input')
+    const input = wrapper.find(BaseInputText)
+    input.vm.$emit('input', 'updated')
 
     expect(wrapper.emitted('input')[0][0]).toBe('updated')
   })
