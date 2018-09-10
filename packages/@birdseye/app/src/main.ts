@@ -6,6 +6,10 @@ import router from './router'
 import AppStore from './store'
 import App from './App.vue'
 
+interface BirdseyeOptions {
+  experimental?: boolean
+}
+
 Vue.use(LazyComponents)
 
 const appTagName = 'birdseye-app'
@@ -16,8 +20,11 @@ window.customElements.define(appTagName, wrap(Root, App))
 
 export default function birdseye(
   el: string | Element,
-  declarations: ComponentDeclaration[]
+  declarations: ComponentDeclaration[],
+  options: BirdseyeOptions = {}
 ): void {
+  Vue.prototype.$_birdseye_experimental = !!options.experimental
+
   const app = document.createElement(appTagName) as any
 
   const content = document.createElement('div')

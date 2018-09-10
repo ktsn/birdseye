@@ -13,7 +13,7 @@
         :key="item.name"
         class="item"
       >
-        <template v-if="isProduction">
+        <template v-if="!$_birdseye_experimental">
           <strong class="name">
             {{ item.name }}
           </strong>
@@ -63,12 +63,6 @@ export default Vue.extend({
     data: {
       type: Array as () => QualifiedData[],
       required: true
-    }
-  },
-
-  computed: {
-    isProduction(): boolean {
-      return process.env.NODE_ENV === 'production'
     }
   },
 

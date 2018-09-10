@@ -16,4 +16,6 @@ const instrument = createInstrument(Vue, {
   shadowRoot: document.head
 })
 
-birdseye('#app', instrument(components))
+birdseye('#app', instrument(components), {
+  experimental: true
+})
