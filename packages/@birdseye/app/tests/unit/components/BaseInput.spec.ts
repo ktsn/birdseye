@@ -1,5 +1,6 @@
 import { shallowMount, Wrapper } from '@vue/test-utils'
 import BaseInput from '@/components/BaseInput.vue'
+import BaseSelect from '@/components/BaseSelect.vue'
 import { ComponentDataType } from '@birdseye/core'
 
 describe('BaseInput', () => {
@@ -32,9 +33,6 @@ describe('BaseInput', () => {
           value: 'string value'
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('string')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -44,9 +42,6 @@ describe('BaseInput', () => {
           value: 123
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('number')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -56,9 +51,6 @@ describe('BaseInput', () => {
           value: true
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('boolean')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -68,9 +60,6 @@ describe('BaseInput', () => {
           value: ['foo', 42, true]
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('array')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -84,9 +73,6 @@ describe('BaseInput', () => {
           }
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('object')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -96,9 +82,6 @@ describe('BaseInput', () => {
           value: null
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('null')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -108,9 +91,6 @@ describe('BaseInput', () => {
           value: undefined
         }
       })
-
-      const select = wrapper.find('.select-type').element as HTMLSelectElement
-      expect(select.value).toBe('undefined')
       expect(wrapper.html()).toMatchSnapshot()
     })
   })
@@ -141,10 +121,8 @@ describe('BaseInput', () => {
 
   describe('will emit input event with empty value when the type is changed', () => {
     function changeType(wrapper: Wrapper<any>, type: ComponentDataType): void {
-      const select = wrapper.find('.select-type')
-      const selectEl = select.element as HTMLSelectElement
-      selectEl.value = type
-      select.trigger('change')
+      const select = wrapper.find(BaseSelect)
+      select.vm.$emit('change', type)
     }
 
     let wrapper: Wrapper<any>
