@@ -136,7 +136,7 @@ export function createInstrument(
         filledProps(): Record<string, any> {
           const filled = { ...this.props }
           Object.keys(metaProps).forEach(key => {
-            if (filled[key] != null) {
+            if (filled[key] !== undefined) {
               return
             }
             const meta = metaProps[key]

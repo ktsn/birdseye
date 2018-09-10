@@ -315,6 +315,10 @@ describe('Wrap', () => {
       return test({ type: ['number'] }, undefined, '0')
     })
 
+    it('does not auto fills with null value', () => {
+      return test({ type: ['string'] }, null, 'null')
+    })
+
     it('does not auto fills props value when default is specified even if it is null or undefined', async () => {
       await test({ type: ['array'], defaultValue: null }, undefined, 'null')
       await test({ type: ['array'], defaultValue: undefined }, undefined, '')
