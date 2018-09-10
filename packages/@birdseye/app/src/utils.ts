@@ -11,13 +11,14 @@ export function dedupe(list: string[]): string[] {
   }, [])
 }
 
-export function emptyValue(type: ComponentDataType): any {
-  const map = {
+export function emptyValue(type: string): any {
+  const map: Record<string, any> = {
     string: '',
     number: 0,
     boolean: false,
     array: [],
-    object: {}
+    object: {},
+    null: null
   }
   return map[type]
 }

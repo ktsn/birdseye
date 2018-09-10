@@ -29,6 +29,7 @@ import InputNumber from './InputNumber.vue'
 import InputBoolean from './InputBoolean.vue'
 import InputArray from './InputArray.vue'
 import InputObject from './InputObject.vue'
+import InputEmpty from './InputEmpty.vue'
 import { emptyValue } from '@/utils'
 import { ComponentDataType } from '@birdseye/core'
 
@@ -37,7 +38,9 @@ const typeToComponentName: Record<string, string> = {
   number: 'InputNumber',
   boolean: 'InputBoolean',
   array: 'InputArray',
-  object: 'InputObject'
+  object: 'InputObject',
+  null: 'InputEmpty',
+  undefined: 'InputEmpty'
 }
 
 const possibleTypes = Object.keys(typeToComponentName)
@@ -47,7 +50,8 @@ const lazyComponents = () => ({
   InputNumber,
   InputBoolean,
   InputArray,
-  InputObject
+  InputObject,
+  InputEmpty
 })
 
 export default Vue.extend({

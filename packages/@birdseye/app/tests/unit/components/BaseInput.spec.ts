@@ -89,6 +89,30 @@ describe('BaseInput', () => {
       expect(select.value).toBe('object')
       expect(wrapper.html()).toMatchSnapshot()
     })
+
+    it('null', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: null
+        }
+      })
+
+      const select = wrapper.find('.select-type').element as HTMLSelectElement
+      expect(select.value).toBe('null')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
+
+    it('undefined', () => {
+      const wrapper = shallowMount(BaseInput, {
+        propsData: {
+          value: undefined
+        }
+      })
+
+      const select = wrapper.find('.select-type').element as HTMLSelectElement
+      expect(select.value).toBe('undefined')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
   })
 
   describe('events', () => {
@@ -155,6 +179,16 @@ describe('BaseInput', () => {
     it('object', () => {
       changeType(wrapper, 'object')
       expect(wrapper.emitted('input')[0][0]).toEqual({})
+    })
+
+    it('null', () => {
+      changeType(wrapper, 'null')
+      expect(wrapper.emitted('input')[0][0]).toEqual(null)
+    })
+
+    it('undefined', () => {
+      changeType(wrapper, 'undefined')
+      expect(wrapper.emitted('input')[0][0]).toEqual(undefined)
     })
   })
 })
