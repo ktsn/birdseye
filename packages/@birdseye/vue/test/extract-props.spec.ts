@@ -33,8 +33,20 @@ describe('Extract props', () => {
       }
     })
     expect(props).toEqual({
-      foo: { type: ['string'] },
-      bar: { type: ['number'] }
+      foo: { type: ['string', 'null', 'undefined'] },
+      bar: { type: ['number', 'null', 'undefined'] }
+    })
+  })
+
+  it('extracts required type', () => {
+    const props = extractProps({
+      foo: {
+        type: String,
+        required: true
+      }
+    })
+    expect(props).toEqual({
+      foo: { type: ['string'] }
     })
   })
 
@@ -95,35 +107,35 @@ describe('Extract props', () => {
       const props = extractProps({
         foo: String
       })
-      expect(props.foo.type).toEqual(['string'])
+      expect(props.foo.type).toEqual(['string', 'null', 'undefined'])
     })
 
     it('number', () => {
       const props = extractProps({
         foo: Number
       })
-      expect(props.foo.type).toEqual(['number'])
+      expect(props.foo.type).toEqual(['number', 'null', 'undefined'])
     })
 
     it('boolean', () => {
       const props = extractProps({
         foo: Boolean
       })
-      expect(props.foo.type).toEqual(['boolean'])
+      expect(props.foo.type).toEqual(['boolean', 'null', 'undefined'])
     })
 
     it('array', () => {
       const props = extractProps({
         foo: Array
       })
-      expect(props.foo.type).toEqual(['array'])
+      expect(props.foo.type).toEqual(['array', 'null', 'undefined'])
     })
 
     it('object', () => {
       const props = extractProps({
         foo: Object
       })
-      expect(props.foo.type).toEqual(['object'])
+      expect(props.foo.type).toEqual(['object', 'null', 'undefined'])
     })
 
     it('function', () => {
@@ -138,14 +150,14 @@ describe('Extract props', () => {
       const props = extractProps({
         foo: Test
       })
-      expect(props.foo.type).toEqual(['object'])
+      expect(props.foo.type).toEqual(['object', 'null', 'undefined'])
     })
 
     it('union', () => {
       const props = extractProps({
         foo: [String, Number]
       })
-      expect(props.foo.type).toEqual(['string', 'number'])
+      expect(props.foo.type).toEqual(['string', 'number', 'null', 'undefined'])
     })
   })
 })

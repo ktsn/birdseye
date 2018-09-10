@@ -24,26 +24,26 @@ export default function extractProps(
     const def = props[name]
     if (def && typeof def === 'object' && !Array.isArray(def)) {
       res[name] = {
-        type: toTypeStrings(def.type)
+        type: toTypeStrings(def.type, !!def.required)
       }
 
       if ('default' in def && typeof def.default !== 'function') {
         res[name].defaultValue = def.default
       }
     } else {
-      res[name] = { type: toTypeStrings(def) }
+      res[name] = { type: toTypeStrings(def, false) }
     }
   })
 
   return res
 }
 
-function toTypeStrings(type: any): ComponentDataType[] {
+function toTypeStrings(type: any, required: boolean): ComponentDataType[] {
   if (!Array.isArray(type)) {
-    return toTypeStrings([type])
+    return toTypeStrings([type], required)
   }
 
-  return type
+  const res = type
     .map(
       (t): ComponentDataType | null => {
         if (t === String) {
@@ -70,6 +70,8 @@ function toTypeStrings(type: any): ComponentDataType[] {
       }
     )
     .filter(nonNull)
+
+  return !required && res.length > 0 ? res.concat(['null', 'undefined']) : res
 }
 
 function nonNull<T>(val: T): val is NonNullable<T> {
