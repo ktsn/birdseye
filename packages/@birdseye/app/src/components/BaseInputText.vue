@@ -1,9 +1,9 @@
 <template>
   <div class="base-input-text">
     <input
-      class="input"
       :type="type"
       :value="value"
+      class="input"
       @input="$emit('input', $event.target.value)"
     >
   </div>

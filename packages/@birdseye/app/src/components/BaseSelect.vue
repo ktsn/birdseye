@@ -1,7 +1,7 @@
 <template>
   <select
-    class="base-select"
     :value="value"
+    class="base-select"
     @change="$emit('change', $event.target.value)"
   >
     <slot />
