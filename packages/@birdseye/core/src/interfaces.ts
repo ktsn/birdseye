@@ -18,6 +18,8 @@ export type ComponentDataType =
   | 'boolean'
   | 'array'
   | 'object'
+  | 'null'
+  | 'undefined'
 
 export interface ComponentDataInfo {
   type: ComponentDataType[]
