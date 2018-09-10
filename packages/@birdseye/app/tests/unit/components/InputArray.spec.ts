@@ -37,7 +37,7 @@ describe('InputArray', () => {
       }
     })
 
-    wrapper.find('[aria-label="Add"]').trigger('click')
+    wrapper.find('[aria-label="Add"]').vm.$emit('click')
     expect(wrapper.emitted('input')[0][0]).toEqual(['foo', undefined])
   })
 

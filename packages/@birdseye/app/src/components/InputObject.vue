@@ -15,21 +15,22 @@
       </li>
     </ul>
 
-    <button
-      type="button"
-      class="add-button"
+    <ButtonPlusMinus
+      type="plus"
       aria-label="Add"
       @click="onClickAdd"
-    >+</button>
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import InputProperty from './InputProperty.vue'
+import ButtonPlusMinus from './ButtonPlusMinus.vue'
 
 const lazyComponents = () => ({
-  InputProperty
+  InputProperty,
+  ButtonPlusMinus
 })
 
 export default Vue.extend({
@@ -75,5 +76,9 @@ export default Vue.extend({
 <style scoped>
 .input-object {
   display: inline-block;
+}
+
+.item {
+  margin-bottom: 0.2em;
 }
 </style>

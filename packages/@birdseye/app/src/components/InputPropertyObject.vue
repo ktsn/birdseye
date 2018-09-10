@@ -1,6 +1,13 @@
 <template>
   <div class="input-property-object">
     <div class="header">
+      <ButtonPlusMinus
+        type="minus"
+        class="remove-button"
+        aria-label="Remove"
+        @click="$emit('remove')"
+      />
+
       <span class="name">{{ name }}</span>
 
       <div class="type">
@@ -11,13 +18,6 @@
           @input="$emit('input', arguments[0])"
         />
       </div>
-
-      <button
-        type="button"
-        class="remove-button"
-        aria-label="Remove"
-        @click="$emit('remove')"
-      >-</button>
     </div>
 
     <div class="children">
@@ -33,9 +33,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import BaseInput from './BaseInput.vue'
+import ButtonPlusMinus from './ButtonPlusMinus.vue'
 
 const lazyComponents = () => ({
-  BaseInput
+  BaseInput,
+  ButtonPlusMinus
 })
 
 export default Vue.extend({
@@ -66,10 +68,12 @@ export default Vue.extend({
 <style scoped>
 .header {
   display: flex;
+  align-items: center;
+  margin-bottom: 0.2em;
 }
 
 .children {
-  padding-left: 1.5em;
+  padding-left: 1.2em;
 }
 
 .name {
@@ -79,5 +83,9 @@ export default Vue.extend({
 
 .name::after {
   content: ':';
+}
+
+.remove-button {
+  margin-right: 5px;
 }
 </style>

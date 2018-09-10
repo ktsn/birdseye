@@ -61,7 +61,7 @@ describe('InputPropertyObject', () => {
         value: ['foo']
       }
     })
-    wrapper.find('[aria-label="Remove"]').trigger('click')
+    wrapper.find('[aria-label="Remove"]').vm.$emit('click')
     expect(wrapper.emitted('remove').length).toBe(1)
   })
 })
