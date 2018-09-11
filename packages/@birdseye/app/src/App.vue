@@ -1,7 +1,7 @@
 <template>
   <div class="birdseye-app">
     <div class="app-inner">
-      <aside class="app-side">
+      <aside class="app-side app-reset">
         <NavSide
           :nav="meta"
           :meta="$route.params.meta"
@@ -15,7 +15,7 @@
           class="app-preview"
         />
 
-        <div class="app-panel">
+        <div class="app-panel app-reset">
           <PanelPattern
             :props="props"
             :data="data"
@@ -121,6 +121,14 @@ export default Vue.extend({
   bottom: 0;
 }
 
+.app-reset {
+  all: initial;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .app-inner {
   display: flex;
   width: 100%;
@@ -128,12 +136,6 @@ export default Vue.extend({
 }
 
 .app-side {
-  all: initial;
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-normal);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   overflow: auto;
   flex: none;
   padding: 20px;
