@@ -12,6 +12,42 @@ describe('BaseInputText', () => {
     expect(input.value).toBe('test')
   })
 
+  it('allows to set class', () => {
+    const wrapper = shallowMount(BaseInputText, {
+      propsData: {
+        value: 'test',
+        inputClass: 'test-input'
+      }
+    })
+    expect(wrapper.find('input').classes()).toContain('test-input')
+  })
+
+  it('allows to set style', () => {
+    const wrapper = shallowMount(BaseInputText, {
+      propsData: {
+        value: 'test',
+        inputStyle: {
+          width: '200px'
+        }
+      }
+    })
+    expect(wrapper.find('input').element.style.width).toBe('200px')
+  })
+
+  it('allows to provide input DOM element', done => {
+    const hook = (input: any) => {
+      expect(input).toBeInstanceOf(HTMLInputElement)
+      done()
+    }
+
+    shallowMount(BaseInputText, {
+      propsData: {
+        value: 'test',
+        refInput: hook
+      }
+    })
+  })
+
   it('propagates input event', () => {
     const wrapper = shallowMount(BaseInputText, {
       propsData: {

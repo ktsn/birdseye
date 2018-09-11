@@ -1,9 +1,13 @@
 <template>
   <div class="base-input-text">
     <input
+      ref="input"
+      class="input"
       :type="type"
       :value="value"
-      class="input"
+      :class="inputClass"
+      :style="inputStyle"
+      v-bind="$attrs"
       @input="$emit('input', $event.target.value)"
     >
   </div>
@@ -14,6 +18,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'BaseInputText',
+  inheritAttrs: false,
 
   props: {
     type: {
@@ -24,6 +29,27 @@ export default Vue.extend({
     value: {
       type: String,
       required: true
+    },
+
+    inputClass: {
+      type: [String, Array, Object],
+      default: null
+    },
+
+    inputStyle: {
+      type: [String, Array, Object],
+      default: null
+    },
+
+    refInput: {
+      type: Function,
+      default: null
+    }
+  },
+
+  mounted() {
+    if (this.refInput) {
+      this.refInput(this.$refs.input)
     }
   }
 })
