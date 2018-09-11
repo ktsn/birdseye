@@ -19,6 +19,14 @@ class Store<S> {
   get state(): S {
     return this.vm.$data as S
   }
+
+  set<T, K extends Extract<keyof T, string | number>>(
+    target: T,
+    key: K,
+    value: T[K]
+  ): void {
+    this.vm.$set(target as any, key as any, value)
+  }
 }
 
 interface AppState {
@@ -68,7 +76,7 @@ export default class AppStore extends Store<AppState> {
     const p = this.getPattern(meta, pattern)
     if (!p) return
 
-    p.props[key] = value
+    this.set(p.props, key, value)
   }
 
   updateDataValue(
@@ -80,7 +88,7 @@ export default class AppStore extends Store<AppState> {
     const p = this.getPattern(meta, pattern)
     if (!p) return
 
-    p.data[key] = value
+    this.set(p.data, key, value)
   }
 
   private genericQualifiedData(
