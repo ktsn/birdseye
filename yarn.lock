@@ -11732,6 +11732,10 @@ wcwidth@^1.0.0, wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+weakset@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/weakset/-/weakset-1.0.0.tgz#7d525ebb93b24d38e6d0a19b0f3e14f099a3b270"
+
 webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
