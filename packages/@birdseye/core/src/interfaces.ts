@@ -31,3 +31,8 @@ export interface ComponentPattern {
   props: Record<string, any>
   data: Record<string, any>
 }
+
+export interface ComponentEvent {
+  name: string
+  args: any[]
+}
