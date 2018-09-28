@@ -3,7 +3,8 @@ import {
   ComponentDeclaration,
   ComponentPattern,
   ComponentMeta,
-  ComponentDataType
+  ComponentDataType,
+  ComponentEvent
 } from '@birdseye/core'
 import { dedupe } from './utils'
 
@@ -31,6 +32,7 @@ class Store<S> {
 
 interface AppState {
   declarations: ComponentDeclaration[]
+  events: ComponentEvent[]
 }
 
 export interface QualifiedData {
@@ -89,6 +91,17 @@ export default class AppStore extends Store<AppState> {
     if (!p) return
 
     this.set(p.data, key, value)
+  }
+
+  addEvent(name: string, args: any[]): void {
+    this.state.events.push({
+      name,
+      args
+    })
+  }
+
+  clearEvents(): void {
+    this.state.events = []
   }
 
   private genericQualifiedData(

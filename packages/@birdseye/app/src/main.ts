@@ -34,7 +34,8 @@ export default function birdseye(
   wrapper!.appendChild(app)
 
   const store = new AppStore({
-    declarations
+    declarations,
+    events: []
   })
 
   app.store = store
