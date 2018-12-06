@@ -60,6 +60,7 @@
     "eslint-config-ktsn-vue": "^1.0.1",
     "eslint-loader": "^2.1.0",
     "jest": "^23.5.0",
+    "lerna": "^3.2.1",
     "prettier": "1.14.2",
     "prettier-config-ktsn": "^1.0.0",
     "ts-jest": "^23.1.4",

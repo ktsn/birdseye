@@ -1,5 +1,7 @@
 # @birdseye/app
 
+[![@birdseye/app Dev Token](https://badge.devtoken.rocks/@birdseye/app)](https://devtoken.rocks/package/@birdseye/app)
+
 ## Project setup
 ```
 npm install
