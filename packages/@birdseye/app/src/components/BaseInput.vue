@@ -1,8 +1,8 @@
 <template>
   <div class="base-input">
-    <component
-      v-if="!removeInput"
+    <Component
       :is="componentForType"
+      v-if="!removeInput"
       :value="value"
       @input="$emit('input', arguments[0])"
     />
