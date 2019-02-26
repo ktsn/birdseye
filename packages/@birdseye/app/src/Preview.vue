@@ -41,7 +41,8 @@ export default Vue.extend({
       props: {
         props: pattern ? pattern.props : {},
         data: pattern ? pattern.data : {}
-      }
+      },
+      scopedSlots: pattern ? pattern.slots : {}
     })
   }
 })

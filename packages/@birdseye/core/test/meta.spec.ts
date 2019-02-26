@@ -22,5 +22,6 @@ describe('Meta', () => {
     expect(p.name).toBe('<AnonymusPattern>')
     expect(p.props).toEqual({})
     expect(p.data).toEqual({})
+    expect(p.slots).toEqual({})
   })
 })

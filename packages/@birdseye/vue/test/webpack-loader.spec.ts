@@ -25,7 +25,7 @@ describe('webpack loader', () => {
       null,
       (_err, result) => {
         expect(result).toMatchInlineSnapshot(`
-"import extractProps from \\"@birdseye/vue/lib/runtime/extract-props\\"
+"import extractProps from \\"@birdseye/vue/lib/extract-props\\"
 export default function(Component) {
   var props = extractProps(Component.options.props)
   Component.options.__birdseye = {\\"name\\":\\"Test\\"}
@@ -46,7 +46,7 @@ export default function(Component) {
   it('loads yaml data', () => {
     test(`name: Test`, 'yaml', (_err, result) => {
       expect(result).toMatchInlineSnapshot(`
-"import extractProps from \\"@birdseye/vue/lib/runtime/extract-props\\"
+"import extractProps from \\"@birdseye/vue/lib/extract-props\\"
 export default function(Component) {
   var props = extractProps(Component.options.props)
   Component.options.__birdseye = {\\"name\\":\\"Test\\"}

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import wrap from '@vue/web-component-wrapper'
-import { ComponentDeclaration } from '@birdseye/core'
+import { Catalog } from '@birdseye/core'
 import LazyComponents from 'vue-lazy-components-option'
 import router from './router'
 import AppStore from './store'
@@ -20,7 +20,7 @@ window.customElements.define(appTagName, wrap(Root, App))
 
 export default function birdseye(
   el: string | Element,
-  declarations: ComponentDeclaration[],
+  catalogs: Catalog[],
   options: BirdseyeOptions = {}
 ): void {
   Vue.prototype.$_birdseye_experimental = !!options.experimental
@@ -34,7 +34,7 @@ export default function birdseye(
   wrapper!.appendChild(app)
 
   const store = new AppStore({
-    declarations
+    declarations: catalogs.map(c => c.toDeclaration())
   })
 
   app.store = store

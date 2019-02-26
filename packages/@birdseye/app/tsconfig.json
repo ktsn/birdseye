@@ -10,21 +10,11 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "node",
-      "jest"
-    ],
+    "types": ["node", "jest", "webpack-env"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "es2015",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["es2015", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
@@ -33,7 +23,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

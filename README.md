@@ -24,20 +24,71 @@ Install `@birdseye/app` and `@birdseye/vue` in your Vue CLI project:
 $ npm i -D @birdseye/app @birdseye/vue
 ```
 
-Then, update the webpack config in `vue.config.js`:
+#### Writing catalog by code
+
+Create catalog file:
+
+```js
+// birdseye/catalogs/MyButton.catalog.js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton')
+  .add('primary', {
+    props: {
+      primary: true
+    },
+    slots: {
+      default: 'Button Text'
+    }
+  })
+  .add('hovered state', {
+    data: {
+      hover: true
+    },
+    slots: {
+      default: 'Hovered'
+    }
+  })
+```
+
+Make `birdseye/preview.js` and bootstrap component catalog:
+
+```js
+// birdseye/preview.js
+import birdseye from '@birdseye/app'
+
+// Load all your catalogs
+const load = ctx => ctx.keys().map(x => ctx(x).default)
+const catalogs = load(require.context('./catalogs/', true, /\.catalog\.js$/))
+
+// Mount component catalog
+birdseye('#app', catalogs)
+```
+
+Serve the component catalog by running vue-cli-service:
+
+```bash
+$ npm run serve birdseye/preview.js
+```
+
+#### Writing catalog in SFC
+
+Update the webpack config in `vue.config.js`:
 
 ```js
 module.exports = {
   chainWebpack: config => {
     if (process.env.NODE_ENV !== 'production') {
       // Process <birdseye> custom block with @birdseye/vue/webpack-loader
+      // prettier-ignore
       config.module
         .rule('birdseye-vue')
           .resourceQuery(/blockType=birdseye/)
           .use('birdseye-vue-loader')
             .loader('@birdseye/vue/webpack-loader')
     }
-  },
+  }
 }
 ```
 
@@ -92,15 +143,15 @@ export default {
 </birdseye>
 ```
 
-Finally, make `preview.js` and bootstrap component catalog:
+Finally, make `birdseye/preview.js` and bootstrap component catalog:
 
 ```js
 import birdseye from '@birdseye/app'
 import { instrument } from '@birdseye/vue'
 
 // Load all your component
-const load = ctx => ctx.keys().map(ctx)
-const components = load(require.context('./src/components', true, /\.vue$/))
+const load = ctx => ctx.keys().map(x => ctx(x).default)
+const components = load(require.context('../src/components', true, /\.vue$/))
 
 // Mount component catalog
 birdseye('#app', instrument(components))
@@ -109,7 +160,7 @@ birdseye('#app', instrument(components))
 You can serve the component catalog by running vue-cli-service:
 
 ```bash
-$ npm run serve preview.js
+$ npm run serve birdseye/preview.js
 ```
 
 ## License

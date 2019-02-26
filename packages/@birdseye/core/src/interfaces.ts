@@ -1,4 +1,8 @@
-import { VueConstructor } from 'vue'
+import { VueConstructor, VNode } from 'vue'
+
+export interface Catalog {
+  toDeclaration(): ComponentDeclaration
+}
 
 export interface ComponentDeclaration {
   Wrapper: VueConstructor
@@ -30,4 +34,5 @@ export interface ComponentPattern {
   name: string
   props: Record<string, any>
   data: Record<string, any>
+  slots: Record<string, (props: any) => VNode[]>
 }

@@ -1,4 +1,4 @@
-import extractProps from '../src/runtime/extract-props'
+import extractProps from '../src/extract-props'
 
 describe('Extract props', () => {
   it('returns empty object if falsy value is passed', () => {

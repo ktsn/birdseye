@@ -33,9 +33,14 @@ describe('Wrap', () => {
       }
 
       return h('div', [
+        // props, data
         el('foo', this.foo),
         el('bar', this.bar),
-        el('baz', this.baz)
+        el('baz', this.baz),
+
+        // slots
+        el('default-slot', this.$slots.default),
+        el('named-slot', this.$slots.named)
       ])
     }
   })
@@ -60,6 +65,26 @@ describe('Wrap', () => {
     expect(wrapper.find('#foo').text()).toBe('test')
     expect(wrapper.find('#bar').text()).toBe('123')
     expect(wrapper.find('#baz').text()).toBe('baz data')
+  })
+
+  it('applies initial slots', async () => {
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {
+          foo: ''
+        },
+        data: {}
+      },
+      slots: {
+        default: 'default slot',
+        named: 'named slot'
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('#default-slot').text()).toBe('default slot')
+    expect(wrapper.find('#named-slot').text()).toBe('named slot')
   })
 
   it('updates props', async () => {
