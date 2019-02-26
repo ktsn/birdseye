@@ -1,5 +1,5 @@
 import Vue, { Component, VueConstructor, ComponentOptions } from 'vue'
-import { ComponentDeclaration } from '@birdseye/core'
+import { Catalog } from '@birdseye/core'
 import { createInstrument as create } from './instrument'
 
 function isNative(Ctor: any): boolean {
@@ -12,6 +12,8 @@ const hasSymbol =
   typeof Reflect !== 'undefined' &&
   isNative(Reflect.ownKeys)
 
+export { catalogFor } from './catalog'
+
 export function createInstrument(
   Vue: VueConstructor,
   rootOptions: ComponentOptions<any> = {}
@@ -20,12 +22,12 @@ export function createInstrument(
 
   return function instrument(
     Components: (Component | { default: Component })[]
-  ): ComponentDeclaration[] {
+  ): Catalog[] {
     return Components.map((c: any) => {
       if (c.__esModule || (hasSymbol && c[Symbol.toStringTag] === 'Module')) {
         c = c.default
       }
-      return _instrument(c)
+      return { toDeclaration: () => _instrument(c) }
     })
   }
 }

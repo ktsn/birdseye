@@ -1,4 +1,8 @@
-import { VueConstructor } from 'vue'
+import { VueConstructor, VNode } from 'vue'
+
+export interface Catalog {
+  toDeclaration(): ComponentDeclaration
+}
 
 export interface ComponentDeclaration {
   Wrapper: VueConstructor
