@@ -64,14 +64,3 @@ export default Vue.extend({
   background-color: var(--color-main);
 }
 </style>
-
-<birdseye lang="yml">
-name: ButtonPlusMinus
-patterns:
-  - name: plus (default)
-    props:
-      type: plus
-  - name: minus
-    props:
-      type: minus
-</birdseye>

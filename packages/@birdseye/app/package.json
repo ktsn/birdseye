@@ -24,7 +24,7 @@
     "access": "public"
   },
   "scripts": {
-    "serve": "vue-cli-service serve tests/dummy/main.js",
+    "serve": "vue-cli-service serve tests/dummy/main.ts",
     "build": "vue-cli-service build --target lib --name app src/main.ts",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
@@ -47,6 +47,7 @@
     "@babel/core": "^7.0.0",
     "@birdseye/vue": "^0.1.8",
     "@types/jest": "^23.3.1",
+    "@types/webpack-env": "^1.13.7",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-plugin-typescript": "^3.0.1",
