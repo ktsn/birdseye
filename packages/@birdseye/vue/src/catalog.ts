@@ -1,23 +1,41 @@
-import Vue, { Component, VNode } from 'vue'
+import Vue, { Component, VNode, ComponentOptions } from 'vue'
 import { compileToFunctions } from 'vue-template-compiler'
 import { Catalog as BaseCatalog, ComponentPattern } from '@birdseye/core'
-import { wrap } from './instrument'
+import { createInstrument } from './instrument'
 import extractProps from './extract-props'
 
 export interface Catalog extends BaseCatalog {
-  add(name: string, options?: CatalogOptions): Catalog
+  add(name: string, options?: CatalogPatternOptions): Catalog
 }
 
 export interface CatalogOptions {
+  name: string
+  rootVue?: typeof Vue
+  rootOptions?: ComponentOptions<Vue>
+}
+
+export interface CatalogPatternOptions {
   props?: Record<string, any>
   data?: Record<string, any>
   slots?: Record<string, string>
 }
 
-export function catalogFor(Comp: Component, name: string): Catalog {
+export function catalogFor(
+  Comp: Component,
+  nameOrOptions: string | CatalogOptions
+): Catalog {
+  const name =
+    typeof nameOrOptions === 'string' ? nameOrOptions : nameOrOptions.name
+  const options = typeof nameOrOptions === 'string' ? { name } : nameOrOptions
+
+  const { wrap } = createInstrument(
+    options.rootVue || Vue,
+    options.rootOptions || {}
+  )
+
   const Wrapper = wrap(Comp)
-  const options = typeof Comp === 'function' ? (Comp as any).options : Comp
-  const props = extractProps(options.props)
+  const compOptions = typeof Comp === 'function' ? (Comp as any).options : Comp
+  const props = extractProps(compOptions.props)
 
   function catalog(patterns: ComponentPattern[]): Catalog {
     return {
@@ -28,7 +46,7 @@ export function catalogFor(Comp: Component, name: string): Catalog {
           Record<string, (props: any) => VNode[]>
         >((acc, key) => {
           acc[key] = _props => {
-            return [compileSlot(key, originalSlots[key])]
+            return compileSlot(originalSlots[key])
           }
           return acc
         }, {})
@@ -60,14 +78,14 @@ export function catalogFor(Comp: Component, name: string): Catalog {
   return catalog([])
 }
 
-function compileSlot(slotName: string, slot: string): VNode {
+function compileSlot(slot: string): VNode[] {
   const compiled = compileToFunctions(`
-    <div><template slot="${slotName}">${slot}</template></div>
+    <div>${slot}</div>
   `)
 
   const ctx: any = new Vue({
     staticRenderFns: compiled.staticRenderFns
   })
   const vnode = compiled.render.call(ctx._renderProxy)
-  return vnode.children![0]
+  return vnode.children!
 }

@@ -199,8 +199,6 @@ export function createInstrument(
   }
 }
 
-export const wrap = createInstrument(Vue).wrap
-
 function inferValueFromType(
   type: ComponentDataType | ComponentDataType[]
 ): any {
