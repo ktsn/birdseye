@@ -13,6 +13,7 @@ function normalizePattern(pattern: any): ComponentPattern {
   return {
     name: pattern.name || '<AnonymusPattern>',
     props: pattern.props || {},
-    data: pattern.data || {}
+    data: pattern.data || {},
+    slots: pattern.slots || {}
   }
 }
