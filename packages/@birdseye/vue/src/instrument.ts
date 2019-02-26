@@ -187,6 +187,12 @@ export function createInstrument(
 
       render(h): VNode {
         root.slots = this.$scopedSlots as any
+
+        const slots = this.$slots
+        Object.keys(slots).forEach(key => {
+          root.slots[key] = () => slots[key] || []
+        })
+
         return h('div')
       }
     })
