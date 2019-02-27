@@ -2,14 +2,14 @@
 
 exports[`NavSide avoid including children dom when patterns are empty 1`] = `
 <ul class="nav-side">
-  <li class="item"><a href="#/Empty" class="anchor">
+  <li class="item"><button class="anchor">
       Empty
-    </a>
+    </button>
     <!---->
   </li>
-  <li class="item"><a href="#/Empty%20Selected" class="anchor current">
+  <li class="item"><button class="anchor current">
       Empty Selected
-    </a>
+    </button>
     <!---->
   </li>
 </ul>
@@ -17,9 +17,9 @@ exports[`NavSide avoid including children dom when patterns are empty 1`] = `
 
 exports[`NavSide highlight current component 1`] = `
 <ul class="nav-side">
-  <li class="item"><a href="#/Foo" class="anchor current">
+  <li class="item"><button class="anchor current">
       Foo
-    </a>
+    </button>
     <div class="child-wrapper" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
@@ -31,9 +31,9 @@ exports[`NavSide highlight current component 1`] = `
       </ul>
     </div>
   </li>
-  <li class="item"><a href="#/Bar" class="anchor">
+  <li class="item"><button class="anchor">
       Bar
-    </a>
+    </button>
     <div class="child-wrapper" style="display: none;" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
@@ -47,9 +47,9 @@ exports[`NavSide highlight current component 1`] = `
 
 exports[`NavSide highlight current pattern 1`] = `
 <ul class="nav-side">
-  <li class="item"><a href="#/Foo" class="anchor">
+  <li class="item"><button class="anchor current">
       Foo
-    </a>
+    </button>
     <div class="child-wrapper" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor current">
@@ -61,9 +61,9 @@ exports[`NavSide highlight current pattern 1`] = `
       </ul>
     </div>
   </li>
-  <li class="item"><a href="#/Bar" class="anchor">
+  <li class="item"><button class="anchor">
       Bar
-    </a>
+    </button>
     <div class="child-wrapper" style="display: none;" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
@@ -77,9 +77,9 @@ exports[`NavSide highlight current pattern 1`] = `
 
 exports[`NavSide renders declarations 1`] = `
 <ul class="nav-side">
-  <li class="item"><a href="#/Foo" class="anchor">
+  <li class="item"><button class="anchor">
       Foo
-    </a>
+    </button>
     <div class="child-wrapper" style="display: none;" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
@@ -91,9 +91,9 @@ exports[`NavSide renders declarations 1`] = `
       </ul>
     </div>
   </li>
-  <li class="item"><a href="#/Bar" class="anchor">
+  <li class="item"><button class="anchor">
       Bar
-    </a>
+    </button>
     <div class="child-wrapper" style="display: none;" name="child">
       <ul class="child-list">
         <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
