@@ -193,7 +193,11 @@ export function createInstrument(
           root.slots[key] = () => slots[key] || []
         })
 
-        return h('div')
+        return h('div', {
+          style: {
+            height: '100%'
+          }
+        })
       }
     })
   }
