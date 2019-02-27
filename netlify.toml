@@ -1,0 +1,3 @@
+[build]
+publish = "packages/@birdseye/app/dist"
+command = "yarn catalog"

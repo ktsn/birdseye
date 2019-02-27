@@ -25,6 +25,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve tests/dummy/main.ts",
+    "catalog": "vue-cli-service build tests/dummy/main.ts",
     "build": "vue-cli-service build --target lib --name app src/main.ts",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
