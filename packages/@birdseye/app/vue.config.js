@@ -17,7 +17,10 @@ module.exports = {
 
   configureWebpack: {
     externals: (context, request, callback) => {
-      if (externals.includes(request)) {
+      if (
+        process.env.NODE_ENV === 'production' &&
+        externals.includes(request)
+      ) {
         return callback(null, 'commonjs ' + request)
       }
       callback()
