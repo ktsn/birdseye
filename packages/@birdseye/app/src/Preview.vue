@@ -12,7 +12,7 @@ export default Vue.extend({
 
     pattern: {
       type: String,
-      default: null
+      required: true
     },
 
     store: {
