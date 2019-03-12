@@ -19,6 +19,7 @@ export function createInstrument(
       return {
         props: {} as Record<string, any>,
         data: {} as Record<string, any>,
+        slots: {} as Record<string, (props: any) => VNode[]>,
         weakset: new WeakSet()
       }
     },
@@ -110,10 +111,19 @@ export function createInstrument(
         return h()
       }
 
-      return h(vm.component, {
-        props: this.props,
-        ref: 'child'
+      // TODO: Support scoped slots
+      const slotNodes = Object.keys(this.slots).map(key => {
+        return h('template', { slot: key }, this.slots[key]({}))
       })
+
+      return h(
+        vm.component,
+        {
+          props: this.props,
+          ref: 'child'
+        },
+        slotNodes
+      )
     }
   })
 
@@ -201,23 +211,19 @@ export function createInstrument(
       },
 
       watch: {
-        filledProps: {
-          handler(newProps: Record<string, any>): void {
-            root.props = newProps
-          },
-          immediate: true
+        filledProps(newProps: Record<string, any>): void {
+          root.props = newProps
         },
 
-        clonedData: {
-          handler(newData: Record<string, any>): void {
-            root.data = newData
-          },
-          immediate: true
+        clonedData(newData: Record<string, any>): void {
+          root.data = newData
         }
       },
 
       mounted() {
         root.updateComponent(Component)
+        root.props = this.filledProps
+        root.data = this.clonedData
         root.$on('event', this.bypassEvent)
         this.$el.appendChild(root.$el)
       },
@@ -234,7 +240,18 @@ export function createInstrument(
       },
 
       render(h): VNode {
-        return h('div')
+        root.slots = this.$scopedSlots as any
+
+        const slots = this.$slots
+        Object.keys(slots).forEach(key => {
+          root.slots[key] = () => slots[key] || []
+        })
+
+        return h('div', {
+          style: {
+            height: '100%'
+          }
+        })
       }
     })
   }

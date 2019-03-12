@@ -146,7 +146,8 @@ export default Vue.extend({
 .app-content {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: none;
+  width: calc(100% - (var(--width-side) + 40px));
 }
 
 .app-panel {

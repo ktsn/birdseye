@@ -17,7 +17,7 @@ const vueBirdseyeLoader: loader.Loader = function(source, map) {
 
     const extractPropsReq = loaderUtils.stringifyRequest(
       this as any, // temporary workaround until loader-utils uses the latest webpack types
-      '@birdseye/vue/lib/runtime/extract-props'
+      '@birdseye/vue/lib/extract-props'
     )
 
     this.callback(

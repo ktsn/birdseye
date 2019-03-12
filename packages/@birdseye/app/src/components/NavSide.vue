@@ -5,18 +5,18 @@
       :key="m.name"
       class="item"
     >
-      <router-link
-        :class="{ current: isCurrent(m.name) }"
-        :to="previewRoute(m.name)"
+      <button
         class="anchor"
+        :class="{ current: openedMeta === m.name }"
+        @click="openedMeta = m.name"
       >
         {{ m.name }}
-      </router-link>
+      </button>
 
       <TransitionDisclosure name="child">
         <div
           v-if="!isEmptyPatterns(m)"
-          v-show="meta === m.name"
+          v-show="openedMeta === m.name"
           class="child-wrapper"
         >
           <ul class="child-list">
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 import { Location } from 'vue-router'
 import { ComponentMeta } from '@birdseye/core'
 import { TransitionDisclosure } from 'vue-transition-components'
@@ -55,18 +55,24 @@ export default Vue.extend({
 
   props: {
     meta: {
-      type: String,
+      type: String as PropType<string | null>,
       default: null
     },
 
     pattern: {
-      type: String,
+      type: String as PropType<string | null>,
       default: null
     },
 
     nav: {
       type: Array as () => ComponentMeta[],
       required: true
+    }
+  },
+
+  data() {
+    return {
+      openedMeta: this.meta
     }
   },
 
@@ -84,7 +90,7 @@ export default Vue.extend({
       return to
     },
 
-    isCurrent(meta: string, pattern: string | null = null): boolean {
+    isCurrent(meta: string, pattern: string): boolean {
       return this.meta === meta && this.pattern === pattern
     },
 
@@ -106,7 +112,12 @@ export default Vue.extend({
 
 .anchor {
   display: block;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /**

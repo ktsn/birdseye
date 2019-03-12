@@ -1,3 +1,7 @@
+const pkg = require('./package.json')
+
+const externals = Object.keys(pkg.dependencies)
+
 process.env.VUE_CLI_CSS_SHADOW_MODE = true
 
 module.exports = {
@@ -8,6 +12,18 @@ module.exports = {
           path: __dirname
         }
       }
+    }
+  },
+
+  configureWebpack: {
+    externals: (context, request, callback) => {
+      if (
+        process.env.NODE_ENV === 'production' &&
+        externals.includes(request)
+      ) {
+        return callback(null, 'commonjs ' + request)
+      }
+      callback()
     }
   },
 

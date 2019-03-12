@@ -65,25 +65,3 @@ export default Vue.extend({
   margin-bottom: 0;
 }
 </style>
-
-<birdseye lang="yml">
-name: PanelPattern
-patterns:
-  - name: Normal
-    props:
-      props:
-        - type:
-            - string
-          name: foo
-          value: foo value
-      data:
-        - type:
-            - string
-            - number
-          name: bar
-          value: 123
-        - type:
-            - boolean
-          name: baz
-          value: true
-</birdseye>
