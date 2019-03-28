@@ -1,6 +1,6 @@
 const pkg = require('./package.json')
 
-const externals = Object.keys(pkg.dependencies)
+const externals = Object.keys(pkg.dependencies).concat('vue')
 
 process.env.VUE_CLI_CSS_SHADOW_MODE = true
 
