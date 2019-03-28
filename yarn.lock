@@ -12228,7 +12228,7 @@ vue-play@^3.2.1:
     vuex "^2.2.1"
     vuex-router-sync "^4.1.2"
 
-"vue-router@^2.0.0 || ^3.0.1":
+"vue-router@^2.0.0 || ^3.0.0":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
   integrity sha512-opKtsxjp9eOcFWdp6xLQPLmRGgfM932Tl56U9chYTnoWqKxQ8M20N7AkdEbM5beUh6wICoFGYugAX9vQjyJLFg==
@@ -12280,15 +12280,15 @@ vue-transition-components@^0.2.2:
   resolved "https://registry.yarnpkg.com/vue-transition-components/-/vue-transition-components-0.2.2.tgz#83793556767b3abd0fc5b2585482eaeea6c0115c"
   integrity sha512-iT40F5yL3wphnjKhMz800SaIv1kLdMLFIFYIbx3DArRrOA3LXcIu6EUVYhBdIjIfSkDtGHOGA9UcOyIBKQ6EPQ==
 
-vue@^2.0.0, vue@^2.6.7:
-  version "2.6.10"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
-
 vue@^2.5.13:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
+
+vue@^2.6.7:
+  version "2.6.10"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vuex-router-sync@^4.1.2:
   version "4.3.2"
