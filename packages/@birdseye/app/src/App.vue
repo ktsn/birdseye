@@ -100,7 +100,7 @@ export default Vue.extend({
 :host {
   --color-base: #f1f8fd;
   --color-main: #828bec;
-  --color-preview-background: #fff;
+  --color-preview-background: transparent;
   --color-border: #e0e0e0;
   --width-side: 280px;
   --padding-preview: 20px;
@@ -155,6 +155,7 @@ export default Vue.extend({
   flex: 0 0 30%;
   padding: 20px;
   min-height: 200px;
+  background-color: #fff;
   border-top: 1px solid var(--color-border);
 }
 
