@@ -35,4 +35,5 @@ export interface ComponentPattern {
   props: Record<string, any>
   data: Record<string, any>
   slots: Record<string, (props: any) => VNode[]>
+  containerStyle: Partial<CSSStyleDeclaration>
 }

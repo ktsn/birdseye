@@ -32,7 +32,8 @@ describe('Instrument', () => {
           data: {
             test2: 'bar'
           },
-          slots: {}
+          slots: {},
+          containerStyle: {}
         }
       ]
     }
@@ -54,7 +55,8 @@ describe('Instrument', () => {
           data: {
             test2: 'bar'
           },
-          slots: {}
+          slots: {},
+          containerStyle: {}
         }
       ]
     }

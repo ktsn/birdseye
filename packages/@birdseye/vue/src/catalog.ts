@@ -18,6 +18,7 @@ export interface CatalogPatternOptions {
   props?: Record<string, any>
   data?: Record<string, any>
   slots?: Record<string, string>
+  containerStyle?: Partial<CSSStyleDeclaration>
 }
 
 export function catalogFor(
@@ -56,7 +57,8 @@ export function catalogFor(
             name: patternName,
             props: options.props || {},
             data: options.data || {},
-            slots
+            slots,
+            containerStyle: options.containerStyle || {}
           })
         )
       },
