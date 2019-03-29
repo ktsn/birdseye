@@ -14,6 +14,7 @@ function normalizePattern(pattern: any): ComponentPattern {
     name: pattern.name || '<AnonymusPattern>',
     props: pattern.props || {},
     data: pattern.data || {},
-    slots: pattern.slots || {}
+    slots: pattern.slots || {},
+    containerStyle: pattern.containerStyle || {}
   }
 }

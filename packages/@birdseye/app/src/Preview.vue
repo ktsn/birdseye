@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="tsx">
 import Vue, { VNode } from 'vue'
 import { ComponentDeclaration, ComponentPattern } from '@birdseye/core'
 import AppStore from './store'
@@ -35,15 +35,28 @@ export default Vue.extend({
     }
 
     const { Wrapper } = this.targetDeclaration
-    const pattern = this.store.getPattern(this.meta, this.pattern)
 
-    return h(Wrapper, {
+    const pattern = this.store.getPattern(this.meta, this.pattern)
+    const data = {
       props: {
         props: pattern ? pattern.props : {},
         data: pattern ? pattern.data : {}
       },
       scopedSlots: pattern ? pattern.slots : {}
-    })
+    }
+
+    const containerStyle: Partial<CSSStyleDeclaration> = {
+      boxSizing: 'border-box',
+      padding: '20px',
+      height: '100%',
+      ...(pattern ? pattern.containerStyle : {})
+    }
+
+    return (
+      <div style={containerStyle}>
+        <Wrapper {...data} />
+      </div>
+    )
   }
 })
 </script>

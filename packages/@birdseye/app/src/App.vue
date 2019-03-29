@@ -100,10 +100,8 @@ export default Vue.extend({
 :host {
   --color-base: #f1f8fd;
   --color-main: #828bec;
-  --color-preview-background: transparent;
   --color-border: #e0e0e0;
   --width-side: 280px;
-  --padding-preview: 20px;
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   --font-family-base: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
     'Segoe UI', sans-serif;
@@ -162,7 +160,5 @@ export default Vue.extend({
 .app-preview {
   overflow: auto;
   flex: 1 1 auto;
-  padding: var(--padding-preview);
-  background-color: var(--color-preview-background);
 }
 </style>

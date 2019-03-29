@@ -72,6 +72,31 @@ Serve the component catalog by running vue-cli-service:
 $ npm run serve birdseye/preview.js
 ```
 
+#### Tweaking preview container style
+
+When you want to modify preview container style (such as padding, background-color etc.), specify `containerStyle` option in your catalog:
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton').add('white button', {
+  props: {
+    white: true
+  },
+  slots: {
+    default: 'Button Text'
+  },
+
+  // Make background color black
+  containerStyle: {
+    backgroundColor: 'black'
+  }
+})
+```
+
+The above example makes the preview background color black. You can specify any CSS properties in `containerStyle` option.
+
 #### Writing catalog in SFC
 
 Update the webpack config in `vue.config.js`:

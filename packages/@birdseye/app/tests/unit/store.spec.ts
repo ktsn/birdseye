@@ -33,7 +33,8 @@ describe('AppStore', () => {
                   data: {
                     c: true
                   },
-                  slots: {}
+                  slots: {},
+                  containerStyle: {}
                 },
                 {
                   name: 'pattern 2',
@@ -44,7 +45,8 @@ describe('AppStore', () => {
                   data: {
                     c: false
                   },
-                  slots: {}
+                  slots: {},
+                  containerStyle: {}
                 }
               ]
             }
@@ -66,7 +68,8 @@ describe('AppStore', () => {
                   data: {
                     test2: 'test value'
                   },
-                  slots: {}
+                  slots: {},
+                  containerStyle: {}
                 }
               ]
             }
@@ -167,7 +170,10 @@ describe('AppStore', () => {
                     b: 123,
                     c: true
                   },
-                  slots: {}
+                  slots: {},
+                  containerStyle: {
+                    padding: '0'
+                  }
                 },
                 {
                   name: 'foo pattern 2',
@@ -175,7 +181,10 @@ describe('AppStore', () => {
                   data: {
                     b: 456
                   },
-                  slots: {}
+                  slots: {},
+                  containerStyle: {
+                    backgroundColor: 'black'
+                  }
                 }
               ]
             }
