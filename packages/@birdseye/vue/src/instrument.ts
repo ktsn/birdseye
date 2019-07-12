@@ -221,16 +221,16 @@ export function createInstrument(
       },
 
       mounted() {
-        root.updateComponent(Component)
         root.props = this.filledProps
         root.data = this.clonedData
         root.$on('event', this.bypassEvent)
         this.$el.appendChild(root.$el)
+        root.updateComponent(Component)
       },
 
       beforeDestroy() {
-        root.updateComponent(null)
         root.$off('event', this.bypassEvent)
+        root.updateComponent(null)
       },
 
       methods: {
