@@ -1,9 +1,11 @@
 import Vue, { Component, VueConstructor, VNode, ComponentOptions } from 'vue'
+import WeakSet from 'weakset'
 import {
   normalizeMeta,
   ComponentDeclaration,
   ComponentDataInfo,
-  ComponentDataType
+  ComponentDataType,
+  ComponentEvent
 } from '@birdseye/core'
 
 export function createInstrument(
@@ -17,7 +19,8 @@ export function createInstrument(
       return {
         props: {} as Record<string, any>,
         data: {} as Record<string, any>,
-        slots: {} as Record<string, (props: any) => VNode[]>
+        slots: {} as Record<string, (props: any) => VNode[]>,
+        weakset: new WeakSet()
       }
     },
 
@@ -46,8 +49,42 @@ export function createInstrument(
 
       updateComponent(component: Component | null): void {
         const vm: any = this
+
+        if (component !== null) {
+          if (typeof component === 'object') {
+            component = Vue.extend(component as any)
+          }
+          this.observeEvent(component)
+        }
         vm.component = component
+
         this.$forceUpdate()
+      },
+
+      /**
+       * Replace Vue's $emit method with hacked one so that we can observe
+       * all emitted events with arbitrary name.
+       */
+      observeEvent(component: VueConstructor): void {
+        if (this.weakset.has(component)) {
+          return
+        }
+        this.weakset.add(component)
+
+        const $emit = component.prototype.$emit
+        const vm = this
+
+        function hackedEmit(this: Vue, name: string, ...args: any[]) {
+          $emit.call(this, name, ...args)
+          const event: ComponentEvent = {
+            name,
+            args
+          }
+          vm.$emit('event', event)
+          return this
+        }
+
+        component.prototype.$emit = hackedEmit
       }
     },
 
@@ -94,13 +131,22 @@ export function createInstrument(
   // To make sure devtools to detect root instance, we need to create placeholder
   // element and attach root instance to it.
   const root = new Root(rootOptions).$mount()
-  const placeholder: any = document.createComment('Birdseye placeholder')
-  placeholder.__vue__ = root
+  const placeholder = document.createComment('Birdseye placeholder')
+  ;(placeholder as any).__vue__ = root
   document.body.appendChild(placeholder)
 
   return {
     instrument,
-    wrap
+    wrap,
+
+    /**
+     * For clean up in test environment
+     * @internal
+     */
+    _clean: () => {
+      root.$destroy()
+      placeholder.remove()
+    }
   }
 
   function instrument(Component: Component): ComponentDeclaration {
@@ -175,14 +221,22 @@ export function createInstrument(
       },
 
       mounted() {
-        root.updateComponent(Component)
         root.props = this.filledProps
         root.data = this.clonedData
+        root.$on('event', this.bypassEvent)
         this.$el.appendChild(root.$el)
+        root.updateComponent(Component)
       },
 
       beforeDestroy() {
+        root.$off('event', this.bypassEvent)
         root.updateComponent(null)
+      },
+
+      methods: {
+        bypassEvent(event: ComponentEvent): void {
+          this.$emit('event', event)
+        }
       },
 
       render(h): VNode {

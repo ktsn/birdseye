@@ -4,8 +4,6 @@ import { ComponentDataType } from '@birdseye/core'
 import { createInstrument } from '../src/instrument'
 
 describe('Wrap', () => {
-  const { wrap } = createInstrument(Vue)
-
   const Dummy = Vue.extend({
     name: 'Dummy',
 
@@ -45,7 +43,20 @@ describe('Wrap', () => {
     }
   })
 
-  const Wrapper = wrap(Dummy)
+  let wrap: ReturnType<typeof createInstrument>['wrap']
+  let clean: () => void
+  let Wrapper: typeof Vue
+
+  beforeEach(() => {
+    const res = createInstrument(Vue)
+    wrap = res.wrap
+    clean = res._clean
+    Wrapper = wrap(Dummy)
+  })
+
+  afterEach(() => {
+    clean()
+  })
 
   it('applies initial props and data', async () => {
     const wrapper = shallowMount(Wrapper, {
@@ -351,6 +362,56 @@ describe('Wrap', () => {
 
     it('does not overwrite specified props with default value', () => {
       return test({ type: ['string'], defaultValue: 'test' }, 'foo', 'foo')
+    })
+  })
+
+  describe('event', () => {
+    const EventDummy = {
+      name: 'EventDummy',
+
+      created(this: Vue) {
+        this.$emit('test', 123, 'foo', true)
+      },
+
+      render(h: Function) {
+        return h()
+      }
+    }
+
+    it('receives emitted component events (object component)', async () => {
+      const EventWrapper = wrap(EventDummy)
+      const wrapper = shallowMount(EventWrapper, {
+        propsData: {
+          props: {},
+          data: {}
+        }
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.emitted('event').length).toBe(1)
+      expect(wrapper.emitted('event')[0][0]).toEqual({
+        name: 'test',
+        args: [123, 'foo', true]
+      })
+    })
+
+    it('receives emitted component events (constructor component)', async () => {
+      const EventWrapper = wrap(Vue.extend(EventDummy))
+      const wrapper = shallowMount(EventWrapper, {
+        propsData: {
+          props: {},
+          data: {}
+        }
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.emitted('event').length).toBe(1)
+      expect(wrapper.emitted('event')[0][0]).toEqual({
+        name: 'test',
+        args: [123, 'foo', true]
+      })
     })
   })
 })

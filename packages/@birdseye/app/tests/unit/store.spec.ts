@@ -74,7 +74,8 @@ describe('AppStore', () => {
               ]
             }
           }
-        ]
+        ],
+        events: []
       })
     })
 
@@ -189,7 +190,8 @@ describe('AppStore', () => {
               ]
             }
           }
-        ]
+        ],
+        events: []
       })
     })
 
@@ -213,6 +215,36 @@ describe('AppStore', () => {
     it('updates a data value', () => {
       store.updateDataValue('foo', 'foo pattern 2', 'b', 1000)
       expect(store.state.declarations[0].meta.patterns[1].data.b).toBe(1000)
+    })
+
+    it('adds event', () => {
+      store.addEvent('test', [123, 'foo'])
+      expect(store.state.events).toEqual([
+        {
+          name: 'test',
+          args: [123, 'foo']
+        }
+      ])
+
+      store.addEvent('input', ['message'])
+      expect(store.state.events).toEqual([
+        {
+          name: 'test',
+          args: [123, 'foo']
+        },
+        {
+          name: 'input',
+          args: ['message']
+        }
+      ])
+    })
+
+    it('clears events', () => {
+      store.addEvent('test', [123, 'foo'])
+      store.addEvent('input', ['message'])
+      store.clearEvents()
+
+      expect(store.state.events).toEqual([])
     })
   })
 })

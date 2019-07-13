@@ -37,3 +37,8 @@ export interface ComponentPattern {
   slots: Record<string, (props: any) => VNode[]>
   containerStyle: Partial<CSSStyleDeclaration>
 }
+
+export interface ComponentEvent {
+  name: string
+  args: any[]
+}
