@@ -1,4 +1,4 @@
-import Vue, { Component, VNode, ComponentOptions } from 'vue'
+import Vue, { Component, VNode, ComponentOptions, CreateElement } from 'vue'
 import { compileToFunctions } from 'vue-template-compiler'
 import { Catalog as BaseCatalog, ComponentPattern } from '@birdseye/core'
 import { createInstrument } from './instrument'
@@ -12,6 +12,7 @@ export interface CatalogOptions {
   name: string
   rootVue?: typeof Vue
   rootOptions?: ComponentOptions<Vue>
+  mapRender?: (this: Vue, h: CreateElement, wrapped: VNode) => VNode
 }
 
 export interface CatalogPatternOptions {
@@ -31,7 +32,8 @@ export function catalogFor(
 
   const { wrap } = createInstrument(
     options.rootVue || Vue,
-    options.rootOptions || {}
+    options.rootOptions || {},
+    options.mapRender
   )
 
   const Wrapper = wrap(Comp)
