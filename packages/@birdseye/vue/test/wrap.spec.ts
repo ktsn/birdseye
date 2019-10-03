@@ -293,6 +293,45 @@ describe('Wrap', () => {
     expect(wrapper.text()).toBe('injected')
   })
 
+  it('allows to map render function', async () => {
+    const { wrap } = createInstrument(Vue, {}, (h, vnode) => {
+      return h('div', { attrs: { 'data-test': 'wrapper' } }, [vnode])
+    })
+
+    const Test = Vue.extend({
+      props: ['foo'],
+
+      data() {
+        return {
+          bar: 123
+        }
+      },
+
+      render(h): VNode {
+        return h('div', [`foo: ${this.foo}, bar: ${this.bar}`])
+      }
+    })
+
+    const Wrapper = wrap(Test)
+
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {
+          foo: 'Test'
+        },
+        data: {
+          bar: 456
+        }
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.html()).toMatchInlineSnapshot(
+      `"<div data-test=\\"wrapper\\"><div style=\\"height: 100%;\\"><div>foo: Test, bar: 456</div></div></div>"`
+    )
+  })
+
   describe('props default', () => {
     async function test(
       meta: { type: ComponentDataType[]; defaultValue?: any },

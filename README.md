@@ -97,6 +97,34 @@ export default catalogFor(MyButton, 'MyButton').add('white button', {
 
 The above example makes the preview background color black. You can specify any CSS properties in `containerStyle` option.
 
+#### Wrapping catalog component with another element
+
+You can use `mapRender` option to modify rendered element structure. `mapRender` should be a function that receives [`createElement` function](https://vuejs.org/v2/guide/render-function.html#createElement-Arguments) and original VNode object as arguments respectively.
+
+The following example maps the catalog component with `VApp` component of [Vuetify](https://vuetifyjs.com).
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import { VApp } from 'vuetify/lib'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, {
+  name: 'MyButton',
+
+  // Define map function to render
+  mapRender: (h, vnode) => {
+    return h(VApp, [vnode])
+  }
+}).add('white button', {
+  props: {
+    white: true
+  },
+  slots: {
+    default: 'Button Text'
+  }
+})
+```
+
 #### Writing catalog in SFC
 
 Update the webpack config in `vue.config.js`:

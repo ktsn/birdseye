@@ -1,4 +1,10 @@
-import Vue, { Component, VueConstructor, VNode, ComponentOptions } from 'vue'
+import Vue, {
+  Component,
+  VueConstructor,
+  VNode,
+  ComponentOptions,
+  CreateElement
+} from 'vue'
 import {
   normalizeMeta,
   ComponentDeclaration,
@@ -8,7 +14,8 @@ import {
 
 export function createInstrument(
   Vue: VueConstructor,
-  rootOptions: ComponentOptions<any> = {}
+  rootOptions: ComponentOptions<any> = {},
+  mapRender?: (this: Vue, h: CreateElement, mapped: VNode) => VNode
 ) {
   // We need to mount an individual root so that the users can inject
   // some object to the internal root.
@@ -30,7 +37,7 @@ export function createInstrument(
           return {}
         }
 
-        return data.call(child)
+        return (data as Function).call(child)
       },
 
       applyData(newData: Record<string, any>): void {
@@ -178,7 +185,9 @@ export function createInstrument(
         root.updateComponent(Component)
         root.props = this.filledProps
         root.data = this.clonedData
-        this.$el.appendChild(root.$el)
+
+        const wrapper = this.$refs.wrapper as Element
+        wrapper.appendChild(root.$el)
       },
 
       beforeDestroy() {
@@ -193,11 +202,14 @@ export function createInstrument(
           root.slots[key] = () => slots[key] || []
         })
 
-        return h('div', {
+        const wrapper = h('div', {
+          ref: 'wrapper',
           style: {
             height: '100%'
           }
         })
+
+        return mapRender ? mapRender.call(this, h, wrapper) : wrapper
       }
     })
   }
