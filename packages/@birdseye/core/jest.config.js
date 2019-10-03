@@ -14,7 +14,7 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.{ts,vue}'],
   globals: {
     'ts-jest': {
-      tsConfigFile: 'tsconfig.test.json'
+      tsConfig: 'tsconfig.test.json'
     }
   }
 }
