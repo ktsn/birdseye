@@ -328,7 +328,7 @@ describe('Wrap', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchInlineSnapshot(
-      `"<div data-test=\\"wrapper\\"><div style=\\"height: 100%;\\"><div>foo: Test, bar: 456</div></div></div>"`
+      `"<div style=\\"height: 100%;\\"><div data-test=\\"wrapper\\"><div>foo: Test, bar: 456</div></div></div>"`
     )
   })
 

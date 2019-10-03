@@ -86,7 +86,7 @@ export function createInstrument(
         return h('template', { slot: key }, this.slots[key]({}))
       })
 
-      return h(
+      const wrapped = h(
         vm.component,
         {
           props: this.props,
@@ -94,6 +94,8 @@ export function createInstrument(
         },
         slotNodes
       )
+
+      return mapRender ? mapRender.call(this, h, wrapped) : wrapped
     }
   })
 
@@ -202,14 +204,12 @@ export function createInstrument(
           root.slots[key] = () => slots[key] || []
         })
 
-        const wrapper = h('div', {
+        return h('div', {
           ref: 'wrapper',
           style: {
             height: '100%'
           }
         })
-
-        return mapRender ? mapRender.call(this, h, wrapper) : wrapper
       }
     })
   }
