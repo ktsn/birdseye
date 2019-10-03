@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/vue",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "author": "katashin",
   "description": "Vue.js integration of Birdseye",
   "keywords": [
@@ -73,7 +73,7 @@
     "webpack": "^4.17.1"
   },
   "dependencies": {
-    "@birdseye/core": "^0.2.8",
+    "@birdseye/core": "^0.2.9",
     "js-yaml": "^3.12.0",
     "loader-utils": "^1.1.0"
   },

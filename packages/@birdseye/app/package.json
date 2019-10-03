@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/app",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "author": "katashin",
   "description": "Application of Birdseye",
   "keywords": [
@@ -36,7 +36,7 @@
     "prepublishOnly": "yarn test"
   },
   "dependencies": {
-    "@birdseye/core": "^0.2.8",
+    "@birdseye/core": "^0.2.9",
     "@vue/web-component-wrapper": "^1.2.0",
     "k-css": "^2.0.0",
     "vue-lazy-components-option": "^0.1.1",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@birdseye/vue": "^0.2.8",
+    "@birdseye/vue": "^0.2.9",
     "@types/jest": "^23.3.1",
     "@types/webpack-env": "^1.13.7",
     "@vue/cli-plugin-babel": "^3.0.1",
