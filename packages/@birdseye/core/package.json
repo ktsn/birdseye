@@ -44,7 +44,7 @@
     "eslint": "^5.5.0",
     "eslint-config-ktsn-vue": "^2.0.0",
     "jest": "^23.5.0",
-    "poi": "^10.2.10",
+    "poi": "^12.7.3",
     "postcss": "^7.0.2",
     "prettier": "1.14.2",
     "prettier-config-ktsn": "^1.0.0",
