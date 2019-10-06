@@ -8745,10 +8745,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-k-css@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/k-css/-/k-css-2.0.0.tgz#c7530e12ad1596071d3c5d392ea23fde4c98fc76"
-  integrity sha1-x1MOEq0VlgcdPF05LqI/3kyY/HY=
+k-css@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/k-css/-/k-css-3.0.0.tgz#2409a9c66d36b029e918e0c5274548713e59eded"
+  integrity sha512-grl326s3I3iTelvPDiJRHgNTv+F4ZdUyrvwUhw80DDcw0psRZLIKQMI6Xqo5I9pEpCUm7BUiNvVjuQsFBAhuVA==
 
 killable@^1.0.1:
   version "1.0.1"

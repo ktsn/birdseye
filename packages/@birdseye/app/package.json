@@ -38,7 +38,7 @@
   "dependencies": {
     "@birdseye/core": "^0.2.9",
     "@vue/web-component-wrapper": "^1.2.0",
-    "k-css": "^2.0.0",
+    "k-css": "^3.0.0",
     "vue-lazy-components-option": "^0.1.1",
     "vue-router": "^2.0.0 || ^3.0.0",
     "vue-transition-components": "^0.2.2"
