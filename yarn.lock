@@ -5704,15 +5704,6 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-ktsn-typescript@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/eslint-config-ktsn-typescript/-/eslint-config-ktsn-typescript-1.1.4.tgz#4a405471a94f2ef2da3644e9f0ea9bb387050334"
-  integrity sha512-Y74SuCfLq8jeSgR2vsHQJ6boumSV3ZkJRKl5SlarR1p5o3RJ7pJG1y7BCU6TmT3oCvQzjFZEcoytdo6weC83Dg==
-  dependencies:
-    eslint-config-ktsn "^2.0.1"
-    eslint-plugin-typescript "^0.12.0"
-    typescript-eslint-parser "^18.0.0"
-
 eslint-config-ktsn-typescript@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/eslint-config-ktsn-typescript/-/eslint-config-ktsn-typescript-2.0.0.tgz#fd14b6b99b9100a7231c4d354c651bfaf81bd8cc"
@@ -5763,13 +5754,6 @@ eslint-plugin-prettier@^2.6.2:
   dependencies:
     fast-diff "^1.1.1"
     jest-docblock "^21.0.0"
-
-eslint-plugin-typescript@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.12.0.tgz#e23d58cb27fe28e89fc641a1f20e8d862cb99aef"
-  integrity sha512-2+DNE8nTvdNkhem/FBJXLPSeMDOZL68vHHNfTbM+PBc5iAuwBe8xLSQubwKxABqSZDwUHg+mwGmv5c2NlImi0Q==
-  dependencies:
-    requireindex "~1.1.0"
 
 eslint-plugin-vue@^4.7.1:
   version "4.7.1"
@@ -12341,11 +12325,6 @@ require-uncached@^1.0.3:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
 
-requireindex@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/requireindex/-/requireindex-1.1.0.tgz#e5404b81557ef75db6e49c5a72004893fe03e162"
-  integrity sha1-5UBLgVV+91225JxacgBIk/4D4WI=
-
 requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
@@ -13899,14 +13878,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typescript-eslint-parser@^18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-18.0.0.tgz#3e5055a44980d69e4154350fc5d8b1ab4e2332a8"
-  integrity sha512-Pn/A/Cw9ysiXSX5U1xjBmPQlxtWGV2o7jDNiH/u7KgBO2yC/y37wNFl2ogSrGZBQFuglLzGq0Xl0Bt31Jv44oA==
-  dependencies:
-    lodash.unescape "4.0.1"
-    semver "5.5.0"
 
 typescript@^3.0.3:
   version "3.0.3"

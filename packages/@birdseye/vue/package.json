@@ -62,7 +62,7 @@
     "@types/webpack": "^4.4.11",
     "@vue/test-utils": "^1.0.0-beta.29",
     "eslint": "^5.5.0",
-    "eslint-config-ktsn-typescript": "^1.1.4",
+    "eslint-config-ktsn-typescript": "^2.0.0",
     "jest": "^23.5.0",
     "prettier": "1.14.2",
     "prettier-config-ktsn": "^1.0.0",
