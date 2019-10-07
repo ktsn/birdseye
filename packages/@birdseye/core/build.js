@@ -1,6 +1,6 @@
 const pkg = require('./package.json')
 const { rollup } = require('rollup')
-const vue = require('rollup-plugin-vue').default
+const vue = require('rollup-plugin-vue')
 const css = require('rollup-plugin-css-only')
 const ts = require('rollup-plugin-typescript2')
 
