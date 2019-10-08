@@ -67,7 +67,7 @@
     "lerna": "^3.2.1",
     "prettier": "1.14.2",
     "prettier-config-ktsn": "^1.0.0",
-    "ts-jest": "^23.1.4",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.0.3",
     "vue": "^2.6.7",
     "vue-template-compiler": "^2.6.7",
