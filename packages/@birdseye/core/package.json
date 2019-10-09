@@ -47,7 +47,7 @@
     "postcss": "^7.0.2",
     "prettier": "1.14.2",
     "prettier-config-ktsn": "^1.0.0",
-    "rollup": "^0.65.0",
+    "rollup": "^1.23.1",
     "rollup-plugin-css-only": "^0.4.0",
     "rollup-plugin-typescript2": "^0.17.0",
     "rollup-plugin-vue": "^5.0.1",
