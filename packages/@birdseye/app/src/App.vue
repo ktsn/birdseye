@@ -10,10 +10,7 @@
       </aside>
 
       <div class="app-content">
-        <main
-          ref="slot"
-          class="app-preview"
-        />
+        <main ref="slot" class="app-preview" />
 
         <div class="app-panel app-reset">
           <PanelPattern
@@ -93,8 +90,7 @@ export default Vue.extend({
 })
 </script>
 
-<style src="k-css/k.css">
-</style>
+<style src="k-css/k.css"></style>
 
 <style>
 :host {

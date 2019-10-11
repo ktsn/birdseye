@@ -44,31 +44,29 @@ function toTypeStrings(type: any, required: boolean): ComponentDataType[] {
   }
 
   const res = type
-    .map(
-      (t): ComponentDataType | null => {
-        if (t === String) {
-          return 'string'
-        }
-
-        if (t === Number) {
-          return 'number'
-        }
-
-        if (t === Boolean) {
-          return 'boolean'
-        }
-
-        if (t === Array) {
-          return 'array'
-        }
-
-        if (typeof t === 'function' && t !== Function) {
-          return 'object'
-        }
-
-        return null
+    .map((t): ComponentDataType | null => {
+      if (t === String) {
+        return 'string'
       }
-    )
+
+      if (t === Number) {
+        return 'number'
+      }
+
+      if (t === Boolean) {
+        return 'boolean'
+      }
+
+      if (t === Array) {
+        return 'array'
+      }
+
+      if (typeof t === 'function' && t !== Function) {
+        return 'object'
+      }
+
+      return null
+    })
     .filter(nonNull)
 
   return !required && res.length > 0 ? res.concat(['null', 'undefined']) : res

@@ -1,10 +1,6 @@
 <template>
   <ul class="nav-side">
-    <li
-      v-for="m in nav"
-      :key="m.name"
-      class="item"
-    >
+    <li v-for="m in nav" :key="m.name" class="item">
       <button
         class="anchor"
         :class="{ current: openedMeta === m.name }"
@@ -20,11 +16,7 @@
           class="child-wrapper"
         >
           <ul class="child-list">
-            <li
-              v-for="p in m.patterns"
-              :key="p.name"
-              class="child-item"
-            >
+            <li v-for="p in m.patterns" :key="p.name" class="child-item">
               <router-link
                 :class="{ current: isCurrent(m.name, p.name) }"
                 :to="previewRoute(m.name, p.name)"

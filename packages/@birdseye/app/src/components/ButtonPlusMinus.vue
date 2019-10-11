@@ -1,9 +1,5 @@
 <template>
-  <button
-    :class="type"
-    class="button-plus-minus"
-    @click="$emit('click')"
-  />
+  <button :class="type" class="button-plus-minus" @click="$emit('click')" />
 </template>
 
 <script lang="ts">

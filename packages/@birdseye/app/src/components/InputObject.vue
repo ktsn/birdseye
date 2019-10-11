@@ -1,11 +1,7 @@
 <template>
   <div class="input-object">
     <ul>
-      <li
-        v-for="(item, key) in value"
-        :key="key"
-        class="item"
-      >
+      <li v-for="(item, key) in value" :key="key" class="item">
         <InputProperty
           :name="key"
           :value="item"
@@ -15,11 +11,7 @@
       </li>
     </ul>
 
-    <ButtonPlusMinus
-      type="plus"
-      aria-label="Add"
-      @click="onClickAdd"
-    />
+    <ButtonPlusMinus type="plus" aria-label="Add" @click="onClickAdd" />
   </div>
 </template>
 
