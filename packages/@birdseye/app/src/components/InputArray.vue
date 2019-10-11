@@ -1,11 +1,7 @@
 <template>
   <div class="input-array">
     <ul>
-      <li
-        v-for="(item, index) in value"
-        :key="index"
-        class="item"
-      >
+      <li v-for="(item, index) in value" :key="index" class="item">
         <InputProperty
           :name="index"
           :value="item"

@@ -4,15 +4,8 @@
       {{ title }}
     </strong>
 
-    <ul
-      v-if="data.length > 0"
-      class="list"
-    >
-      <li
-        v-for="item in data"
-        :key="item.name"
-        class="item"
-      >
+    <ul v-if="data.length > 0" class="list">
+      <li v-for="item in data" :key="item.name" class="item">
         <template v-if="!$_birdseye_experimental">
           <strong class="name">
             {{ item.name }}
@@ -33,10 +26,7 @@
       </li>
     </ul>
 
-    <p
-      v-else
-      class="no-data"
-    >
+    <p v-else class="no-data">
       No Data
     </p>
   </div>

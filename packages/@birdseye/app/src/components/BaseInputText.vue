@@ -5,7 +5,7 @@
       :value="value"
       class="input"
       @input="$emit('input', $event.target.value)"
-    >
+    />
   </div>
 </template>
 

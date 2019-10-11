@@ -4,7 +4,7 @@
     type="checkbox"
     class="input-boolean"
     @change="$emit('input', $event.target.checked)"
-  >
+  />
 </template>
 
 <script lang="ts">

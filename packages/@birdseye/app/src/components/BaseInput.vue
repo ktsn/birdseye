@@ -13,11 +13,9 @@
       class="select-type"
       @change="onChangeType(arguments[0])"
     >
-      <option
-        v-for="type in realAvailableTypes"
-        :key="type"
-        :value="type"
-      >{{ type }}</option>
+      <option v-for="type in realAvailableTypes" :key="type" :value="type">{{
+        type
+      }}</option>
     </BaseSelect>
   </div>
 </template>
