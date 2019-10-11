@@ -61,7 +61,7 @@
     "@types/node": "^12.7.11",
     "@types/webpack": "^4.4.11",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "eslint": "^5.5.0",
+    "eslint": "^6.5.1",
     "eslint-config-ktsn-typescript": "^2.0.0",
     "jest": "^24.9.0",
     "prettier": "1.14.2",
