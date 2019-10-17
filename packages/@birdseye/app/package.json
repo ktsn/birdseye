@@ -52,7 +52,7 @@
     "@types/jest": "^24.0.18",
     "@types/webpack-env": "^1.13.7",
     "@vue/cli-plugin-babel": "^3.0.1",
-    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^4.0.2",
     "@vue/cli-plugin-typescript": "^3.0.1",
     "@vue/cli-plugin-unit-jest": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
