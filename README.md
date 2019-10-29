@@ -149,9 +149,11 @@ You write rendering patterns of a component in `<birdseye>` custom block. In eac
 
 ```vue
 <template>
-  <p>This is Vue.js component</p>
-  <p>foo value: {{ foo }}</p>
-  <p>bar value: {{ bar }}</p>
+  <div>
+    <p>This is Vue.js component</p>
+    <p>foo value: {{ foo }}</p>
+    <p>bar value: {{ bar }}</p>
+  </div>
 </template>
 
 <script>
