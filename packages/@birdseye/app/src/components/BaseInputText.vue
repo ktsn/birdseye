@@ -4,7 +4,7 @@
       :type="type"
       :value="value"
       class="input"
-      @input="$emit('input', $event.target.value)"
+      @input="onInput($event.target)"
     />
   </div>
 </template>
@@ -24,6 +24,17 @@ export default Vue.extend({
     value: {
       type: String,
       required: true
+    }
+  },
+
+  methods: {
+    onInput($el: any): any {
+      const { valid, badInput } = $el.validity
+      if (this.type === 'number' && !valid && badInput) {
+         throw TypeError('The input value must be numeric')
+      }
+
+      this.$emit('input', $el.value)
     }
   }
 })
