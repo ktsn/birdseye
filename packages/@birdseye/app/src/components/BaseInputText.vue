@@ -31,7 +31,7 @@ export default Vue.extend({
     onInput($el: any): any {
       const { valid, badInput } = $el.validity
       if (this.type === 'number' && !valid && badInput) {
-         throw TypeError('The input value must be numeric')
+        throw TypeError('The input value must be numeric')
       }
 
       this.$emit('input', $el.value)
