@@ -23,4 +23,21 @@ describe('BaseInputText', () => {
     input.trigger('input')
     expect(wrapper.emitted('input')[0][0]).toBe('updated')
   })
+
+  it('throws type error when input type is number and validation result is invalid and badInput', () => {
+    const wrapper = shallowMount(BaseInputText, {
+      propsData: {
+        type: 'number',
+        value: 'test'
+      }
+    })
+
+    const action = () => {
+      const stub = { validity: { isValid: false, badInput: true } }
+      ;(wrapper.vm as any).onInput(stub)
+    }
+    expect(action).toThrowError(
+      new TypeError('The input value must be numeric')
+    )
+  })
 })
