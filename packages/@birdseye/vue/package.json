@@ -64,7 +64,7 @@
     "eslint": "^6.5.1",
     "eslint-config-ktsn-typescript": "^2.0.0",
     "jest": "^24.9.0",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "prettier-config-ktsn": "^1.0.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.0.3",
