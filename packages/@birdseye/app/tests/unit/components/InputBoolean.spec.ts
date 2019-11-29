@@ -1,8 +1,9 @@
+import Vue from 'vue'
 import { shallowMount } from '@vue/test-utils'
 import InputBoolean from '@/components/InputBoolean.vue'
 
 describe('InputBoolean', () => {
-  it('applies input prop to actual element checked', () => {
+  it('applies input prop to actual element checked', async () => {
     const wrapper = shallowMount(InputBoolean, {
       propsData: {
         value: true
@@ -14,6 +15,7 @@ describe('InputBoolean', () => {
     wrapper.setProps({
       value: false
     })
+    await Vue.nextTick()
     expect(input.checked).toBe(false)
   })
 
