@@ -327,9 +327,13 @@ describe('Wrap', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.html()).toMatchInlineSnapshot(
-      `"<div style=\\"height: 100%;\\"><div data-test=\\"wrapper\\"><div>foo: Test, bar: 456</div></div></div>"`
-    )
+    expect(wrapper.html()).toMatchInlineSnapshot(`
+      "<div style=\\"height: 100%;\\">
+        <div data-test=\\"wrapper\\">
+          <div>foo: Test, bar: 456</div>
+        </div>
+      </div>"
+    `)
   })
 
   describe('props default', () => {

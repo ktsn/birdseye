@@ -5,5 +5,3 @@ import { config } from '@vue/test-utils'
 Vue.use(LazyComponents)
 
 Vue.prototype.$_birdseye_experimental = true
-
-config.logModifiedComponents = false
