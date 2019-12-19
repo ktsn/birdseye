@@ -38,6 +38,13 @@ jobs:
           at: ~/working
       - run: yarn test
 
+  visual-test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/working
+      - run: yarn test:visual
+
 workflows:
   version: 2
   build_and_test:
