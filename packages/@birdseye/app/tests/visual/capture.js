@@ -1,6 +1,6 @@
 const path = require('path')
 const { spawn } = require('child_process')
-const { snapshot } = require('@birdseye/snapshot')
+const { snapshot } = require('../../../snapshot') // Avoid circular dependencies
 const rimraf = require('rimraf')
 
 function wait(n) {
