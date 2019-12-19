@@ -69,7 +69,7 @@ birdseye('#app', catalogs)
 Serve the component catalog by running vue-cli-service:
 
 ```bash
-$ npm run serve birdseye/preview.js
+$ npm run serve -- birdseye/preview.js
 ```
 
 #### Tweaking preview container style
@@ -217,8 +217,12 @@ birdseye('#app', instrument(components))
 You can serve the component catalog by running vue-cli-service:
 
 ```bash
-$ npm run serve birdseye/preview.js
+$ npm run serve -- birdseye/preview.js
 ```
+
+## Visual Regression Testing
+
+If you want to visual regression test your component catalog, use `@birdseye/snapshot` package. See [docs](packages/@birdseye/snapshot/README.md) of `@birdseye/snapshot`
 
 ## License
 

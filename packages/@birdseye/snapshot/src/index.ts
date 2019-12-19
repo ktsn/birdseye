@@ -63,7 +63,10 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
 
     stream.on('data', result => {
       const hash = decodeURIComponent(result.url.split('#')[1])
-      const normalized = hash.slice(1).replace(/[^0-9a-zA-Z]/g, '_')
+      const normalized = hash
+        .slice(1)
+        .replace(/\?fullscreen=1$/, '')
+        .replace(/[^0-9a-zA-Z]/g, '_')
       const dest = path.join(opts.snapshotDir, normalized + '.png')
 
       fs.writeFile(dest, result.image, error => {
