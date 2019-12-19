@@ -53,3 +53,6 @@ workflows:
       - test:
           requires:
             - install
+      - visual-test:
+          requires:
+            - install
