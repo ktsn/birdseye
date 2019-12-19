@@ -53,7 +53,8 @@ export default function birdseye(
   wrapper!.appendChild(app)
 
   const store = new AppStore({
-    declarations: catalogs.map(c => c.toDeclaration())
+    declarations: catalogs.map(c => c.toDeclaration()),
+    fullscreen: !!router.currentRoute.query.fullscreen
   })
 
   app.store = store
