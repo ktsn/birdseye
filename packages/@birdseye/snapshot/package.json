@@ -25,6 +25,7 @@
   "scripts": {
     "prepublishOnly": "npm run clean && npm run test && npm run build",
     "clean": "rm -rf lib",
+    "serve": "vue-cli-service serve test/fixture/main.ts",
     "build": "tsc -p src",
     "dev": "jest --watch",
     "lint": "eslint --ext js,ts src test",
@@ -44,12 +45,17 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "tsconfig.test.json"
+        "tsConfig": "tsconfig.test.json"
       }
     }
   },
   "devDependencies": {
+    "@birdseye/app": "^0.2.9",
     "@types/jest": "^24.0.18",
+    "@types/mkdirp": "^0.5.2",
+    "@types/puppeteer": "^2.0.0",
+    "@vue/cli-plugin-typescript": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
     "eslint": "^6.3.0",
     "eslint-config-ktsn-typescript": "^2.0.0",
     "jest": "^23.5.0",
@@ -59,6 +65,9 @@
     "typescript": "^3.0.1"
   },
   "dependencies": {
+    "@birdseye/vue": "^0.2.9",
+    "capture-all": "^0.4.0",
+    "mkdirp": "^0.5.1",
     "puppeteer": "^2.0.0"
   }
 }

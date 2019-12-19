@@ -4,16 +4,11 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext", "dom"],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "stripInternal": true
   },
-  "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
-  ]
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }
