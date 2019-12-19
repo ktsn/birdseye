@@ -5,6 +5,7 @@ describe('AppStore', () => {
     let store: AppStore
     beforeEach(() => {
       store = new AppStore({
+        fullscreen: false,
         declarations: [
           {
             Wrapper: {} as any,
@@ -153,6 +154,7 @@ describe('AppStore', () => {
     let store: AppStore
     beforeEach(() => {
       store = new AppStore({
+        fullscreen: false,
         declarations: [
           {
             Wrapper: {} as any,
