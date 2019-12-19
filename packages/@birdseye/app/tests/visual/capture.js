@@ -17,7 +17,7 @@ const snapshotDir = path.resolve(__dirname, '../../snapshots')
   const cp = spawn('yarn serve', {
     cwd: path.resolve(__dirname, '../../'),
     shell: true,
-    stdio: 'pipe'
+    stdio: 'ignore'
   })
 
   await wait(3000)
