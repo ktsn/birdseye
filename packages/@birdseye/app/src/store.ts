@@ -31,6 +31,7 @@ class Store<S> {
 
 interface AppState {
   declarations: ComponentDeclaration[]
+  fullscreen: boolean
 }
 
 export interface QualifiedData {
@@ -65,6 +66,10 @@ export default class AppStore extends Store<AppState> {
 
   getQualifiedData(metaName: string, patternName?: string): QualifiedData[] {
     return this.genericQualifiedData(metaName, patternName, 'data')
+  }
+
+  fullscreen(): boolean {
+    return this.state.fullscreen
   }
 
   updatePropValue(

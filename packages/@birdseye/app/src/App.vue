@@ -1,7 +1,7 @@
 <template>
   <div class="birdseye-app">
     <div class="app-inner">
-      <aside class="app-side app-reset">
+      <aside v-if="!fullscreen" class="app-side app-reset">
         <NavSide
           :nav="meta"
           :meta="$route.params.meta"
@@ -12,7 +12,7 @@
       <div class="app-content">
         <main ref="slot" class="app-preview" />
 
-        <div class="app-panel app-reset">
+        <div v-if="!fullscreen" class="app-panel app-reset">
           <PanelPattern
             :props="props"
             :data="data"
@@ -62,6 +62,10 @@ export default Vue.extend({
     data(): QualifiedData[] {
       const { meta, pattern } = this.$route.params
       return this.store ? this.store.getQualifiedData(meta, pattern) : []
+    },
+
+    fullscreen(): boolean {
+      return this.store ? this.store.fullscreen() : false
     }
   },
 
@@ -140,8 +144,8 @@ export default Vue.extend({
 .app-content {
   display: flex;
   flex-direction: column;
-  flex: none;
-  width: calc(100% - (var(--width-side) + 40px));
+  flex: 1 1 1px;
+  min-width: 0;
 }
 
 .app-panel {
