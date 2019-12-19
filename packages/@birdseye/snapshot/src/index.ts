@@ -53,7 +53,8 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
       routes.map(route => {
         return {
           url: opts.url + '#' + route + '?fullscreen=1',
-          target: previewSelector
+          target: previewSelector,
+          viewport: opts.viewport
         }
       })
     )
