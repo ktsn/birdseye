@@ -1,4 +1,6 @@
 import * as path from 'path'
+import * as rimraf from 'rimraf'
+import * as fs from 'fs'
 import { spawn } from 'child_process'
 import { snapshot } from '../src'
 
@@ -26,8 +28,11 @@ describe('Snapshot', () => {
     })
   }
 
+  const outDir = 'birdseye/snapshots'
+
   let killServer: () => void
   beforeAll(async () => {
+    rimraf.sync(outDir)
     killServer = runCatalogServer()
     await wait(3000)
   })
@@ -36,9 +41,16 @@ describe('Snapshot', () => {
     killServer()
   })
 
-  it('test', async () => {
+  it('outputs images to the default location', async () => {
     await snapshot({
       url
+    })
+
+    const files = await fs.promises.readdir(outDir)
+    files.sort().forEach(file => {
+      // Use sync version to make sure the order is not changed
+      const image = fs.readFileSync(path.join(outDir, file))
+      expect(image).toMatchImageSnapshot()
     })
   })
 })
