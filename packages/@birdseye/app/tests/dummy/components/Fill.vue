@@ -26,4 +26,5 @@ patterns:
   - name: style
     containerStyle:
       backgroundColor: "#aaa"
+      height: 100%
 </birdseye>
