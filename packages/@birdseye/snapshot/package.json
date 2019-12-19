@@ -2,7 +2,6 @@
   "name": "@birdseye/snapshot",
   "version": "0.0.0",
   "author": "katashin",
-  "private": true,
   "description": "Taking snapshots for Birdseye catalog",
   "keywords": [
     "Birdseye",
