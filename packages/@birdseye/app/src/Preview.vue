@@ -48,7 +48,6 @@ export default Vue.extend({
     const containerStyle: Partial<CSSStyleDeclaration> = {
       boxSizing: 'border-box',
       padding: '20px',
-      height: '100%',
       ...(pattern ? pattern.containerStyle : {})
     }
 
