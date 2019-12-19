@@ -7,6 +7,10 @@ import { createCaptureStream } from 'capture-all'
 export interface SnapshotOptions {
   url: string
   snapshotDir?: string
+  viewport?: {
+    width: number
+    height: number
+  }
 }
 
 const previewSelector = '#__birdseye_preview__'
@@ -17,6 +21,10 @@ function fillOptionDefaults(
 ): Required<SnapshotOptions> {
   return {
     snapshotDir: 'birdseye/snapshots',
+    viewport: {
+      width: 800,
+      height: 600
+    },
     ...options
   }
 }
@@ -44,7 +52,7 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
     const stream = createCaptureStream(
       routes.map(route => {
         return {
-          url: opts.url + '#' + route,
+          url: opts.url + '#' + route + '?fullscreen=1',
           target: previewSelector
         }
       })
