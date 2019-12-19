@@ -1,0 +1,80 @@
+{
+  "name": "@birdseye/snapshot",
+  "version": "0.0.0",
+  "author": "katashin",
+  "private": true,
+  "description": "Taking snapshots for Birdseye catalog",
+  "keywords": [
+    "Birdseye",
+    "snapshot",
+    "testing",
+    "visual regression"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/ktsn/birdseye",
+  "bugs": "https://github.com/ktsn/birdseye/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ktsn/birdseye.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run test && npm run build",
+    "clean": "rm -rf lib",
+    "serve": "vue-cli-service serve test/fixture/main.ts",
+    "build": "tsc -p src",
+    "dev": "jest --watch",
+    "lint": "eslint --ext js,ts src test",
+    "lint:fix": "eslint --fix --ext js,ts src test",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "/test/.+\\.spec\\.(js|ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/jest-setup.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.test.json"
+      }
+    }
+  },
+  "devDependencies": {
+    "@birdseye/app": "^0.2.9",
+    "@types/jest": "^24.0.24",
+    "@types/jest-image-snapshot": "^2.11.0",
+    "@types/mkdirp": "^0.5.2",
+    "@types/puppeteer": "^2.0.0",
+    "@types/rimraf": "^2.0.3",
+    "@vue/cli-plugin-typescript": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
+    "eslint": "^6.7.2",
+    "eslint-config-ktsn-typescript": "^2.0.0",
+    "jest": "^24.9.0",
+    "jest-image-snapshot": "^2.11.1",
+    "prettier": "1.19.1",
+    "prettier-config-ktsn": "^1.0.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@birdseye/vue": "^0.2.9",
+    "capture-all": "^0.4.0",
+    "mkdirp": "^0.5.1",
+    "puppeteer": "^2.0.0"
+  }
+}

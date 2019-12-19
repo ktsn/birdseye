@@ -52,7 +52,7 @@ export default Vue.extend({
     }
 
     return (
-      <div style={containerStyle}>
+      <div id="__birdseye_preview__" style={containerStyle}>
         <Wrapper {...data} />
       </div>
     )

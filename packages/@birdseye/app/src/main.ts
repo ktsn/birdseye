@@ -18,6 +18,25 @@ const Root = Vue.extend({ router })
 Vue.config.ignoredElements = [appTagName]
 window.customElements.define(appTagName, wrap(Root, App))
 
+function exposeCatalogRoutes(catalogs: Catalog[]): void {
+  const routes = catalogs.reduce<string[]>((acc, catalog) => {
+    const meta = catalog.toDeclaration().meta
+    return acc.concat(
+      meta.patterns.map(pattern => {
+        return `/${encodeURIComponent(meta.name)}/${encodeURIComponent(
+          pattern.name
+        )}`
+      })
+    )
+  }, [])
+
+  const script = document.createElement('script')
+  script.id = '__birdseye_routes__'
+  script.type = 'application/json'
+  script.textContent = JSON.stringify(routes)
+  document.head.appendChild(script)
+}
+
 export default function birdseye(
   el: string | Element,
   catalogs: Catalog[],
@@ -50,4 +69,7 @@ export default function birdseye(
         }
       })
   })
+
+  // Expose all routes in HTML to let snapshot module get them
+  exposeCatalogRoutes(catalogs)
 }
