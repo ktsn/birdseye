@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/snapshot",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "katashin",
   "description": "Taking snapshots for Birdseye catalog",
   "keywords": [
@@ -52,7 +52,7 @@
     }
   },
   "devDependencies": {
-    "@birdseye/app": "^0.3.1",
+    "@birdseye/app": "^0.3.2",
     "@types/jest": "^24.0.24",
     "@types/jest-image-snapshot": "^2.11.0",
     "@types/mkdirp": "^0.5.2",
@@ -71,7 +71,7 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
-    "@birdseye/vue": "^0.3.0",
+    "@birdseye/vue": "^0.3.2",
     "capture-all": "^0.4.0",
     "mkdirp": "^0.5.1",
     "puppeteer": "^2.0.0"
