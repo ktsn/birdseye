@@ -38,6 +38,7 @@ export default Vue.extend({
 
     const pattern = this.store.getPattern(this.meta, this.pattern)
     const data = {
+      key: this.meta + '/' + this.pattern,
       props: {
         props: pattern ? pattern.props : {},
         data: pattern ? pattern.data : {}
