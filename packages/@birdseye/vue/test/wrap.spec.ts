@@ -396,4 +396,55 @@ describe('Wrap', () => {
       return test({ type: ['string'], defaultValue: 'test' }, 'foo', 'foo')
     })
   })
+
+  describe('lifecycle', () => {
+    const mounted = jest.fn()
+    const destroyed = jest.fn()
+
+    const LifecycleTest = Vue.extend({
+      props: {
+        message: String
+      },
+
+      data() {
+        return {
+          updateCount: 0
+        }
+      },
+
+      mounted,
+      destroyed,
+
+      render(h): any {
+        return h('div', [this.message])
+      }
+    })
+
+    const LifecycleWrapper = wrap(LifecycleTest)
+
+    it('re-mount if wrapper instance is different', async () => {
+      shallowMount(LifecycleWrapper, {
+        propsData: {
+          props: {
+            message: 'initial'
+          },
+          data: {}
+        }
+      })
+      await Vue.nextTick()
+
+      shallowMount(LifecycleWrapper, {
+        propsData: {
+          props: {
+            message: 'another'
+          },
+          data: {}
+        }
+      })
+      await Vue.nextTick()
+
+      expect(mounted).toHaveBeenCalledTimes(2)
+      expect(destroyed).toHaveBeenCalledTimes(1)
+    })
+  })
 })
