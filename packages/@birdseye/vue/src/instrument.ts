@@ -24,7 +24,8 @@ export function createInstrument(
       return {
         props: {} as Record<string, any>,
         data: {} as Record<string, any>,
-        slots: {} as Record<string, (props: any) => VNode[]>
+        slots: {} as Record<string, (props: any) => VNode[]>,
+        id: null as number | null
       }
     },
 
@@ -51,9 +52,10 @@ export function createInstrument(
         }
       },
 
-      updateComponent(component: Component | null): void {
+      updateComponent(component: Component | null, id: number | null): void {
         const vm: any = this
         vm.component = component
+        vm.id = id
         this.$forceUpdate()
       }
     },
@@ -89,6 +91,7 @@ export function createInstrument(
       const wrapped = h(
         vm.component,
         {
+          key: String(this.id),
           props: this.props,
           ref: 'child'
         },
@@ -136,6 +139,8 @@ export function createInstrument(
     Component: Component,
     metaProps: Record<string, ComponentDataInfo> = {}
   ): VueConstructor {
+    let maxId = 0
+
     return Vue.extend({
       name: 'ComponentWrapper',
 
@@ -184,7 +189,7 @@ export function createInstrument(
       },
 
       mounted() {
-        root.updateComponent(Component)
+        root.updateComponent(Component, ++maxId)
         root.props = this.filledProps
         root.data = this.clonedData
 
@@ -193,7 +198,7 @@ export function createInstrument(
       },
 
       beforeDestroy() {
-        root.updateComponent(null)
+        root.updateComponent(null, null)
       },
 
       render(h): VNode {
