@@ -73,7 +73,7 @@
   "dependencies": {
     "@birdseye/vue": "^0.3.2",
     "capture-all": "^0.4.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.3",
     "puppeteer": "^2.0.0"
   }
 }
