@@ -49,7 +49,7 @@
     "prettier-config-ktsn": "^1.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-css-only": "^2.0.0",
-    "rollup-plugin-typescript2": "^0.25.1",
+    "rollup-plugin-typescript2": "^0.26.0",
     "rollup-plugin-vue": "^5.0.1",
     "ts-jest": "^25.0.0",
     "typescript": "^3.0.3",
