@@ -55,7 +55,7 @@
     "@birdseye/app": "^0.3.2",
     "@types/jest": "^25.1.0",
     "@types/jest-image-snapshot": "^2.11.0",
-    "@types/mkdirp": "^0.5.2",
+    "@types/mkdirp": "^1.0.0",
     "@types/puppeteer": "^2.0.0",
     "@types/rimraf": "^2.0.3",
     "@vue/cli-plugin-typescript": "^4.1.1",
