@@ -64,7 +64,7 @@
     "core-js": "^3.5.0",
     "eslint": "^6.5.1",
     "eslint-config-ktsn-vue": "^2.0.0",
-    "eslint-loader": "^3.0.2",
+    "eslint-loader": "^4.0.0",
     "jest": "^25.1.0",
     "lerna": "^3.2.1",
     "prettier": "1.19.1",
