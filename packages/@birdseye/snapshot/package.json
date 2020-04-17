@@ -63,7 +63,7 @@
     "eslint": "^6.7.2",
     "eslint-config-ktsn-typescript": "^2.0.0",
     "jest": "^25.1.0",
-    "jest-image-snapshot": "^2.11.1",
+    "jest-image-snapshot": "^3.1.0",
     "prettier": "1.19.1",
     "prettier-config-ktsn": "^1.0.0",
     "rimraf": "^3.0.0",
