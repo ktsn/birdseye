@@ -2222,9 +2222,9 @@
     "@types/istanbul-lib-report" "*"
 
 "@types/jest-image-snapshot@^2.11.0":
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/@types/jest-image-snapshot/-/jest-image-snapshot-2.11.2.tgz#10cdad1cbf6e65f556981777d23d6ae92298a1b7"
-  integrity sha512-s4Mmz7OXI1p1z5SlGalZQL1f7jNL8uXH6SrARWfprxKHW0lw9Eavi6Mxn5rUlCchYMSZr3kpPWi911Na6isl8w==
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@types/jest-image-snapshot/-/jest-image-snapshot-2.12.0.tgz#183bafbac47b8e7fb4fdf5deb613c3d5dcbb53f7"
+  integrity sha512-bjwLkSH/JmSjpzyUIV7lH62vEsGLGPzgf8aX+Rb11pFH52iFbnkVd0+6bygzgOhf9J+JL+XBnbWkRVt4lCvt6g==
   dependencies:
     "@types/jest" "*"
 
