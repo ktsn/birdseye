@@ -9,9 +9,9 @@ describe('InputProperty', () => {
       context: {
         attrs: {
           name: 'propname',
-          value: null
-        }
-      }
+          value: null,
+        },
+      },
     })
     expect(wrapper.find(InputPropertyPrimitive).isVisible()).toBe(true)
   })
@@ -21,9 +21,9 @@ describe('InputProperty', () => {
       context: {
         attrs: {
           name: 'propname',
-          value: []
-        }
-      }
+          value: [],
+        },
+      },
     })
     expect(wrapper.find(InputPropertyObject).isVisible()).toBe(true)
   })
@@ -33,9 +33,9 @@ describe('InputProperty', () => {
       context: {
         attrs: {
           name: 'propname',
-          value: {}
-        }
-      }
+          value: {},
+        },
+      },
     })
     expect(wrapper.find(InputPropertyObject).isVisible()).toBe(true)
   })

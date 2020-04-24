@@ -42,29 +42,29 @@ export default Vue.extend({
   name: 'NavSide',
 
   components: {
-    TransitionDisclosure
+    TransitionDisclosure,
   },
 
   props: {
     meta: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
 
     pattern: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
 
     nav: {
       type: Array as () => ComponentMeta[],
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
-      openedMeta: this.meta
+      openedMeta: this.meta,
     }
   },
 
@@ -72,7 +72,7 @@ export default Vue.extend({
     previewRoute(meta: string, pattern?: string): Location {
       const to: Location = {
         name: 'preview',
-        params: { meta }
+        params: { meta },
       }
 
       if (pattern) {
@@ -88,8 +88,8 @@ export default Vue.extend({
 
     isEmptyPatterns(meta: ComponentMeta): boolean {
       return meta.patterns.length === 0
-    }
-  }
+    },
+  },
 })
 </script>
 

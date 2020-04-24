@@ -16,8 +16,8 @@ export default Vue.extend({
   props: {
     value: {
       type: Boolean,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>

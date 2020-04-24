@@ -5,7 +5,7 @@ export function normalizeMeta(meta: any): ComponentMeta {
     name: meta.name || '<AnonymusComponent>',
     props: meta.props || {},
     data: meta.data || {},
-    patterns: meta.patterns ? meta.patterns.map(normalizePattern) : []
+    patterns: meta.patterns ? meta.patterns.map(normalizePattern) : [],
   }
 }
 
@@ -16,6 +16,6 @@ function normalizePattern(pattern: any): ComponentPattern {
     data: pattern.data || {},
     slots: pattern.slots || {},
     containerStyle: pattern.containerStyle || {},
-    plugins: pattern.plugins || {}
+    plugins: pattern.plugins || {},
   }
 }

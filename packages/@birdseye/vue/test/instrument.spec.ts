@@ -10,7 +10,7 @@ describe('Instrument', () => {
     Dummy = {
       render(h: Function) {
         return h()
-      }
+      },
     }
   })
 
@@ -27,16 +27,16 @@ describe('Instrument', () => {
         {
           name: 'Normal pattern',
           props: {
-            test: 'foo'
+            test: 'foo',
           },
           data: {
-            test2: 'bar'
+            test2: 'bar',
           },
           slots: {},
           containerStyle: {},
-          plugins: {}
-        }
-      ]
+          plugins: {},
+        },
+      ],
     }
     const result = instrument(Dummy)
     expect(result.meta.name).toBe(Dummy.__birdseye.name)
@@ -51,16 +51,16 @@ describe('Instrument', () => {
         {
           name: 'Normal pattern',
           props: {
-            test: 'foo'
+            test: 'foo',
           },
           data: {
-            test2: 'bar'
+            test2: 'bar',
           },
           slots: {},
           containerStyle: {},
-          plugins: {}
-        }
-      ]
+          plugins: {},
+        },
+      ],
     }
     const result = instrument(Ctor)
     expect(result.meta.name).toBe(Ctor.options.__birdseye.name)

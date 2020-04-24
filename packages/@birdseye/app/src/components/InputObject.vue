@@ -22,7 +22,7 @@ import ButtonPlusMinus from './ButtonPlusMinus.vue'
 
 const lazyComponents = () => ({
   InputProperty,
-  ButtonPlusMinus
+  ButtonPlusMinus,
 })
 
 export default Vue.extend({
@@ -34,15 +34,15 @@ export default Vue.extend({
   props: {
     value: {
       type: Object as () => Record<string, any>,
-      required: true
-    }
+      required: true,
+    },
   },
 
   methods: {
     onClickAdd(): void {
       this.$emit('input', {
         ...this.value,
-        '': undefined
+        '': undefined,
       })
     },
 
@@ -55,13 +55,13 @@ export default Vue.extend({
       const newValue: Record<string, any> = {}
 
       // Iterate keys to retain entries order
-      Object.keys(this.value).forEach(loopKey => {
+      Object.keys(this.value).forEach((loopKey) => {
         newValue[loopKey] = loopKey === key ? value : this.value[loopKey]
       })
 
       this.$emit('input', newValue)
-    }
-  }
+    },
+  },
 })
 </script>
 

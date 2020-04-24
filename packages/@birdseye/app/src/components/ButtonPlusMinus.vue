@@ -14,9 +14,9 @@ export default Vue.extend({
       default: 'plus',
       validator(value: string) {
         return value === 'plus' || value === 'minus'
-      }
-    }
-  }
+      },
+    },
+  },
 })
 </script>
 

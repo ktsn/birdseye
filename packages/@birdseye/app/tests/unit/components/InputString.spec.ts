@@ -6,8 +6,8 @@ describe('InputString', () => {
   it('applies input prop to actual element', () => {
     const wrapper = shallowMount(InputString, {
       propsData: {
-        value: 'prop value'
-      }
+        value: 'prop value',
+      },
     })
     const input = wrapper.find(BaseInputText)
     expect(input.props().value).toBe('prop value')
@@ -16,8 +16,8 @@ describe('InputString', () => {
   it('ports input event', () => {
     const wrapper = shallowMount(InputString, {
       propsData: {
-        value: 'prop value'
-      }
+        value: 'prop value',
+      },
     })
     const input = wrapper.find(BaseInputText)
     input.vm.$emit('input', 'updated')

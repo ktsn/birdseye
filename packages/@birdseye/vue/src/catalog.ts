@@ -3,7 +3,7 @@ import { compileToFunctions } from 'vue-template-compiler'
 import {
   Catalog as BaseCatalog,
   ComponentPattern,
-  PluginOptions
+  PluginOptions,
 } from '@birdseye/core'
 import { createInstrument } from './instrument'
 import extractProps from './extract-props'
@@ -53,7 +53,7 @@ export function catalogFor(
         const slots = Object.keys(originalSlots).reduce<
           Record<string, (props: any) => VNode[]>
         >((acc, key) => {
-          acc[key] = _props => {
+          acc[key] = (_props) => {
             return compileSlot(originalSlots[key])
           }
           return acc
@@ -66,7 +66,7 @@ export function catalogFor(
             data: options.data || {},
             slots,
             containerStyle: options.containerStyle || {},
-            plugins: options.plugins || {}
+            plugins: options.plugins || {},
           })
         )
       },
@@ -78,10 +78,10 @@ export function catalogFor(
             name,
             props,
             data: {},
-            patterns
-          }
+            patterns,
+          },
         }
-      }
+      },
     }
   }
 
@@ -94,7 +94,7 @@ function compileSlot(slot: string): VNode[] {
   `)
 
   const ctx: any = new Vue({
-    staticRenderFns: compiled.staticRenderFns
+    staticRenderFns: compiled.staticRenderFns,
   })
   const vnode = compiled.render.call(ctx._renderProxy)
   return vnode.children!

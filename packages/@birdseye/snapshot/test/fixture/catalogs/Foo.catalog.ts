@@ -4,17 +4,17 @@ import Foo from '../components/Foo.vue'
 export default catalogFor(Foo, 'Foo component')
   .add('Normal', {
     props: {
-      foo: 'foo value'
+      foo: 'foo value',
     },
     data: {
-      bar: 'bar value'
-    }
+      bar: 'bar value',
+    },
   })
   .add('Bar number', {
     props: {
-      foo: 'string'
+      foo: 'string',
     },
     data: {
-      bar: 12345
-    }
+      bar: 12345,
+    },
   })

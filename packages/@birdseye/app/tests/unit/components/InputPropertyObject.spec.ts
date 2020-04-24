@@ -4,23 +4,25 @@ import BaseInput from '@/components/BaseInput.vue'
 
 describe('InputPropertyObject', () => {
   function findTypeInput(wrapper: Wrapper<any>) {
-    return wrapper.findAll(BaseInput).wrappers.find(w => !w.props().removeType)!
+    return wrapper
+      .findAll(BaseInput)
+      .wrappers.find((w) => !w.props().removeType)!
   }
 
   function findValueInput(wrapper: Wrapper<any>) {
     return wrapper
       .findAll(BaseInput)
-      .wrappers.find(w => !w.props().removeInput)!
+      .wrappers.find((w) => !w.props().removeInput)!
   }
 
   it('ports value to the form component', () => {
     const wrapper = shallowMount(InputPropertyObject, {
       propsData: {
         name: 'propname',
-        value: ['foo', 'bar']
-      }
+        value: ['foo', 'bar'],
+      },
     })
-    wrapper.findAll(BaseInput).wrappers.forEach(input => {
+    wrapper.findAll(BaseInput).wrappers.forEach((input) => {
       expect(input.props().value).toEqual(['foo', 'bar'])
     })
   })
@@ -30,8 +32,8 @@ describe('InputPropertyObject', () => {
       propsData: {
         name: 'propname',
         value: ['test'],
-        availableTypes: ['array', 'object']
-      }
+        availableTypes: ['array', 'object'],
+      },
     })
     const input = findTypeInput(wrapper)
     expect(input.props().availableTypes).toEqual(['array', 'object'])
@@ -41,8 +43,8 @@ describe('InputPropertyObject', () => {
     const wrapper = shallowMount(InputPropertyObject, {
       propsData: {
         name: 'propname',
-        value: ['foo']
-      }
+        value: ['foo'],
+      },
     })
     const type = findTypeInput(wrapper)
     type.vm.$emit('input', {})
@@ -58,8 +60,8 @@ describe('InputPropertyObject', () => {
     const wrapper = shallowMount(InputPropertyObject, {
       propsData: {
         name: 'propname',
-        value: ['foo']
-      }
+        value: ['foo'],
+      },
     })
     wrapper.find('[aria-label="Remove"]').vm.$emit('click')
     expect(wrapper.emitted('remove').length).toBe(1)

@@ -6,8 +6,8 @@ describe('InputNumber', () => {
   it('applies input prop to actual element', () => {
     const wrapper = shallowMount(InputNumber, {
       propsData: {
-        value: 123
-      }
+        value: 123,
+      },
     })
     const input = wrapper.find(BaseInputText)
     expect(input.props().value).toBe('123')
@@ -16,8 +16,8 @@ describe('InputNumber', () => {
   it('ports input event with converting value to number', () => {
     const wrapper = shallowMount(InputNumber, {
       propsData: {
-        value: 123
-      }
+        value: 123,
+      },
     })
     const input = wrapper.find(BaseInputText)
     input.vm.$emit('input', 456)

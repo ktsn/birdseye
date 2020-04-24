@@ -6,6 +6,6 @@ export default Vue.extend({
 
   render(h) {
     return h()
-  }
+  },
 })
 </script>

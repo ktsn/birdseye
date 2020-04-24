@@ -18,7 +18,7 @@ export function emptyValue(type: string): any {
     boolean: false,
     array: [],
     object: {},
-    null: null
+    null: null,
   }
   return map[type]
 }

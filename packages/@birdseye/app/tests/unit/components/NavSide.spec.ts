@@ -8,21 +8,21 @@ describe('NavSide', () => {
       name: 'Foo',
       patterns: [
         {
-          name: 'Pattern 1'
+          name: 'Pattern 1',
         },
         {
-          name: 'Pattern 2'
-        }
-      ]
+          name: 'Pattern 2',
+        },
+      ],
     },
     {
       name: 'Bar',
       patterns: [
         {
-          name: 'Pattern 1'
-        }
-      ]
-    }
+          name: 'Pattern 1',
+        },
+      ],
+    },
   ]
 
   let localVue: any
@@ -34,9 +34,9 @@ describe('NavSide', () => {
           name: 'preview',
           path: '/:meta/:pattern?',
           component: {},
-          props: true
-        }
-      ]
+          props: true,
+        },
+      ],
     })
     localVue = createLocalVue().extend({ router })
     localVue.use(Router)
@@ -46,8 +46,8 @@ describe('NavSide', () => {
     const wrapper = mount(NavSide, {
       localVue,
       propsData: {
-        nav
-      }
+        nav,
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -58,8 +58,8 @@ describe('NavSide', () => {
       localVue,
       propsData: {
         nav,
-        meta: 'Foo'
-      }
+        meta: 'Foo',
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -71,8 +71,8 @@ describe('NavSide', () => {
       propsData: {
         nav,
         meta: 'Foo',
-        pattern: 'Pattern 1'
-      }
+        pattern: 'Pattern 1',
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -85,15 +85,15 @@ describe('NavSide', () => {
         nav: [
           {
             name: 'Empty',
-            patterns: []
+            patterns: [],
           },
           {
             name: 'Empty Selected',
-            patterns: []
-          }
+            patterns: [],
+          },
         ],
-        meta: 'Empty Selected'
-      }
+        meta: 'Empty Selected',
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()

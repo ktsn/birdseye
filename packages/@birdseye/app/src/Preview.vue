@@ -7,26 +7,26 @@ export default Vue.extend({
   props: {
     meta: {
       type: String,
-      required: true
+      required: true,
     },
 
     pattern: {
       type: String,
-      required: true
+      required: true,
     },
 
     store: {
       type: Object as () => AppStore,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
     targetDeclaration(): ComponentDeclaration | undefined {
-      return this.store.state.declarations.find(d => {
+      return this.store.state.declarations.find((d) => {
         return d.meta.name === this.meta
       })
-    }
+    },
   },
 
   render(h): VNode {
@@ -41,15 +41,15 @@ export default Vue.extend({
       key: this.meta + '/' + this.pattern,
       props: {
         props: pattern ? pattern.props : {},
-        data: pattern ? pattern.data : {}
+        data: pattern ? pattern.data : {},
       },
-      scopedSlots: pattern ? pattern.slots : {}
+      scopedSlots: pattern ? pattern.slots : {},
     }
 
     const containerStyle: Partial<CSSStyleDeclaration> = {
       boxSizing: 'border-box',
       padding: '20px',
-      ...(pattern ? pattern.containerStyle : {})
+      ...(pattern ? pattern.containerStyle : {}),
     }
 
     return (
@@ -57,6 +57,6 @@ export default Vue.extend({
         <Wrapper {...data} />
       </div>
     )
-  }
+  },
 })
 </script>

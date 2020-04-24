@@ -12,10 +12,10 @@ const catalogs = load(require.context('./catalogs', true, /\.catalog\.ts$/))
 // For debug
 style.__inject__(document.head)
 const instrument = createInstrument(Vue, {
-  shadowRoot: document.head
+  shadowRoot: document.head,
 })
 
 birdseye('#app', catalogs.concat(instrument(components)), {
   experimental: true,
-  plugins: [snapshotPlugin]
+  plugins: [snapshotPlugin],
 })

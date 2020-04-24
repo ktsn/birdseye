@@ -8,20 +8,20 @@ describe('InputArray', () => {
     render(this: any, h: Function) {
       return h('input', {
         attrs: {
-          'data-value': this.value
-        }
+          'data-value': this.value,
+        },
       })
-    }
+    },
   }
 
   it('applies array item value for each input', () => {
     const wrapper = shallowMount(InputArray, {
       propsData: {
-        value: ['foo', 1, true]
+        value: ['foo', 1, true],
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
     const inputs = wrapper.findAll(InputProperty)
@@ -33,8 +33,8 @@ describe('InputArray', () => {
   it('emits input event when an item is added', () => {
     const wrapper = shallowMount(InputArray, {
       propsData: {
-        value: ['foo']
-      }
+        value: ['foo'],
+      },
     })
 
     wrapper.find('[aria-label="Add"]').vm.$emit('click')
@@ -44,28 +44,25 @@ describe('InputArray', () => {
   it('emits input event when an item is removed', () => {
     const wrapper = shallowMount(InputArray, {
       propsData: {
-        value: ['foo', 'bar', 'baz']
+        value: ['foo', 'bar', 'baz'],
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
-    wrapper
-      .findAll(InputProperty)
-      .at(1)
-      .vm.$emit('remove')
+    wrapper.findAll(InputProperty).at(1).vm.$emit('remove')
     expect(wrapper.emitted('input')[0][0]).toEqual(['foo', 'baz'])
   })
 
   it('emits input event when an item is updated', () => {
     const wrapper = shallowMount(InputArray, {
       propsData: {
-        value: ['foo', 'bar', 'baz']
+        value: ['foo', 'bar', 'baz'],
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
     const bar = wrapper.findAll(InputProperty).at(1)

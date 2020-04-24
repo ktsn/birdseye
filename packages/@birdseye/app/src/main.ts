@@ -39,25 +39,25 @@ export default function birdseye(
   wrapper!.appendChild(app)
 
   const store = new AppStore({
-    declarations: catalogs.map(c => c.toDeclaration()),
-    fullscreen: !!router.currentRoute.query.fullscreen
+    declarations: catalogs.map((c) => c.toDeclaration()),
+    fullscreen: !!router.currentRoute.query.fullscreen,
   })
 
   app.store = store
 
   new Root({
     el: content,
-    render: h =>
+    render: (h) =>
       // Preview.vue
       h('router-view', {
         attrs: {
-          store
-        }
-      })
+          store,
+        },
+      }),
   })
 
   // Execute plugins
   if (options.plugins) {
-    options.plugins.forEach(f => f(catalogs))
+    options.plugins.forEach((f) => f(catalogs))
   }
 }

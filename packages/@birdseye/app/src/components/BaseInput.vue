@@ -39,7 +39,7 @@ const typeToComponentName: Record<string, string> = {
   array: 'InputArray',
   object: 'InputObject',
   null: 'InputEmpty',
-  undefined: 'InputEmpty'
+  undefined: 'InputEmpty',
 }
 
 const possibleTypes = Object.keys(typeToComponentName)
@@ -51,7 +51,7 @@ const lazyComponents = () => ({
   InputArray,
   InputObject,
   InputEmpty,
-  BaseSelect
+  BaseSelect,
 })
 
 export default Vue.extend({
@@ -63,26 +63,26 @@ export default Vue.extend({
   props: {
     value: {
       type: [String, Number, Boolean, Array, Object],
-      default: undefined
+      default: undefined,
     },
 
     availableTypes: {
       type: Array as () => string[],
       default: () => [],
       validator(types: string[]) {
-        return types.every(type => possibleTypes.indexOf(type) >= 0)
-      }
+        return types.every((type) => possibleTypes.indexOf(type) >= 0)
+      },
     },
 
     removeInput: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     removeTypes: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
@@ -113,15 +113,15 @@ export default Vue.extend({
 
     componentForType(): string {
       return typeToComponentName[this.typeOfValue]
-    }
+    },
   },
 
   methods: {
     onChangeType(type: ComponentDataType): void {
       const empty = emptyValue(type)
       this.$emit('input', empty)
-    }
-  }
+    },
+  },
 })
 </script>
 

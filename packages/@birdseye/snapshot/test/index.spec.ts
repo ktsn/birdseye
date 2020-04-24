@@ -13,7 +13,7 @@ describe('Snapshot', () => {
       {
         cwd: path.resolve(__dirname, '../'),
         shell: true,
-        stdio: 'ignore'
+        stdio: 'ignore',
       }
     )
 
@@ -23,7 +23,7 @@ describe('Snapshot', () => {
   }
 
   function wait(n: number): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, n)
     })
   }
@@ -43,16 +43,16 @@ describe('Snapshot', () => {
 
   it('outputs images to the default location', async () => {
     await snapshot({
-      url
+      url,
     })
 
     const files = await fs.promises.readdir(outDir)
-    files.sort().forEach(file => {
+    files.sort().forEach((file) => {
       // Use sync version to make sure the order is not changed
       const image = fs.readFileSync(path.join(outDir, file))
       expect(image).toMatchImageSnapshot({
         failureThreshold: 0.01,
-        failureThresholdType: 'percent'
+        failureThresholdType: 'percent',
       })
     })
   })

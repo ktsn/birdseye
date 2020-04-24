@@ -27,7 +27,7 @@ import ButtonPlusMinus from './ButtonPlusMinus.vue'
 
 const lazyComponents = () => ({
   InputProperty,
-  ButtonPlusMinus
+  ButtonPlusMinus,
 })
 
 export default Vue.extend({
@@ -39,8 +39,8 @@ export default Vue.extend({
   props: {
     value: {
       type: Array as () => any[],
-      required: true
-    }
+      required: true,
+    },
   },
 
   methods: {
@@ -51,7 +51,7 @@ export default Vue.extend({
     onClickRemove(index: number): void {
       this.$emit('input', [
         ...this.value.slice(0, index),
-        ...this.value.slice(index + 1)
+        ...this.value.slice(index + 1),
       ])
     },
 
@@ -59,10 +59,10 @@ export default Vue.extend({
       this.$emit('input', [
         ...this.value.slice(0, index),
         value,
-        ...this.value.slice(index + 1)
+        ...this.value.slice(index + 1),
       ])
-    }
-  }
+    },
+  },
 })
 </script>
 

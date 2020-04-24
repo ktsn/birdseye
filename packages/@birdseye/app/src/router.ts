@@ -10,7 +10,7 @@ export default new Router({
       name: 'preview',
       path: '/:meta/:pattern',
       component: Preview,
-      props: true
-    }
-  ]
+      props: true,
+    },
+  ],
 })

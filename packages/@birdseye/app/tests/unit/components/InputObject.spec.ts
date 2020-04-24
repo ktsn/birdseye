@@ -9,10 +9,10 @@ describe('InputObject', () => {
       return h('input', {
         attrs: {
           'data-name': this.name,
-          'data-value': this.value
-        }
+          'data-value': this.value,
+        },
       })
-    }
+    },
   }
 
   it('applies array item value for each input', () => {
@@ -21,12 +21,12 @@ describe('InputObject', () => {
         value: {
           a: 'foo',
           b: 1,
-          c: true
-        }
+          c: true,
+        },
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
     const inputs = wrapper.findAll(InputProperty)
@@ -42,15 +42,15 @@ describe('InputObject', () => {
     const wrapper = shallowMount(InputObject, {
       propsData: {
         value: {
-          a: 'foo'
-        }
-      }
+          a: 'foo',
+        },
+      },
     })
 
     wrapper.find('[aria-label="Add"]').vm.$emit('click')
     expect(wrapper.emitted('input')[0][0]).toEqual({
       a: 'foo',
-      '': undefined
+      '': undefined,
     })
   })
 
@@ -60,21 +60,18 @@ describe('InputObject', () => {
         value: {
           a: 'foo',
           b: 'bar',
-          c: 'baz'
-        }
+          c: 'baz',
+        },
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
-    wrapper
-      .findAll(InputProperty)
-      .at(1)
-      .vm.$emit('remove')
+    wrapper.findAll(InputProperty).at(1).vm.$emit('remove')
     expect(wrapper.emitted('input')[0][0]).toEqual({
       a: 'foo',
-      c: 'baz'
+      c: 'baz',
     })
   })
 
@@ -84,12 +81,12 @@ describe('InputObject', () => {
         value: {
           a: 'foo',
           b: 'bar',
-          c: 'baz'
-        }
+          c: 'baz',
+        },
       },
       stubs: {
-        InputProperty
-      }
+        InputProperty,
+      },
     })
 
     const bar = wrapper.findAll(InputProperty).at(1)
@@ -97,7 +94,7 @@ describe('InputObject', () => {
     expect(wrapper.emitted('input')[0][0]).toEqual({
       a: 'foo',
       b: 'updated',
-      c: 'baz'
+      c: 'baz',
     })
   })
 })

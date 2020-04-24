@@ -4,16 +4,16 @@ import ButtonPlusMinus from '@/components/ButtonPlusMinus.vue'
 export default catalogFor(ButtonPlusMinus, {
   name: 'ButtonPlusMinus',
   rootOptions: {
-    shadowRoot: document.head
-  }
+    shadowRoot: document.head,
+  },
 })
   .add('plus (default)', {
     props: {
-      type: 'plus'
-    }
+      type: 'plus',
+    },
   })
   .add('minus', {
     props: {
-      type: 'minus'
-    }
+      type: 'minus',
+    },
   })

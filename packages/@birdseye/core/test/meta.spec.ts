@@ -12,7 +12,7 @@ describe('Meta', () => {
 
   it('normalizes pattern', () => {
     const meta = normalizeMeta({
-      patterns: [{}]
+      patterns: [{}],
     })
 
     const { patterns } = meta

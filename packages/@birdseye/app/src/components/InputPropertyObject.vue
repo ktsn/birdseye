@@ -37,7 +37,7 @@ import ButtonPlusMinus from './ButtonPlusMinus.vue'
 
 const lazyComponents = () => ({
   BaseInput,
-  ButtonPlusMinus
+  ButtonPlusMinus,
 })
 
 export default Vue.extend({
@@ -49,19 +49,19 @@ export default Vue.extend({
   props: {
     name: {
       type: [String, Number],
-      required: true
+      required: true,
     },
 
     value: {
       type: [Array, Object],
-      required: true
+      required: true,
     },
 
     availableTypes: {
       type: Array as () => string[],
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 })
 </script>
 

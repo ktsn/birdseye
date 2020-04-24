@@ -18,14 +18,14 @@ export default Vue.extend({
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
 
     value: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>
 
