@@ -14,12 +14,12 @@ export function snapshotPlugin(catalogs: Catalog[]): void {
   const routes = catalogs.reduce<CatalogRoute[]>((acc, catalog) => {
     const meta = catalog.toDeclaration().meta
     return acc.concat(
-      meta.patterns.map(pattern => {
+      meta.patterns.map((pattern) => {
         return {
           path: `/${encodeURIComponent(meta.name)}/${encodeURIComponent(
             pattern.name
           )}`,
-          snapshot: pattern.plugins.snapshot
+          snapshot: pattern.plugins.snapshot,
         }
       })
     )
