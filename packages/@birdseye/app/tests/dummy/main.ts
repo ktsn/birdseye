@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import birdseye from '@/main'
 import { createInstrument } from '@birdseye/vue'
+// @ts-ignore
 import { snapshotPlugin } from '../../../snapshot/lib/plugin' // Avoid circular dependencies
 import style from './style.css'
 
