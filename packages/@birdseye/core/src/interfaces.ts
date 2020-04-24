@@ -36,4 +36,10 @@ export interface ComponentPattern {
   data: Record<string, any>
   slots: Record<string, (props: any) => VNode[]>
   containerStyle: Partial<CSSStyleDeclaration>
+  plugins: PluginOptions
+}
+
+// eslint-disable-next-line
+export interface PluginOptions {
+  // For augmentation
 }
