@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as puppeteer from 'puppeteer'
 import { createCaptureStream } from 'capture-all'
+import { CatalogRoute } from './plugin'
 
 export interface SnapshotOptions {
   url: string
@@ -39,7 +40,7 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
   const frame = await page.mainFrame()
   await frame.waitFor(routesScriptSelector)
 
-  const routes: string[] = await frame.$eval(
+  const routes: CatalogRoute[] = await frame.$eval(
     routesScriptSelector,
     (el: Element) => {
       return JSON.parse(el.textContent || '[]')
@@ -52,9 +53,11 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
     const stream = createCaptureStream(
       routes.map(route => {
         return {
-          url: opts.url + '#' + route + '?fullscreen=1',
+          url: opts.url + '#' + route.path + '?fullscreen=1',
           target: previewSelector,
-          viewport: opts.viewport
+          viewport: opts.viewport,
+          delay: route.snapshot?.delay,
+          disableCssAnimation: route.snapshot?.disableCssAnimation
         }
       })
     )

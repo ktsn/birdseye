@@ -10,7 +10,25 @@ $ npm install --save-dev @birdseye/snapshot
 
 ## Usage
 
-Write `birdseye/capture.js` like below:
+Before running capturing process, you need to pass `snapshotPlugin` in `plugins` option of `birdseye` function.
+
+```js
+import birdseye from '@birdseye/app'
+
+// Import snapshot plugin
+import { snapshotPlugin } from '@birdseye/snapshot/lib/plugin'
+
+const load = (ctx: any) => ctx.keys().map((x: any) => ctx(x).default)
+const catalogs = load(require.context('./catalogs', true, /\.catalog\.ts$/))
+
+birdseye('#app', catalogs, {
+  // Pass the plugin to birdseye function
+  plugins: [snapshotPlugin]
+})
+
+```
+
+Next, write `birdseye/capture.js` like below:
 
 ```js
 const path = require('path')
@@ -51,6 +69,40 @@ $ node birdseye/capture.js
 ```
 
 It will store snapshot images in `birdseye/snapshots` for all component catalogs. You can visual regression test with the snapshots.
+
+### Snapshot Options
+
+You can specify snapshot options into your catalog to tweak capture behavior.
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton')
+  .add('primary', {
+    props: {
+      primary: true
+    },
+
+    slots: {
+      default: 'Button Text'
+    },
+
+    plugins: {
+      snapshot: {
+        // Specify snapshot options here
+        delay: 1000
+      }
+    }
+  })
+```
+
+All options should be into `plugins.snapshot` for each catalog settings.
+
+Available snapshot options are below:
+
+- `delay` A delay (ms) before taking snapshot.
+- `disableCssAnimation` Disable CSS animations and transitions if `true`. (default `true`)
 
 ### Visual Regression Testing with [reg-suit](https://github.com/reg-viz/reg-suit)
 

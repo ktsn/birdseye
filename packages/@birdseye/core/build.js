@@ -23,8 +23,8 @@ const base = {
   output: {
     banner,
     exports: 'named',
-    moduleName: capitalize(pkg.name),
-    global: {
+    name: capitalize(pkg.name),
+    globals: {
       vue: 'Vue'
     }
   },
