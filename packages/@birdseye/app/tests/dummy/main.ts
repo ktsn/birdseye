@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import birdseye from '@/main'
 import { createInstrument } from '@birdseye/vue'
+// @ts-ignore
+import { snapshotPlugin } from '../../../snapshot/lib/plugin' // Avoid circular dependencies
 import style from './style.css'
 
 const load = (ctx: any) => ctx.keys().map((x: any) => ctx(x).default)
@@ -15,4 +17,5 @@ const instrument = createInstrument(Vue, {
 
 birdseye('#app', catalogs.concat(instrument(components)), {
   experimental: true,
+  plugins: [snapshotPlugin],
 })

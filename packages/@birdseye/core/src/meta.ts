@@ -16,5 +16,6 @@ function normalizePattern(pattern: any): ComponentPattern {
     data: pattern.data || {},
     slots: pattern.slots || {},
     containerStyle: pattern.containerStyle || {},
+    plugins: pattern.plugins || {},
   }
 }

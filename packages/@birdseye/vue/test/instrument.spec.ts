@@ -34,6 +34,7 @@ describe('Instrument', () => {
           },
           slots: {},
           containerStyle: {},
+          plugins: {},
         },
       ],
     }
@@ -57,6 +58,7 @@ describe('Instrument', () => {
           },
           slots: {},
           containerStyle: {},
+          plugins: {},
         },
       ],
     }

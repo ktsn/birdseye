@@ -1,6 +1,10 @@
 import Vue, { Component, VNode, ComponentOptions, CreateElement } from 'vue'
 import { compileToFunctions } from 'vue-template-compiler'
-import { Catalog as BaseCatalog, ComponentPattern } from '@birdseye/core'
+import {
+  Catalog as BaseCatalog,
+  ComponentPattern,
+  PluginOptions,
+} from '@birdseye/core'
 import { createInstrument } from './instrument'
 import extractProps from './extract-props'
 
@@ -20,6 +24,7 @@ export interface CatalogPatternOptions {
   data?: Record<string, any>
   slots?: Record<string, string>
   containerStyle?: Partial<CSSStyleDeclaration>
+  plugins?: PluginOptions
 }
 
 export function catalogFor(
@@ -61,6 +66,7 @@ export function catalogFor(
             data: options.data || {},
             slots,
             containerStyle: options.containerStyle || {},
+            plugins: options.plugins || {},
           })
         )
       },
