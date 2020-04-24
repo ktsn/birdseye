@@ -9,9 +9,9 @@ describe('PanelPattern', () => {
     render(this: any, h: Function): any {
       return h('div', [
         h('p', [`title: ${this.title}`]),
-        h('p', [`data: ${JSON.stringify(this.data)}`])
+        h('p', [`data: ${JSON.stringify(this.data)}`]),
       ])
-    }
+    },
   }
 
   it('renders for props and data', () => {
@@ -21,20 +21,20 @@ describe('PanelPattern', () => {
           {
             type: ['string'],
             name: 'foo',
-            value: 'string value'
-          }
+            value: 'string value',
+          },
         ],
         data: [
           {
             type: [],
             name: 'bar',
-            value: true
-          }
-        ]
+            value: true,
+          },
+        ],
       },
       stubs: {
-        PanelPatternGroup: StubGroup
-      }
+        PanelPatternGroup: StubGroup,
+      },
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -46,23 +46,23 @@ describe('PanelPattern', () => {
           {
             type: ['string', 'number'],
             name: 'foo',
-            value: 'str'
-          }
+            value: 'str',
+          },
         ],
-        data: []
+        data: [],
       },
       stubs: {
-        PanelPatternGroup: StubGroup
-      }
+        PanelPatternGroup: StubGroup,
+      },
     })
     const group = wrapper.findAll(StubGroup).at(0)
     group.vm.$emit('input', {
       name: 'foo',
-      value: 'test'
+      value: 'test',
     })
     expect(wrapper.emitted('input-prop')[0][0]).toEqual({
       name: 'foo',
-      value: 'test'
+      value: 'test',
     })
   })
 
@@ -74,22 +74,22 @@ describe('PanelPattern', () => {
           {
             type: [],
             name: 'foo',
-            value: 'str'
-          }
-        ]
+            value: 'str',
+          },
+        ],
       },
       stubs: {
-        PanelPatternGroup: StubGroup
-      }
+        PanelPatternGroup: StubGroup,
+      },
     })
     const group = wrapper.findAll(StubGroup).at(1)
     group.vm.$emit('input', {
       name: 'foo',
-      value: 'test'
+      value: 'test',
     })
     expect(wrapper.emitted('input-data')[0][0]).toEqual({
       name: 'foo',
-      value: 'test'
+      value: 'test',
     })
   })
 })

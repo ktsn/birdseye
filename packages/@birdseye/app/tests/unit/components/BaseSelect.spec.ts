@@ -5,15 +5,15 @@ describe('BaseSelect', () => {
   it('ports value', () => {
     const wrapper = shallowMount(BaseSelect, {
       propsData: {
-        value: 'bar'
+        value: 'bar',
       },
       slots: {
         default: `
           <option>foo</option>
           <option>bar</option>
           <option>baz</option>
-        `
-      }
+        `,
+      },
     })
     const select = wrapper.find('select').element as HTMLSelectElement
     expect(select.value).toBe('bar')
@@ -22,15 +22,15 @@ describe('BaseSelect', () => {
   it('propagates change event', () => {
     const wrapper = shallowMount(BaseSelect, {
       propsData: {
-        value: 'bar'
+        value: 'bar',
       },
       slots: {
         default: `
           <option id="foo">foo</option>
           <option>bar</option>
           <option>baz</option>
-        `
-      }
+        `,
+      },
     })
     const option = wrapper.find('#foo').element as HTMLOptionElement
     option.selected = true

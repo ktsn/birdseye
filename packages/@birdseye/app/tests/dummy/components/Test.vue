@@ -6,6 +6,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'EmptyMeta'
+  name: 'EmptyMeta',
 })
 </script>

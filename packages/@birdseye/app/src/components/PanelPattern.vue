@@ -22,7 +22,7 @@ import PanelPatternGroup from './PanelPatternGroup.vue'
 import { QualifiedData } from '@/store'
 
 function patternDataValidator(value: any[]) {
-  return value.every(v => {
+  return value.every((v) => {
     return (
       typeof Array.isArray(v.type) && typeof v.name === 'string' && 'value' in v
     )
@@ -33,22 +33,22 @@ export default Vue.extend({
   name: 'PanelPattern',
 
   components: {
-    PanelPatternGroup
+    PanelPatternGroup,
   },
 
   props: {
     props: {
       type: Array as () => QualifiedData[],
       required: true,
-      validator: patternDataValidator
+      validator: patternDataValidator,
     },
 
     data: {
       type: Array as () => QualifiedData[],
       required: true,
-      validator: patternDataValidator
-    }
-  }
+      validator: patternDataValidator,
+    },
+  },
 })
 </script>
 

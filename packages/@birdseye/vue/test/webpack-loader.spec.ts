@@ -10,14 +10,14 @@ function test(
     {
       context: path.resolve(__dirname, '../'),
       callback: cb,
-      resourceQuery: lang ? '?lang=' + lang : ''
+      resourceQuery: lang ? '?lang=' + lang : '',
     },
     content
   )
 }
 
 describe('webpack loader', () => {
-  it('injects birdseye content', done => {
+  it('injects birdseye content', (done) => {
     test(
       `{
         "name": "Test"
@@ -38,7 +38,7 @@ export default function(Component) {
   })
 
   it('emit parse error', () => {
-    test(`{ "name": "Test", }`, null, err => {
+    test(`{ "name": "Test", }`, null, (err) => {
       expect(err.name).toBe('SyntaxError')
     })
   })

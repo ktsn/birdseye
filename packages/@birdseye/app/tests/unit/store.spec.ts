@@ -13,44 +13,44 @@ describe('AppStore', () => {
               name: 'foo',
               props: {
                 a: {
-                  type: ['string']
+                  type: ['string'],
                 },
                 b: {
-                  type: ['string', 'number']
-                }
+                  type: ['string', 'number'],
+                },
               },
               data: {
                 c: {
-                  type: ['boolean']
-                }
+                  type: ['boolean'],
+                },
               },
               patterns: [
                 {
                   name: 'pattern 1',
                   props: {
                     a: 'test1',
-                    b: 123
+                    b: 123,
                   },
                   data: {
-                    c: true
+                    c: true,
                   },
                   slots: {},
-                  containerStyle: {}
+                  containerStyle: {},
                 },
                 {
                   name: 'pattern 2',
                   props: {
                     a: 'test2',
-                    b: '123'
+                    b: '123',
                   },
                   data: {
-                    c: false
+                    c: false,
                   },
                   slots: {},
-                  containerStyle: {}
-                }
-              ]
-            }
+                  containerStyle: {},
+                },
+              ],
+            },
           },
           {
             Wrapper: {} as any,
@@ -59,23 +59,23 @@ describe('AppStore', () => {
               props: {},
               data: {
                 test1: {
-                  type: ['string']
-                }
+                  type: ['string'],
+                },
               },
               patterns: [
                 {
                   name: 'pattern 3',
                   props: {},
                   data: {
-                    test2: 'test value'
+                    test2: 'test value',
                   },
                   slots: {},
-                  containerStyle: {}
-                }
-              ]
-            }
-          }
-        ]
+                  containerStyle: {},
+                },
+              ],
+            },
+          },
+        ],
       })
     })
 
@@ -85,13 +85,13 @@ describe('AppStore', () => {
         {
           type: ['string'],
           name: 'a',
-          value: 'test1'
+          value: 'test1',
         },
         {
           type: ['string', 'number'],
           name: 'b',
-          value: 123
-        }
+          value: 123,
+        },
       ])
     })
 
@@ -101,8 +101,8 @@ describe('AppStore', () => {
         {
           type: ['boolean'],
           name: 'c',
-          value: false
-        }
+          value: false,
+        },
       ])
     })
 
@@ -112,13 +112,13 @@ describe('AppStore', () => {
         {
           type: ['string'],
           name: 'a',
-          value: undefined
+          value: undefined,
         },
         {
           type: ['string', 'number'],
           name: 'b',
-          value: undefined
-        }
+          value: undefined,
+        },
       ])
     })
 
@@ -128,8 +128,8 @@ describe('AppStore', () => {
         {
           type: ['boolean'],
           name: 'c',
-          value: undefined
-        }
+          value: undefined,
+        },
       ])
     })
 
@@ -139,13 +139,13 @@ describe('AppStore', () => {
         {
           type: ['string'],
           name: 'test1',
-          value: undefined
+          value: undefined,
         },
         {
           type: [],
           name: 'test2',
-          value: 'test value'
-        }
+          value: 'test value',
+        },
       ])
     })
   })
@@ -166,32 +166,32 @@ describe('AppStore', () => {
                 {
                   name: 'foo pattern 1',
                   props: {
-                    a: 'test value'
+                    a: 'test value',
                   },
                   data: {
                     b: 123,
-                    c: true
+                    c: true,
                   },
                   slots: {},
                   containerStyle: {
-                    padding: '0'
-                  }
+                    padding: '0',
+                  },
                 },
                 {
                   name: 'foo pattern 2',
                   props: {},
                   data: {
-                    b: 456
+                    b: 456,
                   },
                   slots: {},
                   containerStyle: {
-                    backgroundColor: 'black'
-                  }
-                }
-              ]
-            }
-          }
-        ]
+                    backgroundColor: 'black',
+                  },
+                },
+              ],
+            },
+          },
+        ],
       })
     })
 

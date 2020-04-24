@@ -3,7 +3,7 @@ import {
   ComponentDeclaration,
   ComponentPattern,
   ComponentMeta,
-  ComponentDataType
+  ComponentDataType,
 } from '@birdseye/core'
 import { dedupe } from './utils'
 
@@ -12,7 +12,7 @@ class Store<S> {
 
   constructor(initialState: S) {
     this.vm = new Vue({
-      data: initialState
+      data: initialState,
     })
   }
 
@@ -45,7 +45,7 @@ export interface QualifiedData {
  */
 export default class AppStore extends Store<AppState> {
   getMeta(metaName: string): ComponentMeta | undefined {
-    const decl = this.state.declarations.find(d => d.meta.name === metaName)
+    const decl = this.state.declarations.find((d) => d.meta.name === metaName)
     return decl && decl.meta
   }
 
@@ -57,7 +57,7 @@ export default class AppStore extends Store<AppState> {
 
     if (!meta) return
 
-    return meta.patterns.find(p => p.name === patternName)
+    return meta.patterns.find((p) => p.name === patternName)
   }
 
   getQualifiedProps(metaName: string, patternName?: string): QualifiedData[] {
@@ -107,16 +107,16 @@ export default class AppStore extends Store<AppState> {
     const pattern = patternName && this.getPattern(metaName, patternName)
     const names = dedupe([
       ...Object.keys(meta[type]),
-      ...(pattern ? Object.keys(pattern[type]) : [])
+      ...(pattern ? Object.keys(pattern[type]) : []),
     ])
 
-    return names.map(name => {
+    return names.map((name) => {
       const info = meta[type][name]
       const value = pattern ? pattern[type][name] : undefined
       return {
         type: info ? info.type : [],
         name,
-        value
+        value,
       }
     })
   }

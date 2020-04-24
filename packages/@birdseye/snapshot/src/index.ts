@@ -23,9 +23,9 @@ function fillOptionDefaults(
     snapshotDir: 'birdseye/snapshots',
     viewport: {
       width: 800,
-      height: 600
+      height: 600,
     },
-    ...options
+    ...options,
   }
 }
 
@@ -50,18 +50,18 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
 
   return new Promise((resolve, reject) => {
     const stream = createCaptureStream(
-      routes.map(route => {
+      routes.map((route) => {
         return {
           url: opts.url + '#' + route + '?fullscreen=1',
           target: previewSelector,
-          viewport: opts.viewport
+          viewport: opts.viewport,
         }
       })
     )
 
     mkdirp.sync(opts.snapshotDir)
 
-    stream.on('data', result => {
+    stream.on('data', (result) => {
       const hash = decodeURIComponent(result.url.split('#')[1])
       const normalized = hash
         .slice(1)
@@ -69,7 +69,7 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
         .replace(/[^0-9a-zA-Z]/g, '_')
       const dest = path.join(opts.snapshotDir, normalized + '.png')
 
-      fs.writeFile(dest, result.image, error => {
+      fs.writeFile(dest, result.image, (error) => {
         if (error) {
           stream.destroy()
           reject(error)

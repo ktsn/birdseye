@@ -48,7 +48,7 @@ export function catalogFor(
         const slots = Object.keys(originalSlots).reduce<
           Record<string, (props: any) => VNode[]>
         >((acc, key) => {
-          acc[key] = _props => {
+          acc[key] = (_props) => {
             return compileSlot(originalSlots[key])
           }
           return acc
@@ -60,7 +60,7 @@ export function catalogFor(
             props: options.props || {},
             data: options.data || {},
             slots,
-            containerStyle: options.containerStyle || {}
+            containerStyle: options.containerStyle || {},
           })
         )
       },
@@ -72,10 +72,10 @@ export function catalogFor(
             name,
             props,
             data: {},
-            patterns
-          }
+            patterns,
+          },
         }
-      }
+      },
     }
   }
 
@@ -88,7 +88,7 @@ function compileSlot(slot: string): VNode[] {
   `)
 
   const ctx: any = new Vue({
-    staticRenderFns: compiled.staticRenderFns
+    staticRenderFns: compiled.staticRenderFns,
   })
   const vnode = compiled.render.call(ctx._renderProxy)
   return vnode.children!

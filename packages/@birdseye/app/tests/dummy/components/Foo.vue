@@ -9,15 +9,15 @@ export default {
   props: {
     foo: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
-      bar: ''
+      bar: '',
     }
-  }
+  },
 }
 </script>
 

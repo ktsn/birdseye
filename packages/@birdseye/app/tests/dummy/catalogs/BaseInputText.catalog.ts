@@ -4,17 +4,17 @@ import BaseInputText from '@/components/BaseInputText.vue'
 export default catalogFor(BaseInputText, {
   name: 'BaseInputText',
   rootOptions: {
-    shadowRoot: document.head
-  }
+    shadowRoot: document.head,
+  },
 })
   .add('with value', {
     props: {
-      value: 'text value'
-    }
+      value: 'text value',
+    },
   })
   .add('number type', {
     props: {
       type: 'number',
-      value: 42
-    }
+      value: 42,
+    },
   })

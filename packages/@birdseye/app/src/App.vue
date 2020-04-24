@@ -35,7 +35,7 @@ import PanelPattern from './components/PanelPattern.vue'
 export default Vue.extend({
   components: {
     NavSide,
-    PanelPattern
+    PanelPattern,
   },
 
   props: {
@@ -45,13 +45,13 @@ export default Vue.extend({
       // Actually required
       // Since it is wrapped by WebComponents and props are passed
       // after the component is instantiated, we cannot just use `required`.
-      default: undefined
-    }
+      default: undefined,
+    },
   },
 
   computed: {
     meta(): ComponentMeta[] {
-      return this.store ? this.store.state.declarations.map(d => d.meta) : []
+      return this.store ? this.store.state.declarations.map((d) => d.meta) : []
     },
 
     props(): QualifiedData[] {
@@ -66,7 +66,7 @@ export default Vue.extend({
 
     fullscreen(): boolean {
       return this.store ? this.store.fullscreen() : false
-    }
+    },
   },
 
   mounted() {
@@ -89,8 +89,8 @@ export default Vue.extend({
 
       const { meta, pattern } = this.$route.params
       this.store.updateDataValue(meta, pattern, name, value)
-    }
-  }
+    },
+  },
 })
 </script>
 

@@ -5,8 +5,8 @@ describe('BaseInputText', () => {
   it('ports value', () => {
     const wrapper = shallowMount(BaseInputText, {
       propsData: {
-        value: 'test'
-      }
+        value: 'test',
+      },
     })
     const input = wrapper.find('input').element as HTMLInputElement
     expect(input.value).toBe('test')
@@ -15,8 +15,8 @@ describe('BaseInputText', () => {
   it('propagates input event', () => {
     const wrapper = shallowMount(BaseInputText, {
       propsData: {
-        value: 'test'
-      }
+        value: 'test',
+      },
     })
     const input = wrapper.find('input')
     ;(input.element as HTMLInputElement).value = 'updated'

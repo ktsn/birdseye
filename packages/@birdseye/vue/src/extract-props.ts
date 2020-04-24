@@ -14,17 +14,17 @@ export default function extractProps(
 
   const res: Record<string, ComponentDataInfo> = {}
   if (Array.isArray(props)) {
-    props.forEach(name => {
+    props.forEach((name) => {
       res[name] = { type: [] }
     })
     return res
   }
 
-  Object.keys(props).forEach(name => {
+  Object.keys(props).forEach((name) => {
     const def = props[name]
     if (def && typeof def === 'object' && !Array.isArray(def)) {
       res[name] = {
-        type: toTypeStrings(def.type, !!def.required)
+        type: toTypeStrings(def.type, !!def.required),
       }
 
       if ('default' in def && typeof def.default !== 'function') {

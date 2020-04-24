@@ -22,7 +22,7 @@ function exposeCatalogRoutes(catalogs: Catalog[]): void {
   const routes = catalogs.reduce<string[]>((acc, catalog) => {
     const meta = catalog.toDeclaration().meta
     return acc.concat(
-      meta.patterns.map(pattern => {
+      meta.patterns.map((pattern) => {
         return `/${encodeURIComponent(meta.name)}/${encodeURIComponent(
           pattern.name
         )}`
@@ -53,21 +53,21 @@ export default function birdseye(
   wrapper!.appendChild(app)
 
   const store = new AppStore({
-    declarations: catalogs.map(c => c.toDeclaration()),
-    fullscreen: !!router.currentRoute.query.fullscreen
+    declarations: catalogs.map((c) => c.toDeclaration()),
+    fullscreen: !!router.currentRoute.query.fullscreen,
   })
 
   app.store = store
 
   new Root({
     el: content,
-    render: h =>
+    render: (h) =>
       // Preview.vue
       h('router-view', {
         attrs: {
-          store
-        }
-      })
+          store,
+        },
+      }),
   })
 
   // Expose all routes in HTML to let snapshot module get them

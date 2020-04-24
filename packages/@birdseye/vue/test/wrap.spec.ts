@@ -12,18 +12,18 @@ describe('Wrap', () => {
     props: {
       foo: {
         type: String,
-        required: true
+        required: true,
       },
 
       bar: {
         type: Number,
-        default: 0
-      }
+        default: 0,
+      },
     },
 
     data() {
       return {
-        baz: 'baz'
+        baz: 'baz',
       }
     },
 
@@ -40,9 +40,9 @@ describe('Wrap', () => {
 
         // slots
         el('default-slot', this.$slots.default),
-        el('named-slot', this.$slots.named)
+        el('named-slot', this.$slots.named),
       ])
-    }
+    },
   })
 
   const Wrapper = wrap(Dummy)
@@ -52,12 +52,12 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 123
+          bar: 123,
         },
         data: {
-          baz: 'baz data'
-        }
-      }
+          baz: 'baz data',
+        },
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -71,14 +71,14 @@ describe('Wrap', () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
-          foo: ''
+          foo: '',
         },
-        data: {}
+        data: {},
       },
       slots: {
         default: 'default slot',
-        named: 'named slot'
-      }
+        named: 'named slot',
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -92,19 +92,19 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 123
+          bar: 123,
         },
         data: {
-          baz: 'baz data'
-        }
-      }
+          baz: 'baz data',
+        },
+      },
     })
 
     wrapper.setProps({
       props: {
         foo: 'updated',
-        bar: 123
-      }
+        bar: 123,
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -117,18 +117,18 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 123
+          bar: 123,
         },
         data: {
-          baz: 'baz data'
-        }
-      }
+          baz: 'baz data',
+        },
+      },
     })
 
     wrapper.setProps({
       data: {
-        baz: 'baz updated'
-      }
+        baz: 'baz updated',
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -141,16 +141,16 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 42
+          bar: 42,
         },
-        data: {}
-      }
+        data: {},
+      },
     })
 
     wrapper.setProps({
       props: {
-        foo: 'test'
-      }
+        foo: 'test',
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -163,18 +163,18 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 42
+          bar: 42,
         },
         data: {
-          baz: 'baz'
-        }
-      }
+          baz: 'baz',
+        },
+      },
     })
 
     wrapper.setProps({
       data: {
-        baz: undefined
-      }
+        baz: undefined,
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -187,21 +187,21 @@ describe('Wrap', () => {
       props: ['foo'],
       data() {
         return {
-          bar: this.foo
+          bar: this.foo,
         }
       },
       render(h): any {
         return h('div', ['data - ' + this.bar])
-      }
+      },
     })
 
     const wrapper = shallowMount(wrap(Test), {
       propsData: {
         props: {
-          foo: 'first'
+          foo: 'first',
         },
-        data: {}
-      }
+        data: {},
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -210,9 +210,9 @@ describe('Wrap', () => {
 
     wrapper.setProps({
       props: {
-        foo: 'second'
+        foo: 'second',
       },
-      data: {}
+      data: {},
     })
 
     await wrapper.vm.$nextTick()
@@ -225,16 +225,16 @@ describe('Wrap', () => {
       propsData: {
         props: {
           foo: 'test',
-          bar: 42
+          bar: 42,
         },
         data: {
-          baz: 'baz'
-        }
-      }
+          baz: 'baz',
+        },
+      },
     })
 
     wrapper.setProps({
-      data: {}
+      data: {},
     })
 
     await wrapper.vm.$nextTick()
@@ -249,7 +249,7 @@ describe('Wrap', () => {
     const Test = {
       render(h: Function): any {
         return h('div', (this as any).$test)
-      }
+      },
     }
 
     const { wrap } = createInstrument(localVue)
@@ -259,8 +259,8 @@ describe('Wrap', () => {
       localVue,
       propsData: {
         props: {},
-        data: {}
-      }
+        data: {},
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -270,13 +270,13 @@ describe('Wrap', () => {
 
   it('can be injected root constructor options', async () => {
     const { wrap } = createInstrument(Vue, {
-      test: 'injected'
+      test: 'injected',
     } as any)
 
     const Test = {
       render(h: Function): any {
         return h('div', (this as any).$root.$options.test)
-      }
+      },
     }
 
     const Wrapper = wrap(Test)
@@ -284,8 +284,8 @@ describe('Wrap', () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {},
-        data: {}
-      }
+        data: {},
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -303,13 +303,13 @@ describe('Wrap', () => {
 
       data() {
         return {
-          bar: 123
+          bar: 123,
         }
       },
 
       render(h): VNode {
         return h('div', [`foo: ${this.foo}, bar: ${this.bar}`])
-      }
+      },
     })
 
     const Wrapper = wrap(Test)
@@ -317,12 +317,12 @@ describe('Wrap', () => {
     const wrapper = shallowMount(Wrapper, {
       propsData: {
         props: {
-          foo: 'Test'
+          foo: 'Test',
         },
         data: {
-          bar: 456
-        }
-      }
+          bar: 456,
+        },
+      },
     })
 
     await wrapper.vm.$nextTick()
@@ -351,11 +351,11 @@ describe('Wrap', () => {
               ? JSON.stringify(this.__test__)
               : this.__test__
           return h('div', rendered)
-        }
+        },
       })
 
       const Wrapper = wrap(Test, {
-        __test__: meta
+        __test__: meta,
       })
 
       const wrapper = shallowMount(Wrapper, {
@@ -364,10 +364,10 @@ describe('Wrap', () => {
             prop === undefined
               ? {}
               : {
-                  __test__: prop
+                  __test__: prop,
                 },
-          data: {}
-        }
+          data: {},
+        },
       })
 
       await wrapper.vm.$nextTick()
@@ -403,12 +403,12 @@ describe('Wrap', () => {
 
     const LifecycleTest = Vue.extend({
       props: {
-        message: String
+        message: String,
       },
 
       data() {
         return {
-          updateCount: 0
+          updateCount: 0,
         }
       },
 
@@ -417,7 +417,7 @@ describe('Wrap', () => {
 
       render(h): any {
         return h('div', [this.message])
-      }
+      },
     })
 
     const LifecycleWrapper = wrap(LifecycleTest)
@@ -426,20 +426,20 @@ describe('Wrap', () => {
       shallowMount(LifecycleWrapper, {
         propsData: {
           props: {
-            message: 'initial'
+            message: 'initial',
           },
-          data: {}
-        }
+          data: {},
+        },
       })
       await Vue.nextTick()
 
       shallowMount(LifecycleWrapper, {
         propsData: {
           props: {
-            message: 'another'
+            message: 'another',
           },
-          data: {}
-        }
+          data: {},
+        },
       })
       await Vue.nextTick()
 

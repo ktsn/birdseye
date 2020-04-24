@@ -6,14 +6,14 @@ describe('InputBoolean', () => {
   it('applies input prop to actual element checked', async () => {
     const wrapper = shallowMount(InputBoolean, {
       propsData: {
-        value: true
-      }
+        value: true,
+      },
     })
     const input = wrapper.find('input').element as HTMLInputElement
     expect(input.checked).toBe(true)
 
     wrapper.setProps({
-      value: false
+      value: false,
     })
     await Vue.nextTick()
     expect(input.checked).toBe(false)
@@ -22,8 +22,8 @@ describe('InputBoolean', () => {
   it('emit input event when checkbox is changed', () => {
     const wrapper = shallowMount(InputBoolean, {
       propsData: {
-        value: true
-      }
+        value: true,
+      },
     })
     const input = wrapper.find('input')
     ;(input.element as HTMLInputElement).checked = false

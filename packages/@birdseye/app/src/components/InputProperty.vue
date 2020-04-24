@@ -14,8 +14,8 @@ export default Vue.extend({
   props: {
     value: {
       type: [String, Number, Boolean, Array, Object],
-      default: undefined
-    }
+      default: undefined,
+    },
   },
 
   render(h, { data, props }): VNode {
@@ -23,6 +23,6 @@ export default Vue.extend({
     return isPrimitive(props.value)
       ? h(InputPropertyPrimitive, data)
       : h(InputPropertyObject, data)
-  }
+  },
 })
 </script>

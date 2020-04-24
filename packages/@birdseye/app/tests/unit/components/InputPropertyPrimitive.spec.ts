@@ -7,8 +7,8 @@ describe('InputPropertyPrimitive', () => {
     const wrapper = shallowMount(InputPropertyPrimitive, {
       propsData: {
         name: 'propname',
-        value: 'foo'
-      }
+        value: 'foo',
+      },
     })
     const input = wrapper.find(BaseInput)
     expect(input.props().value).toBe('foo')
@@ -19,8 +19,8 @@ describe('InputPropertyPrimitive', () => {
       propsData: {
         name: 'propname',
         value: 'test',
-        availableTypes: ['string', 'number']
-      }
+        availableTypes: ['string', 'number'],
+      },
     })
     const input = wrapper.find(BaseInput)
     expect(input.props().availableTypes).toEqual(['string', 'number'])
@@ -30,8 +30,8 @@ describe('InputPropertyPrimitive', () => {
     const wrapper = shallowMount(InputPropertyPrimitive, {
       propsData: {
         name: 'propname',
-        value: 'foo'
-      }
+        value: 'foo',
+      },
     })
     const input = wrapper.find(BaseInput)
     input.vm.$emit('input', 'bar')
@@ -42,8 +42,8 @@ describe('InputPropertyPrimitive', () => {
     const wrapper = shallowMount(InputPropertyPrimitive, {
       propsData: {
         name: 'propname',
-        value: 'foo'
-      }
+        value: 'foo',
+      },
     })
     wrapper.find('[aria-label="Remove"]').vm.$emit('click')
     expect(wrapper.emitted('remove').length).toBe(1)

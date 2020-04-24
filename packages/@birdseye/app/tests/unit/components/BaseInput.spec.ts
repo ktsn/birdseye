@@ -9,8 +9,8 @@ describe('BaseInput', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
           value: 'foo',
-          removeInput: true
-        }
+          removeInput: true,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -19,8 +19,8 @@ describe('BaseInput', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
           value: 'foo',
-          removeTypes: true
-        }
+          removeTypes: true,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -30,8 +30,8 @@ describe('BaseInput', () => {
     it('string', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: 'string value'
-        }
+          value: 'string value',
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -39,8 +39,8 @@ describe('BaseInput', () => {
     it('number', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: 123
-        }
+          value: 123,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -48,8 +48,8 @@ describe('BaseInput', () => {
     it('boolean', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: true
-        }
+          value: true,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -57,8 +57,8 @@ describe('BaseInput', () => {
     it('array', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: ['foo', 42, true]
-        }
+          value: ['foo', 42, true],
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -69,9 +69,9 @@ describe('BaseInput', () => {
           value: {
             a: 'foo',
             b: 42,
-            c: true
-          }
-        }
+            c: true,
+          },
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -79,8 +79,8 @@ describe('BaseInput', () => {
     it('null', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: null
-        }
+          value: null,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -88,8 +88,8 @@ describe('BaseInput', () => {
     it('undefined', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: undefined
-        }
+          value: undefined,
+        },
       })
       expect(wrapper.html()).toMatchSnapshot()
     })
@@ -100,18 +100,18 @@ describe('BaseInput', () => {
       name: 'Test',
       render(h: Function): any {
         return h()
-      }
+      },
     }
 
     it('ports input event from the field', () => {
       const wrapper = shallowMount(BaseInput, {
         propsData: {
           value: 'str',
-          availableTypes: ['string']
+          availableTypes: ['string'],
         },
         stubs: {
-          InputString: Test
-        }
+          InputString: Test,
+        },
       })
 
       wrapper.find(Test).vm.$emit('input', 'updated')
@@ -129,8 +129,8 @@ describe('BaseInput', () => {
     beforeEach(() => {
       wrapper = shallowMount(BaseInput, {
         propsData: {
-          value: 'str'
-        }
+          value: 'str',
+        },
       })
     })
 

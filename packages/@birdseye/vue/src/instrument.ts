@@ -3,13 +3,13 @@ import Vue, {
   VueConstructor,
   VNode,
   ComponentOptions,
-  CreateElement
+  CreateElement,
 } from 'vue'
 import {
   normalizeMeta,
   ComponentDeclaration,
   ComponentDataInfo,
-  ComponentDataType
+  ComponentDataType,
 } from '@birdseye/core'
 
 export function createInstrument(
@@ -25,7 +25,7 @@ export function createInstrument(
         props: {} as Record<string, any>,
         data: {} as Record<string, any>,
         slots: {} as Record<string, (props: any) => VNode[]>,
-        id: null as number | null
+        id: null as number | null,
       }
     },
 
@@ -46,7 +46,7 @@ export function createInstrument(
         if (child) {
           const defaultData = this.collectDefaultData()
 
-          Object.keys(child.$data).forEach(key => {
+          Object.keys(child.$data).forEach((key) => {
             child.$data[key] = key in newData ? newData[key] : defaultData[key]
           })
         }
@@ -57,11 +57,11 @@ export function createInstrument(
         vm.component = component
         vm.id = id
         this.$forceUpdate()
-      }
+      },
     },
 
     watch: {
-      data: 'applyData'
+      data: 'applyData',
     },
 
     created() {
@@ -84,7 +84,7 @@ export function createInstrument(
       }
 
       // TODO: Support scoped slots
-      const slotNodes = Object.keys(this.slots).map(key => {
+      const slotNodes = Object.keys(this.slots).map((key) => {
         return h('template', { slot: key }, this.slots[key]({}))
       })
 
@@ -93,13 +93,13 @@ export function createInstrument(
         {
           key: String(this.id),
           props: this.props,
-          ref: 'child'
+          ref: 'child',
         },
         slotNodes
       )
 
       return mapRender ? mapRender.call(this, h, wrapped) : wrapped
-    }
+    },
   })
 
   // We need to immediately mount root instance to let devtools detect it
@@ -112,7 +112,7 @@ export function createInstrument(
 
   return {
     instrument,
-    wrap
+    wrap,
   }
 
   function instrument(Component: Component): ComponentDeclaration {
@@ -124,14 +124,14 @@ export function createInstrument(
       name: rawMeta.name || options.name,
       props: rawMeta.props,
       data: rawMeta.data,
-      patterns: rawMeta.patterns
+      patterns: rawMeta.patterns,
     })
 
     const Wrapper = wrap(Component, meta.props)
 
     return {
       Wrapper,
-      meta
+      meta,
     }
   }
 
@@ -147,19 +147,19 @@ export function createInstrument(
       props: {
         props: {
           type: Object,
-          required: true
+          required: true,
         },
 
         data: {
           type: Object,
-          required: true
-        }
+          required: true,
+        },
       },
 
       computed: {
         filledProps(): Record<string, any> {
           const filled = { ...this.props }
-          Object.keys(metaProps).forEach(key => {
+          Object.keys(metaProps).forEach((key) => {
             if (filled[key] !== undefined) {
               return
             }
@@ -175,7 +175,7 @@ export function createInstrument(
         // We need to clone data to correctly track some dependent value is changed
         clonedData(): Record<string, any> {
           return { ...this.data }
-        }
+        },
       },
 
       watch: {
@@ -185,7 +185,7 @@ export function createInstrument(
 
         clonedData(newData: Record<string, any>): void {
           root.data = newData
-        }
+        },
       },
 
       mounted() {
@@ -205,17 +205,17 @@ export function createInstrument(
         root.slots = this.$scopedSlots as any
 
         const slots = this.$slots
-        Object.keys(slots).forEach(key => {
+        Object.keys(slots).forEach((key) => {
           root.slots[key] = () => slots[key] || []
         })
 
         return h('div', {
           ref: 'wrapper',
           style: {
-            height: '100%'
-          }
+            height: '100%',
+          },
         })
-      }
+      },
     })
   }
 }

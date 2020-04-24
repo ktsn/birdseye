@@ -9,10 +9,10 @@ module.exports = {
     loaderOptions: {
       postcss: {
         config: {
-          path: __dirname
-        }
-      }
-    }
+          path: __dirname,
+        },
+      },
+    },
   },
 
   configureWebpack: {
@@ -24,10 +24,10 @@ module.exports = {
         return callback(null, 'commonjs ' + request)
       }
       callback()
-    }
+    },
   },
 
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     // prettier-ignore
     config.module
       .rule('vue')
@@ -49,5 +49,5 @@ module.exports = {
         .resourceQuery(/blockType=birdseye/)
         .use('birdseye-vue-loader')
           .loader(birdseyeLoader)
-  }
+  },
 }

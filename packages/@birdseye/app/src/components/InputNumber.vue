@@ -14,14 +14,14 @@ export default Vue.extend({
   name: 'InputString',
 
   components: {
-    BaseInputText
+    BaseInputText,
   },
 
   props: {
     value: {
       type: Number,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>

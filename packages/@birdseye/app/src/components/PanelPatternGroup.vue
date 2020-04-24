@@ -41,29 +41,29 @@ export default Vue.extend({
   name: 'PanelPatternGroup',
 
   components: {
-    InputProperty
+    InputProperty,
   },
 
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
 
     data: {
       type: Array as () => QualifiedData[],
-      required: true
-    }
+      required: true,
+    },
   },
 
   methods: {
     onInput(name: string, value: any): void {
       this.$emit('input', {
         name,
-        value
+        value,
       })
-    }
-  }
+    },
+  },
 })
 </script>
 
