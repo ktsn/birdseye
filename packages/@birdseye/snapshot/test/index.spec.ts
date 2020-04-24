@@ -51,7 +51,7 @@ describe('Snapshot', () => {
       // Use sync version to make sure the order is not changed
       const image = fs.readFileSync(path.join(outDir, file))
       expect(image).toMatchImageSnapshot({
-        failureThreshold: 0.005,
+        failureThreshold: 0.01,
         failureThresholdType: 'percent'
       })
     })
