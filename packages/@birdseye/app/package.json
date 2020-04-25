@@ -67,7 +67,7 @@
     "eslint-loader": "^4.0.0",
     "jest": "^25.1.0",
     "lerna": "^3.2.1",
-    "prettier": "2.0.4",
+    "prettier": "2.0.5",
     "prettier-config-ktsn": "^1.0.0",
     "reg-keygen-git-hash-plugin": "^0.8.5",
     "reg-notify-github-plugin": "^0.8.5",

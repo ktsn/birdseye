@@ -11997,10 +11997,10 @@ prettier-config-ktsn@^1.0.0:
   resolved "https://registry.yarnpkg.com/prettier-config-ktsn/-/prettier-config-ktsn-1.0.0.tgz#1e79165e46c13c1d7c79537aafcc2ccf85b9118f"
   integrity sha512-z1W+wHGWnR3f0Tlq4PvD/3KrjXwaYRSJBj6m0QS0o7LazJR4BKPY1V7BsYQrFTrJrSxx2btyDEPO33NTTsFyfA==
 
-prettier@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.4.tgz#2d1bae173e355996ee355ec9830a7a1ee05457ef"
-  integrity sha512-SVJIQ51spzFDvh4fIbCLvciiDMCrRhlN3mbZvv/+ycjvmF5E73bKdGfU8QDLNmjYJf+lsGnDBC4UUnvTe5OO0w==
+prettier@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
+  integrity sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
 
 prettier@^1.18.2:
   version "1.19.1"
