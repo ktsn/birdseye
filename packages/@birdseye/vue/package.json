@@ -63,7 +63,7 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "eslint": "^6.5.1",
     "eslint-config-ktsn-typescript": "^2.0.0",
-    "jest": "^25.1.0",
+    "jest": "^26.0.1",
     "prettier": "2.0.5",
     "prettier-config-ktsn": "^1.0.0",
     "ts-jest": "^25.0.0",

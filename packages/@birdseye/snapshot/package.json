@@ -62,7 +62,7 @@
     "@vue/cli-service": "^4.1.1",
     "eslint": "^6.7.2",
     "eslint-config-ktsn-typescript": "^2.0.0",
-    "jest": "^25.1.0",
+    "jest": "^26.0.1",
     "jest-image-snapshot": "^3.1.0",
     "prettier": "2.0.5",
     "prettier-config-ktsn": "^1.0.0",
