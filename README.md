@@ -97,6 +97,47 @@ export default catalogFor(MyButton, 'MyButton').add('white button', {
 
 The above example makes the preview background color black. You can specify any CSS properties in `containerStyle` option.
 
+#### Injecting slots and scoped slots
+
+You can inject slots and scoped slots by using `slots` option of `add` function. Pass a template string for a slot:
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton')
+  .add('primary', {
+    props: {
+      primary: true
+    },
+    slots: {
+      // Directly pass template string for the slot
+      default: '<span>Button Text</span>'
+    }
+  })
+```
+
+Pass a function for a scoped slot. The first argument is injected scoped slot props. You can get `$createElement` helper via `this` context:
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton')
+  .add('primary', {
+    props: {
+      primary: true
+    },
+    slots: {
+      // Pass scoped slot function
+      default(props) {
+        const h = this.$createElement
+        return h('span', ['Button Text ', props.message])
+      }
+    }
+  })
+```
+
 #### Wrapping catalog component with another element
 
 You can use `mapRender` option to modify rendered element structure. `mapRender` should be a function that receives [`createElement` function](https://vuejs.org/v2/guide/render-function.html#createElement-Arguments) and original VNode object as arguments respectively.
