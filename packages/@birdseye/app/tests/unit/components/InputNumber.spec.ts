@@ -9,7 +9,7 @@ describe('InputNumber', () => {
         value: 123,
       },
     })
-    const input = wrapper.find(BaseInputText)
+    const input = wrapper.findComponent(BaseInputText)
     expect(input.props().value).toBe('123')
   })
 
@@ -19,9 +19,9 @@ describe('InputNumber', () => {
         value: 123,
       },
     })
-    const input = wrapper.find(BaseInputText)
+    const input = wrapper.findComponent(BaseInputText)
     input.vm.$emit('input', 456)
 
-    expect(wrapper.emitted('input')[0][0]).toBe(456)
+    expect(wrapper.emitted('input')![0][0]).toBe(456)
   })
 })

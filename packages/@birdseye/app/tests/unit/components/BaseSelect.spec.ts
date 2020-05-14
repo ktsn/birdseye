@@ -35,6 +35,6 @@ describe('BaseSelect', () => {
     const option = wrapper.find('#foo').element as HTMLOptionElement
     option.selected = true
     wrapper.find('select').trigger('change')
-    expect(wrapper.emitted('change')[0][0]).toBe('foo')
+    expect(wrapper.emitted('change')![0][0]).toBe('foo')
   })
 })

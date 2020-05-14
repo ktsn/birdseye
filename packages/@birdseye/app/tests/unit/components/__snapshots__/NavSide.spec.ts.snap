@@ -5,12 +5,16 @@ exports[`NavSide avoid including children dom when patterns are empty 1`] = `
   <li class="item"><button class="anchor">
       Empty
     </button>
-    <!---->
+    <transition-stub name="child">
+      <!---->
+    </transition-stub>
   </li>
   <li class="item"><button class="anchor current">
       Empty Selected
     </button>
-    <!---->
+    <transition-stub name="child">
+      <!---->
+    </transition-stub>
   </li>
 </ul>
 `;
@@ -20,27 +24,31 @@ exports[`NavSide highlight current component 1`] = `
   <li class="item"><button class="anchor current">
       Foo
     </button>
-    <div class="child-wrapper">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
-            Pattern 1
-          </a></li>
-        <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
-            Pattern 2
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
+              Pattern 1
+            </a></li>
+          <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
+              Pattern 2
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
   <li class="item"><button class="anchor">
       Bar
     </button>
-    <div class="child-wrapper" style="display: none;">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
-            Pattern 1
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper" style="display: none;">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
+              Pattern 1
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
 </ul>
 `;
@@ -50,27 +58,31 @@ exports[`NavSide highlight current pattern 1`] = `
   <li class="item"><button class="anchor current">
       Foo
     </button>
-    <div class="child-wrapper">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor current">
-            Pattern 1
-          </a></li>
-        <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
-            Pattern 2
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor current">
+              Pattern 1
+            </a></li>
+          <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
+              Pattern 2
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
   <li class="item"><button class="anchor">
       Bar
     </button>
-    <div class="child-wrapper" style="display: none;">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
-            Pattern 1
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper" style="display: none;">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
+              Pattern 1
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
 </ul>
 `;
@@ -80,27 +92,31 @@ exports[`NavSide renders declarations 1`] = `
   <li class="item"><button class="anchor">
       Foo
     </button>
-    <div class="child-wrapper" style="display: none;">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
-            Pattern 1
-          </a></li>
-        <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
-            Pattern 2
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper" style="display: none;">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Foo/Pattern%201" class="child-anchor">
+              Pattern 1
+            </a></li>
+          <li class="child-item"><a href="#/Foo/Pattern%202" class="child-anchor">
+              Pattern 2
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
   <li class="item"><button class="anchor">
       Bar
     </button>
-    <div class="child-wrapper" style="display: none;">
-      <ul class="child-list">
-        <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
-            Pattern 1
-          </a></li>
-      </ul>
-    </div>
+    <transition-stub name="child">
+      <div class="child-wrapper" style="display: none;">
+        <ul class="child-list">
+          <li class="child-item"><a href="#/Bar/Pattern%201" class="child-anchor">
+              Pattern 1
+            </a></li>
+        </ul>
+      </div>
+    </transition-stub>
   </li>
 </ul>
 `;

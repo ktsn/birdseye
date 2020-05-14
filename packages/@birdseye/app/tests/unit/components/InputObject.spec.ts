@@ -29,7 +29,7 @@ describe('InputObject', () => {
       },
     })
 
-    const inputs = wrapper.findAll(InputProperty)
+    const inputs = wrapper.findAllComponents(InputProperty)
     expect(inputs.at(0).props().name).toBe('a')
     expect(inputs.at(1).props().name).toBe('b')
     expect(inputs.at(2).props().name).toBe('c')
@@ -48,7 +48,7 @@ describe('InputObject', () => {
     })
 
     wrapper.find('[aria-label="Add"]').vm.$emit('click')
-    expect(wrapper.emitted('input')[0][0]).toEqual({
+    expect(wrapper.emitted('input')![0][0]).toEqual({
       a: 'foo',
       '': undefined,
     })
@@ -68,8 +68,8 @@ describe('InputObject', () => {
       },
     })
 
-    wrapper.findAll(InputProperty).at(1).vm.$emit('remove')
-    expect(wrapper.emitted('input')[0][0]).toEqual({
+    wrapper.findAllComponents(InputProperty).at(1).vm.$emit('remove')
+    expect(wrapper.emitted('input')![0][0]).toEqual({
       a: 'foo',
       c: 'baz',
     })
@@ -89,9 +89,9 @@ describe('InputObject', () => {
       },
     })
 
-    const bar = wrapper.findAll(InputProperty).at(1)
+    const bar = wrapper.findAllComponents(InputProperty).at(1)
     bar.vm.$emit('input', 'updated')
-    expect(wrapper.emitted('input')[0][0]).toEqual({
+    expect(wrapper.emitted('input')![0][0]).toEqual({
       a: 'foo',
       b: 'updated',
       c: 'baz',

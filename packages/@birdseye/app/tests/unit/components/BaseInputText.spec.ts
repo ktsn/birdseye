@@ -21,6 +21,6 @@ describe('BaseInputText', () => {
     const input = wrapper.find('input')
     ;(input.element as HTMLInputElement).value = 'updated'
     input.trigger('input')
-    expect(wrapper.emitted('input')[0][0]).toBe('updated')
+    expect(wrapper.emitted('input')![0][0]).toBe('updated')
   })
 })

@@ -29,6 +29,6 @@ describe('InputBoolean', () => {
     ;(input.element as HTMLInputElement).checked = false
     input.trigger('change')
 
-    expect(wrapper.emitted('input')[0][0]).toBe(false)
+    expect(wrapper.emitted('input')![0][0]).toBe(false)
   })
 })

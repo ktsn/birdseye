@@ -13,7 +13,7 @@ describe('InputProperty', () => {
         },
       },
     })
-    expect(wrapper.find(InputPropertyPrimitive).isVisible()).toBe(true)
+    expect(wrapper.findComponent(InputPropertyPrimitive).exists()).toBe(true)
   })
 
   it('treats array as object', () => {
@@ -25,7 +25,7 @@ describe('InputProperty', () => {
         },
       },
     })
-    expect(wrapper.find(InputPropertyObject).isVisible()).toBe(true)
+    expect(wrapper.findComponent(InputPropertyObject).exists()).toBe(true)
   })
 
   it('treats object as object', () => {
@@ -37,6 +37,6 @@ describe('InputProperty', () => {
         },
       },
     })
-    expect(wrapper.find(InputPropertyObject).isVisible()).toBe(true)
+    expect(wrapper.findComponent(InputPropertyObject).exists()).toBe(true)
   })
 })

@@ -55,12 +55,12 @@ describe('PanelPattern', () => {
         PanelPatternGroup: StubGroup,
       },
     })
-    const group = wrapper.findAll(StubGroup).at(0)
+    const group = wrapper.findAllComponents(StubGroup).at(0)
     group.vm.$emit('input', {
       name: 'foo',
       value: 'test',
     })
-    expect(wrapper.emitted('input-prop')[0][0]).toEqual({
+    expect(wrapper.emitted('input-prop')![0][0]).toEqual({
       name: 'foo',
       value: 'test',
     })
@@ -82,12 +82,12 @@ describe('PanelPattern', () => {
         PanelPatternGroup: StubGroup,
       },
     })
-    const group = wrapper.findAll(StubGroup).at(1)
+    const group = wrapper.findAllComponents(StubGroup).at(1)
     group.vm.$emit('input', {
       name: 'foo',
       value: 'test',
     })
-    expect(wrapper.emitted('input-data')[0][0]).toEqual({
+    expect(wrapper.emitted('input-data')![0][0]).toEqual({
       name: 'foo',
       value: 'test',
     })
