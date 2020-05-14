@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    jsx: true
+    jsx: true,
   },
-  extends: 'ktsn-vue'
+  extends: 'ktsn-vue',
 }
