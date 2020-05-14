@@ -39,8 +39,8 @@ describe('Wrap', () => {
         el('baz', this.baz),
 
         // slots
-        el('default-slot', this.$slots.default),
-        el('named-slot', this.$slots.named),
+        el('default-slot', this.$scopedSlots.default?.({ message: 'Hello' })),
+        el('named-slot', this.$scopedSlots.named?.({ message: 'Hello' })),
       ])
     },
   })
@@ -75,9 +75,9 @@ describe('Wrap', () => {
         },
         data: {},
       },
-      slots: {
-        default: 'default slot',
-        named: 'named slot',
+      scopedSlots: {
+        default: '<div>default slot</div>',
+        named: '<div>named slot</div>',
       },
     })
 
@@ -85,6 +85,32 @@ describe('Wrap', () => {
 
     expect(wrapper.find('#default-slot').text()).toBe('default slot')
     expect(wrapper.find('#named-slot').text()).toBe('named slot')
+  })
+
+  it('applies initial scoped slots', async () => {
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {
+          foo: '',
+        },
+        data: {},
+      },
+      scopedSlots: {
+        default(props: any): any {
+          const h = this.$createElement
+          return h('div', ['default: ', props.message])
+        },
+        named(props: any): any {
+          const h = this.$createElement
+          return h('div', ['named: ', props.message])
+        },
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('#default-slot').text()).toBe('default: Hello')
+    expect(wrapper.find('#named-slot').text()).toBe('named: Hello')
   })
 
   it('updates props', async () => {

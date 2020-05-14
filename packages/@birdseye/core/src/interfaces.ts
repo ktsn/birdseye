@@ -34,7 +34,7 @@ export interface ComponentPattern {
   name: string
   props: Record<string, any>
   data: Record<string, any>
-  slots: Record<string, (props: any) => VNode[]>
+  slots: Record<string, (props: any) => VNode[] | undefined>
   containerStyle: Partial<CSSStyleDeclaration>
   plugins: PluginOptions
 }

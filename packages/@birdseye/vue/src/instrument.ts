@@ -24,7 +24,10 @@ export function createInstrument(
       return {
         props: {} as Record<string, any>,
         data: {} as Record<string, any>,
-        slots: {} as Record<string, (props: any) => VNode[]>,
+        slots: {} as Record<
+          string,
+          ((props: any) => VNode[] | undefined) | undefined
+        >,
         id: null as number | null,
       }
     },
@@ -83,20 +86,12 @@ export function createInstrument(
         return h()
       }
 
-      // TODO: Support scoped slots
-      const slotNodes = Object.keys(this.slots).map((key) => {
-        return h('template', { slot: key }, this.slots[key]({}))
+      const wrapped = h(vm.component, {
+        key: String(this.id),
+        props: this.props,
+        ref: 'child',
+        scopedSlots: this.slots,
       })
-
-      const wrapped = h(
-        vm.component,
-        {
-          key: String(this.id),
-          props: this.props,
-          ref: 'child',
-        },
-        slotNodes
-      )
 
       return mapRender ? mapRender.call(this, h, wrapped) : wrapped
     },
@@ -202,13 +197,7 @@ export function createInstrument(
       },
 
       render(h): VNode {
-        root.slots = this.$scopedSlots as any
-
-        const slots = this.$slots
-        Object.keys(slots).forEach((key) => {
-          root.slots[key] = () => slots[key] || []
-        })
-
+        root.slots = this.$scopedSlots
         return h('div', {
           ref: 'wrapper',
           style: {
