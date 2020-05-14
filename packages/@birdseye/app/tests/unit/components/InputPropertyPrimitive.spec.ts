@@ -10,7 +10,7 @@ describe('InputPropertyPrimitive', () => {
         value: 'foo',
       },
     })
-    const input = wrapper.find(BaseInput)
+    const input = wrapper.findComponent(BaseInput)
     expect(input.props().value).toBe('foo')
   })
 
@@ -22,7 +22,7 @@ describe('InputPropertyPrimitive', () => {
         availableTypes: ['string', 'number'],
       },
     })
-    const input = wrapper.find(BaseInput)
+    const input = wrapper.findComponent(BaseInput)
     expect(input.props().availableTypes).toEqual(['string', 'number'])
   })
 
@@ -33,9 +33,9 @@ describe('InputPropertyPrimitive', () => {
         value: 'foo',
       },
     })
-    const input = wrapper.find(BaseInput)
+    const input = wrapper.findComponent(BaseInput)
     input.vm.$emit('input', 'bar')
-    expect(wrapper.emitted('input')[0][0]).toBe('bar')
+    expect(wrapper.emitted('input')![0][0]).toBe('bar')
   })
 
   it('listens remove events', () => {
@@ -46,6 +46,6 @@ describe('InputPropertyPrimitive', () => {
       },
     })
     wrapper.find('[aria-label="Remove"]').vm.$emit('click')
-    expect(wrapper.emitted('remove').length).toBe(1)
+    expect(wrapper.emitted('remove')!.length).toBe(1)
   })
 })

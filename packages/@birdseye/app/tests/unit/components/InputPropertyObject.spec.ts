@@ -5,13 +5,13 @@ import BaseInput from '@/components/BaseInput.vue'
 describe('InputPropertyObject', () => {
   function findTypeInput(wrapper: Wrapper<any>) {
     return wrapper
-      .findAll(BaseInput)
+      .findAllComponents(BaseInput)
       .wrappers.find((w) => !w.props().removeType)!
   }
 
   function findValueInput(wrapper: Wrapper<any>) {
     return wrapper
-      .findAll(BaseInput)
+      .findAllComponents(BaseInput)
       .wrappers.find((w) => !w.props().removeInput)!
   }
 
@@ -22,7 +22,7 @@ describe('InputPropertyObject', () => {
         value: ['foo', 'bar'],
       },
     })
-    wrapper.findAll(BaseInput).wrappers.forEach((input) => {
+    wrapper.findAllComponents(BaseInput).wrappers.forEach((input) => {
       expect(input.props().value).toEqual(['foo', 'bar'])
     })
   })
@@ -52,8 +52,8 @@ describe('InputPropertyObject', () => {
     const value = findValueInput(wrapper)
     value.vm.$emit('input', ['bar'])
 
-    expect(wrapper.emitted('input')[0][0]).toEqual({})
-    expect(wrapper.emitted('input')[1][0]).toEqual(['bar'])
+    expect(wrapper.emitted('input')![0][0]).toEqual({})
+    expect(wrapper.emitted('input')![1][0]).toEqual(['bar'])
   })
 
   it('listens remove events', () => {
@@ -64,6 +64,6 @@ describe('InputPropertyObject', () => {
       },
     })
     wrapper.find('[aria-label="Remove"]').vm.$emit('click')
-    expect(wrapper.emitted('remove').length).toBe(1)
+    expect(wrapper.emitted('remove')!.length).toBe(1)
   })
 })

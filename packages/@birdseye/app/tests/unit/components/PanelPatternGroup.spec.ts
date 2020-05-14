@@ -58,9 +58,9 @@ describe('PanelPatternGroup', () => {
       },
     })
 
-    const input = wrapper.findAll(StubInputProperty).at(1)
+    const input = wrapper.findAllComponents(StubInputProperty).at(1)
     input.vm.$emit('input', 456)
-    expect(wrapper.emitted('input')[0][0]).toEqual({
+    expect(wrapper.emitted('input')![0][0]).toEqual({
       name: 'bar',
       value: 456,
     })

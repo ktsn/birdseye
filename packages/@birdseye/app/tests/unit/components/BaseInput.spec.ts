@@ -114,14 +114,14 @@ describe('BaseInput', () => {
         },
       })
 
-      wrapper.find(Test).vm.$emit('input', 'updated')
-      expect(wrapper.emitted('input')[0][0]).toBe('updated')
+      wrapper.findComponent(Test).vm.$emit('input', 'updated')
+      expect(wrapper.emitted('input')![0][0]).toBe('updated')
     })
   })
 
   describe('will emit input event with empty value when the type is changed', () => {
     function changeType(wrapper: Wrapper<any>, type: ComponentDataType): void {
-      const select = wrapper.find(BaseSelect)
+      const select = wrapper.findComponent(BaseSelect)
       select.vm.$emit('change', type)
     }
 
@@ -136,37 +136,37 @@ describe('BaseInput', () => {
 
     it('string', () => {
       changeType(wrapper, 'string')
-      expect(wrapper.emitted('input')[0][0]).toBe('')
+      expect(wrapper.emitted('input')![0][0]).toBe('')
     })
 
     it('number', () => {
       changeType(wrapper, 'number')
-      expect(wrapper.emitted('input')[0][0]).toBe(0)
+      expect(wrapper.emitted('input')![0][0]).toBe(0)
     })
 
     it('boolean', () => {
       changeType(wrapper, 'boolean')
-      expect(wrapper.emitted('input')[0][0]).toBe(false)
+      expect(wrapper.emitted('input')![0][0]).toBe(false)
     })
 
     it('array', () => {
       changeType(wrapper, 'array')
-      expect(wrapper.emitted('input')[0][0]).toEqual([])
+      expect(wrapper.emitted('input')![0][0]).toEqual([])
     })
 
     it('object', () => {
       changeType(wrapper, 'object')
-      expect(wrapper.emitted('input')[0][0]).toEqual({})
+      expect(wrapper.emitted('input')![0][0]).toEqual({})
     })
 
     it('null', () => {
       changeType(wrapper, 'null')
-      expect(wrapper.emitted('input')[0][0]).toEqual(null)
+      expect(wrapper.emitted('input')![0][0]).toEqual(null)
     })
 
     it('undefined', () => {
       changeType(wrapper, 'undefined')
-      expect(wrapper.emitted('input')[0][0]).toEqual(undefined)
+      expect(wrapper.emitted('input')![0][0]).toEqual(undefined)
     })
   })
 })

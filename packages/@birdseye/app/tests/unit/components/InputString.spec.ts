@@ -9,7 +9,7 @@ describe('InputString', () => {
         value: 'prop value',
       },
     })
-    const input = wrapper.find(BaseInputText)
+    const input = wrapper.findComponent(BaseInputText)
     expect(input.props().value).toBe('prop value')
   })
 
@@ -19,9 +19,9 @@ describe('InputString', () => {
         value: 'prop value',
       },
     })
-    const input = wrapper.find(BaseInputText)
+    const input = wrapper.findComponent(BaseInputText)
     input.vm.$emit('input', 'updated')
 
-    expect(wrapper.emitted('input')[0][0]).toBe('updated')
+    expect(wrapper.emitted('input')![0][0]).toBe('updated')
   })
 })

@@ -24,7 +24,7 @@ describe('InputArray', () => {
       },
     })
 
-    const inputs = wrapper.findAll(InputProperty)
+    const inputs = wrapper.findAllComponents(InputProperty)
     expect(inputs.at(0).props().value).toBe('foo')
     expect(inputs.at(1).props().value).toBe(1)
     expect(inputs.at(2).props().value).toBe(true)
@@ -38,7 +38,7 @@ describe('InputArray', () => {
     })
 
     wrapper.find('[aria-label="Add"]').vm.$emit('click')
-    expect(wrapper.emitted('input')[0][0]).toEqual(['foo', undefined])
+    expect(wrapper.emitted('input')![0][0]).toEqual(['foo', undefined])
   })
 
   it('emits input event when an item is removed', () => {
@@ -51,8 +51,8 @@ describe('InputArray', () => {
       },
     })
 
-    wrapper.findAll(InputProperty).at(1).vm.$emit('remove')
-    expect(wrapper.emitted('input')[0][0]).toEqual(['foo', 'baz'])
+    wrapper.findAllComponents(InputProperty).at(1).vm.$emit('remove')
+    expect(wrapper.emitted('input')![0][0]).toEqual(['foo', 'baz'])
   })
 
   it('emits input event when an item is updated', () => {
@@ -65,8 +65,8 @@ describe('InputArray', () => {
       },
     })
 
-    const bar = wrapper.findAll(InputProperty).at(1)
+    const bar = wrapper.findAllComponents(InputProperty).at(1)
     bar.vm.$emit('input', 'updated')
-    expect(wrapper.emitted('input')[0][0]).toEqual(['foo', 'updated', 'baz'])
+    expect(wrapper.emitted('input')![0][0]).toEqual(['foo', 'updated', 'baz'])
   })
 })
