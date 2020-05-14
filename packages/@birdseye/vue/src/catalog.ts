@@ -19,10 +19,12 @@ export interface CatalogOptions {
   mapRender?: (this: Vue, h: CreateElement, wrapped: VNode) => VNode
 }
 
+export type Slot = string | ((this: Vue, props: any) => VNode[] | undefined)
+
 export interface CatalogPatternOptions {
   props?: Record<string, any>
   data?: Record<string, any>
-  slots?: Record<string, string>
+  slots?: Record<string, Slot>
   containerStyle?: Partial<CSSStyleDeclaration>
   plugins?: PluginOptions
 }
@@ -48,14 +50,18 @@ export function catalogFor(
   function catalog(patterns: ComponentPattern[]): Catalog {
     return {
       add(patternName, options = {}) {
-        const originalSlots = options.slots || {}
+        const rawSlots = options.slots || {}
 
-        const slots = Object.keys(originalSlots).reduce<
-          Record<string, (props: any) => VNode[]>
+        const slots = Object.keys(rawSlots).reduce<
+          Record<string, (props: any) => VNode[] | undefined>
         >((acc, key) => {
-          acc[key] = (_props) => {
-            return compileSlot(originalSlots[key])
-          }
+          const raw = rawSlots[key]
+          acc[key] =
+            typeof raw === 'function'
+              ? raw.bind(getRenderProxy())
+              : (_props) => {
+                  return compileSlot(raw)
+                }
           return acc
         }, {})
 
@@ -93,9 +99,13 @@ function compileSlot(slot: string): VNode[] {
     <div>${slot}</div>
   `)
 
-  const ctx: any = new Vue({
-    staticRenderFns: compiled.staticRenderFns,
-  })
-  const vnode = compiled.render.call(ctx._renderProxy)
+  const vnode = compiled.render.call(getRenderProxy(compiled.staticRenderFns))
   return vnode.children!
+}
+
+function getRenderProxy(staticRenderFns?: (() => VNode)[]): Vue {
+  const ctx: any = new Vue({
+    staticRenderFns,
+  })
+  return ctx._renderProxy
 }
