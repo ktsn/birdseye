@@ -74,7 +74,7 @@
     "reg-publish-s3-plugin": "^0.9.0",
     "reg-suit": "^0.10.0",
     "rimraf": "^3.0.0",
-    "ts-jest": "^25.0.0",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.0.3",
     "vue": "^2.6.7",
     "vue-template-compiler": "^2.6.7",
