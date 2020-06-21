@@ -2,3 +2,4 @@
 publish = "packages/@birdseye/app/dist"
 command = "yarn build && yarn catalog"
 environment = { NODE_ENV = "development" }
+ignore = "git log -1 --pretty=%B | grep dependabot"
