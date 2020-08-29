@@ -8,15 +8,15 @@ const vueBirdseyeLoader: loader.Loader = function (source, map) {
     : {}
 
   try {
-    let meta: string
+    let meta: string | object
     if (options.lang === 'yaml' || options.lang === 'yml') {
-      meta = yaml.safeLoad(String(source))
+      meta = yaml.safeLoad(String(source)) ?? {}
     } else {
-      meta = JSON.parse(String(source))
+      meta = JSON.parse(String(source)) ?? {}
     }
 
     const extractPropsReq = loaderUtils.stringifyRequest(
-      this as any, // temporary workaround until loader-utils uses the latest webpack types
+      this,
       '@birdseye/vue/lib/extract-props'
     )
 
