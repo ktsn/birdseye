@@ -26,9 +26,7 @@
       </li>
     </ul>
 
-    <p v-else class="no-data">
-      No Data
-    </p>
+    <p v-else class="no-data">No Data</p>
   </div>
 </template>
 
