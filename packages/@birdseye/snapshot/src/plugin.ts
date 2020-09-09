@@ -1,8 +1,10 @@
 import { Catalog } from '@birdseye/core'
+import { PageContext } from './page-context'
 
 export interface SnapshotOptions {
   delay?: number
   disableCssAnimation?: boolean
+  capture?: (page: PageContext, capture: () => Promise<void>) => Promise<void>
 }
 
 export interface CatalogRoute {
@@ -25,11 +27,13 @@ export function snapshotPlugin(catalogs: Catalog[]): void {
     )
   }, [])
 
-  const script = document.createElement('script')
-  script.id = '__birdseye_routes__'
-  script.type = 'application/json'
-  script.textContent = JSON.stringify(routes)
-  document.head.appendChild(script)
+  window.__birdseye_routes__ = routes
+}
+
+declare global {
+  interface Window {
+    __birdseye_routes__: CatalogRoute[]
+  }
 }
 
 declare module '@birdseye/core/dist/interfaces' {
