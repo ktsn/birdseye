@@ -47,15 +47,16 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
   return new Promise((resolve, reject) => {
     const stream = createCaptureStream(
       routes.map((route, i) => {
+        const snapshot = route.snapshot ?? {}
         // capture option becomes '{} | undefined' as Function is not serializable.
-        const hasCapture = !!route.snapshot?.capture
+        const hasCapture = !!snapshot.capture
 
         return {
           url: opts.url + '#' + route.path + '?fullscreen=1',
-          target: previewSelector,
+          target: snapshot.target ?? previewSelector,
           viewport: opts.viewport,
-          delay: route.snapshot?.delay,
-          disableCssAnimation: route.snapshot?.disableCssAnimation,
+          delay: snapshot.delay,
+          disableCssAnimation: snapshot.disableCssAnimation,
           capture: hasCapture
             ? (page, capture) => runCapture(page, capture, i)
             : undefined,

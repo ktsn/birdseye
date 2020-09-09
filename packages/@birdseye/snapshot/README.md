@@ -101,6 +101,7 @@ All options should be into `plugins.snapshot` for each catalog settings.
 
 Available snapshot options are below:
 
+- `target` CSS selector for the element that will be captured. (default: the root element of the preview)
 - `delay` A delay (ms) before taking snapshot.
 - `disableCssAnimation` Disable CSS animations and transitions if `true`. (default `true`)
 - `capture` A function to define interactions (e.g. `click`, `hover` etc. the an element) before capture. See [Triggering Interaction before Capture](#triggering-interaction-before-capture) for details.
