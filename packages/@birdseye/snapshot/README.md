@@ -101,6 +101,7 @@ All options should be into `plugins.snapshot` for each catalog settings.
 
 Available snapshot options are below:
 
+- `skip` Set `true` if you want to skip capturing for the catalog. (default `false`)
 - `target` CSS selector for the element that will be captured. (default: the root element of the preview)
 - `delay` A delay (ms) before taking snapshot.
 - `disableCssAnimation` Disable CSS animations and transitions if `true`. (default `true`)

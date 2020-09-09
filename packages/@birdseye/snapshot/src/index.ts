@@ -38,9 +38,10 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
   await page.goto(opts.url)
 
   // Get all snapshot options from catalogs.
-  const routes: CatalogRoute[] = await page.evaluate(() => {
+  const rawRoutes: CatalogRoute[] = await page.evaluate(() => {
     return window.__birdseye_routes__
   })
+  const routes = rawRoutes.filter((route) => !route.snapshot?.skip)
 
   await browser.close()
 
