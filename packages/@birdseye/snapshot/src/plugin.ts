@@ -6,7 +6,10 @@ export interface SnapshotOptions {
   target?: string
   delay?: number
   disableCssAnimation?: boolean
-  capture?: (page: PageContext, capture: () => Promise<void>) => Promise<void>
+  capture?: (
+    page: PageContext,
+    capture: (target?: string) => Promise<void>
+  ) => Promise<void>
 }
 
 export interface CatalogRoute {
