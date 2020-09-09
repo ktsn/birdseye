@@ -25,6 +25,6 @@ name: Fill preview area
 patterns:
   - name: style
     containerStyle:
-      backgroundColor: "#aaa"
+      backgroundColor: '#aaa'
       height: 100%
 </birdseye>

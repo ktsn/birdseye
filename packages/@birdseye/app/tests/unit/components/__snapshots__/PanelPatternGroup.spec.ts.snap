@@ -4,9 +4,7 @@ exports[`PanelPatternGroup renders no data when data is empty 1`] = `
 <div class="panel-pattern-group"><strong class="title">
     no data
   </strong>
-  <p class="no-data">
-    No Data
-  </p>
+  <p class="no-data">No Data</p>
 </div>
 `;
 

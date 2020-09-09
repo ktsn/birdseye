@@ -4,13 +4,27 @@ exports[`BaseInput rendering removes input 1`] = `
 <div class="base-input">
   <!---->
   <baseselect-stub value="string" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -26,13 +40,27 @@ exports[`BaseInput supported types array 1`] = `
 <div class="base-input">
   <inputarray-stub value="foo,42,true"></inputarray-stub>
   <baseselect-stub value="array" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -41,13 +69,27 @@ exports[`BaseInput supported types boolean 1`] = `
 <div class="base-input">
   <inputboolean-stub value="true"></inputboolean-stub>
   <baseselect-stub value="boolean" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -56,13 +98,27 @@ exports[`BaseInput supported types null 1`] = `
 <div class="base-input">
   <inputempty-stub></inputempty-stub>
   <baseselect-stub value="null" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -71,13 +127,27 @@ exports[`BaseInput supported types number 1`] = `
 <div class="base-input">
   <inputnumber-stub value="123"></inputnumber-stub>
   <baseselect-stub value="number" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -86,13 +156,27 @@ exports[`BaseInput supported types object 1`] = `
 <div class="base-input">
   <inputobject-stub value="[object Object]"></inputobject-stub>
   <baseselect-stub value="object" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -101,13 +185,27 @@ exports[`BaseInput supported types string 1`] = `
 <div class="base-input">
   <inputstring-stub value="string value"></inputstring-stub>
   <baseselect-stub value="string" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
@@ -116,13 +214,27 @@ exports[`BaseInput supported types undefined 1`] = `
 <div class="base-input">
   <inputempty-stub></inputempty-stub>
   <baseselect-stub value="undefined" class="select-type">
-    <option value="string">string</option>
-    <option value="number">number</option>
-    <option value="boolean">boolean</option>
-    <option value="array">array</option>
-    <option value="object">object</option>
-    <option value="null">null</option>
-    <option value="undefined">undefined</option>
+    <option value="string">
+      string
+    </option>
+    <option value="number">
+      number
+    </option>
+    <option value="boolean">
+      boolean
+    </option>
+    <option value="array">
+      array
+    </option>
+    <option value="object">
+      object
+    </option>
+    <option value="null">
+      null
+    </option>
+    <option value="undefined">
+      undefined
+    </option>
   </baseselect-stub>
 </div>
 `;
