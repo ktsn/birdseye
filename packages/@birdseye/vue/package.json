@@ -29,7 +29,7 @@
     "prepare": "yarn clean && yarn build",
     "prepublishOnly": "yarn test",
     "clean": "rm -rf lib",
-    "build": "tsc -p src && tsc src/webpack-loader.ts --outDir lib --module commonjs --target esnext",
+    "build": "tsc -p src && tsc src/webpack-loader.ts --outDir lib --module commonjs --target es2018",
     "dev": "yarn build -w",
     "lint": "eslint --ext js,ts src test",
     "lint:fix": "eslint --fix --ext js,ts src test",
