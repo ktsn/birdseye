@@ -4,6 +4,7 @@ import * as mkdirp from 'mkdirp'
 import * as puppeteer from 'puppeteer'
 import { createCaptureStream } from 'capture-all'
 import { CatalogRoute } from './plugin'
+import { runCapture } from './page-context'
 
 export interface SnapshotOptions {
   url: string
@@ -15,7 +16,6 @@ export interface SnapshotOptions {
 }
 
 const previewSelector = '#__birdseye_preview__'
-const routesScriptSelector = '#__birdseye_routes__'
 
 function fillOptionDefaults(
   options: SnapshotOptions
@@ -37,27 +37,28 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
   const page = await browser.newPage()
   await page.goto(opts.url)
 
-  const frame = await page.mainFrame()
-  await frame.waitFor(routesScriptSelector)
-
-  const routes: CatalogRoute[] = await frame.$eval(
-    routesScriptSelector,
-    (el: Element) => {
-      return JSON.parse(el.textContent || '[]')
-    }
-  )
+  // Get all snapshot options from catalogs.
+  const routes: CatalogRoute[] = await page.evaluate(() => {
+    return window.__birdseye_routes__
+  })
 
   await browser.close()
 
   return new Promise((resolve, reject) => {
     const stream = createCaptureStream(
-      routes.map((route) => {
+      routes.map((route, i) => {
+        // capture option becomes '{} | undefined' as Function is not serializable.
+        const hasCapture = !!route.snapshot?.capture
+
         return {
           url: opts.url + '#' + route.path + '?fullscreen=1',
           target: previewSelector,
           viewport: opts.viewport,
           delay: route.snapshot?.delay,
           disableCssAnimation: route.snapshot?.disableCssAnimation,
+          capture: hasCapture
+            ? (page, capture) => runCapture(page, capture, i)
+            : undefined,
         }
       })
     )
@@ -70,7 +71,10 @@ export async function snapshot(options: SnapshotOptions): Promise<void> {
         .slice(1)
         .replace(/\?fullscreen=1$/, '')
         .replace(/[^0-9a-zA-Z]/g, '_')
-      const dest = path.join(opts.snapshotDir, normalized + '.png')
+      const dest = path.join(
+        opts.snapshotDir,
+        normalized + '_' + (result.index + 1) + '.png'
+      )
 
       fs.writeFile(dest, result.image, (error) => {
         if (error) {

@@ -68,7 +68,7 @@ Then run the script with following command:
 $ node birdseye/capture.js
 ```
 
-It will store snapshot images in `birdseye/snapshots` for all component catalogs. You can visual regression test with the snapshots.
+It will store snapshot images in `birdseye/snapshots` for all component catalogs. You can run visual regression test with the snapshots.
 
 ### Snapshot Options
 
@@ -103,6 +103,57 @@ Available snapshot options are below:
 
 - `delay` A delay (ms) before taking snapshot.
 - `disableCssAnimation` Disable CSS animations and transitions if `true`. (default `true`)
+- `capture` A function to define interactions (e.g. `click`, `hover` etc. the an element) before capture. See [Triggering Interaction before Capture](#triggering-interaction-before-capture) for details.
+
+### Triggering Interaction before Capture
+
+There are cases that you want to manipulate a rendered catalog before capturing it. For example, capturing a hover style of a button, a focused style of a text field, etc.
+
+You can trigger such manipulations with `capture` option:
+
+```js
+import { catalogFor } from '@birdseye/vue'
+import MyButton from '@/components/MyButton.vue'
+
+export default catalogFor(MyButton, 'MyButton')
+  .add('primary', {
+    props: {
+      primary: true
+    },
+
+    slots: {
+      default: 'Button Text'
+    },
+
+    plugins: {
+      snapshot: {
+        capture: async (page, capture) => {
+          // Capture the regular style of the button.
+          await capture()
+
+          // Trigger a hover for the button. Specify the target elemenet with a CSS selector.
+          // The below triggers a hover for an element with `my-button` class.
+          await page.hover('.my-button')
+
+          // Capture the button while it is hovered.
+          await capture()
+        }
+      }
+    }
+  })
+```
+
+`capture` option is a function receiving two arguments - a page context and a capture function. The page context has methods to trigger manipulations for an element in the page. They are just aliases of [Puppeteer's ElementHandle methods](https://github.com/puppeteer/puppeteer/blob/v5.2.1/docs/api.md#class-elementhandle) except receiving the selector for the element as the first argument. Available methods are below:
+
+- click
+- focus
+- hover
+- press
+- select
+- tap
+- type
+
+The original method arguments are supposed to placed after the second argument. For example, if you write `el.click({ button: 'right' })` with Puppeteer, the equivalent is `page.click('.selector', { button: 'right' })`.
 
 ### Visual Regression Testing with [reg-suit](https://github.com/reg-viz/reg-suit)
 
