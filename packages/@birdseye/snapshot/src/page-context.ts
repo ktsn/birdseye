@@ -24,11 +24,14 @@ const pageContextKeys = [
   'type',
 ] as const
 
-async function exposePageContext(page: Page): Promise<void> {
+async function exposePageContext(
+  page: Page,
+  routeIndex: number
+): Promise<void> {
   await Promise.all(
     pageContextKeys.map((key) => {
       return page.exposeFunction(
-        exposedKeyPrefix + key,
+        exposedKeyPrefix + key + routeIndex,
         async (selector: string, ...args: any[]) => {
           const el = await page.$(selector)
           if (!el) {
@@ -46,8 +49,10 @@ export async function runCapture(
   capture: () => Promise<void>,
   routeIndex: number
 ): Promise<void> {
-  await exposePageContext(page)
-  await page.exposeFunction(exposedCaptureKey, capture)
+  // Exposed function must be unique as the one exposed by another catalog can remain
+  // because there is no page transition between catalog as they are hashed routes.
+  await exposePageContext(page, routeIndex)
+  await page.exposeFunction(exposedCaptureKey + routeIndex, capture)
 
   await page.evaluate(
     (
@@ -65,11 +70,11 @@ export async function runCapture(
       const pageContext = {} as PageContext
       pageContextKeys.forEach((key) => {
         Object.defineProperty(pageContext, key, {
-          get: () => (window as any)[exposedKeyPrefix + key],
+          get: () => (window as any)[exposedKeyPrefix + key + routeIndex],
         })
       })
 
-      const captureInPage = (window as any)[exposedCaptureKey]
+      const captureInPage = (window as any)[exposedCaptureKey + routeIndex]
       return captureOption(pageContext, captureInPage)
     },
     routeIndex,
