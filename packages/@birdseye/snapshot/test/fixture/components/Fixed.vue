@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>This is the base text</p>
-    <p class="fixed">This is the text on the fixed element</p>
+    <p class="fixed"></p>
   </div>
 </template>
 
@@ -13,6 +13,5 @@
   right: 0;
   padding: 16px;
   background-color: #333;
-  color: #fff;
 }
 </style>
