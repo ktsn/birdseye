@@ -2,6 +2,7 @@ import { Catalog } from '@birdseye/core'
 import { PageContext } from './page-context'
 
 export interface SnapshotOptions {
+  target?: string
   delay?: number
   disableCssAnimation?: boolean
   capture?: (page: PageContext, capture: () => Promise<void>) => Promise<void>
