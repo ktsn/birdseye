@@ -4578,9 +4578,9 @@ caniuse-lite@^1.0.30001109:
   integrity sha512-ml/zTsfNBM+T1+mjglWRPgVsu2L76GAaADKX5f4t0pbhttEp0WMawJsHDYlFkVZkoA+89uvBRrVrEE4oqenzXQ==
 
 capture-all@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/capture-all/-/capture-all-0.7.1.tgz#fed7c1291c106c820bbb0ed83f34425b18d9bf6b"
-  integrity sha512-x+5bJp+MUXjsi2rnCXMKcZVYGwaPObG0iGHKdbVDkkxN9PtzhboQPWhCD/wX8SJgM4X53Uwk3/Tut/ivjaAtjg==
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/capture-all/-/capture-all-0.7.2.tgz#ae4b67d767a269b635f15574a6c684a3f8a21a71"
+  integrity sha512-Dxlhb6THyKbQddlC6U8Vd42rW3sui96/+3seAc7DphwSTMBzIDbvbAd6CBjXLvD7ABFfEI/qbzAB8BL8B35vDQ==
   dependencies:
     puppeteer "^5.0.0"
 
