@@ -13413,15 +13413,28 @@ reg-publish-s3-plugin@^0.9.0:
     reg-suit-util "^0.8.5"
     uuid "^3.1.0"
 
-reg-suit-core@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.2.tgz#dcd29de22500c411b456e2067594003770ecc2ba"
-  integrity sha512-k/yPA/NEmV8MdJa8dvXjE89yzI3x5OD7Ur2f7UbporZX7z3lZHD64sIJdOFfzv5DfmlR2muMRtAvLp5krBYaXA==
+reg-suit-core@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.3.tgz#d341eff4e5ca206e91ef64efab0ad3739ae4a301"
+  integrity sha512-9ZTyDGhYFazZPVyOvfc8Tma34FltSyEfuee33/UHBOw79hwK2D5M3fz9IyaRmBwmTY/O7cj30RCd+Sv12ew+3A==
   dependencies:
     cpx "^1.5.0"
     reg-cli "^0.16.1"
-    reg-suit-util "^0.8.5"
+    reg-suit-util "^0.10.3"
     rimraf "^2.6.1"
+
+reg-suit-util@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.3.tgz#c5c4067e77b7a1b8fde661ffd31d818d7e0d3af1"
+  integrity sha512-Fx++RKCxr08mqN+Yg10ueaaq8IUnm9h3fu+45LsFkMg34e22kfZk5JtpeUANvUuYzsVYjQ0NU25S024Aho6gzg==
+  dependencies:
+    chalk "^2.0.1"
+    cli-progress "^1.4.1"
+    cli-spinner "^0.2.6"
+    glob "^7.1.2"
+    lodash "^4.17.4"
+    mime-types "^2.1.15"
+    mkdirp "^0.5.1"
 
 reg-suit-util@^0.8.5:
   version "0.8.5"
@@ -13437,15 +13450,15 @@ reg-suit-util@^0.8.5:
     mkdirp "^0.5.1"
 
 reg-suit@^0.10.0:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.2.tgz#bb6fe6385a8ddc55b835ffc112e4a3e726fd8d80"
-  integrity sha512-Tq5rzBo46wMOzjYmOFscbwwb19yPAZ3y7kPdC8TxmlX1Wzkc4rTqlz57Ej8Ao2M1oQyY+0zf8HDaNJk2HS61YA==
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.3.tgz#834d9ef9835c269c26e126a01fe678b6a2d2ee0e"
+  integrity sha512-wGlh5C+1Ewl6q+0SlDudMxNDWYL4jHUL2zrs3EzIekfbBH0elokGh1MOCuiqp8MmmuPbUnaGivjPYhg3ExZPvQ==
   dependencies:
     cp-file "^7.0.0"
     ignore "^3.3.7"
     inquirer "^3.1.1"
-    reg-suit-core "^0.10.2"
-    reg-suit-util "^0.8.5"
+    reg-suit-core "^0.10.3"
+    reg-suit-util "^0.10.3"
     yargs "^8.0.2"
 
 regenerate-unicode-properties@^8.1.0:
