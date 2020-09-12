@@ -69,7 +69,7 @@
     "lerna": "^3.2.1",
     "prettier": "2.1.1",
     "prettier-config-ktsn": "^1.0.0",
-    "reg-keygen-git-hash-plugin": "^0.8.5",
+    "reg-keygen-git-hash-plugin": "^0.10.3",
     "reg-notify-github-plugin": "^0.8.5",
     "reg-publish-s3-plugin": "^0.9.0",
     "reg-suit": "^0.10.0",
