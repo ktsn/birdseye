@@ -1,20 +1,29 @@
-import { Page, ElementHandle } from 'puppeteer'
+import { Page, ElementHandle, Mouse, Keyboard } from 'puppeteer'
 
 type WithSelector<T extends (...args: any[]) => any> = (
   selector: string,
   ...args: Parameters<T>
 ) => ReturnType<T> | null
 
-type PageContextKeys = typeof pageContextKeys[number]
+type ExposedElementHandleKeys = typeof elementHandleKeys[number]
+type ExposedMouseKeys = typeof mouseKeys[number]
+type ExposedKeyboardKeys = typeof keyboardKeys[number]
 
-export type PageContext = {
-  [K in PageContextKeys]: WithSelector<ElementHandle[K]>
+export type ExposedElementHandle = {
+  [K in ExposedElementHandleKeys]: WithSelector<ElementHandle[K]>
+}
+
+export interface PageContext extends ExposedElementHandle {
+  readonly mouse: Pick<Mouse, ExposedMouseKeys>
+  readonly keyboard: Pick<Keyboard, ExposedKeyboardKeys>
 }
 
 const exposedKeyPrefix = '__birdseye_expose_'
+const exposedMouseKeyPrefix = exposedKeyPrefix + 'mouse_'
+const exposedKeyboardKeyPrefix = exposedKeyPrefix + 'keyboard_'
 const exposedCaptureKey = exposedKeyPrefix + 'capture'
 
-const pageContextKeys = [
+const elementHandleKeys = [
   'click',
   'focus',
   'hover',
@@ -24,9 +33,13 @@ const pageContextKeys = [
   'type',
 ] as const
 
+const mouseKeys = ['click', 'down', 'move', 'up'] as const
+
+const keyboardKeys = ['down', 'up', 'press', 'sendCharacter', 'type'] as const
+
 async function exposePageContext(page: Page): Promise<void> {
-  await Promise.all(
-    pageContextKeys.map((key) => {
+  await Promise.all([
+    ...elementHandleKeys.map((key) => {
       return page.exposeFunction(
         exposedKeyPrefix + key,
         async (selector: string, ...args: any[]) => {
@@ -37,8 +50,37 @@ async function exposePageContext(page: Page): Promise<void> {
           return (el[key] as any)(...args)
         }
       )
-    })
-  )
+    }),
+
+    ...mouseKeys.map((key) => {
+      return page.exposeFunction(
+        exposedMouseKeyPrefix + key,
+        async (...args: any[]) => {
+          return (page.mouse[key] as any)(...args)
+        }
+      )
+    }),
+
+    ...keyboardKeys.map((key) => {
+      return page.exposeFunction(
+        exposedKeyboardKeyPrefix + key,
+        (...args: any[]) => {
+          return (page.keyboard[key] as any)(...args)
+        }
+      )
+    }),
+  ])
+}
+
+interface ExposeContext {
+  routeIndex: number
+  exposedKeyPrefix: string
+  exposedMouseKeyPrefix: string
+  exposedKeyboardKeyPrefix: string
+  exposedCaptureKey: string
+  elementHandleKeys: string[]
+  mouseKeys: string[]
+  keyboardKeys: string[]
 }
 
 export async function runCapture(
@@ -51,32 +93,60 @@ export async function runCapture(
   await exposePageContext(page)
   await page.exposeFunction(exposedCaptureKey, capture)
 
+  const exposeContext: ExposeContext = {
+    routeIndex,
+    exposedKeyPrefix,
+    exposedMouseKeyPrefix,
+    exposedKeyboardKeyPrefix,
+    exposedCaptureKey,
+    elementHandleKeys: (elementHandleKeys as unknown) as string[],
+    mouseKeys: (mouseKeys as unknown) as string[],
+    keyboardKeys: (keyboardKeys as unknown) as string[],
+  }
+
   await page.evaluate(
-    (
-      routeIndex: number,
-      exposedKeyPrefix: string,
-      exposedCaptureKey: string,
-      pageContextKeys: PageContextKeys[]
-    ) => {
+    ({
+      routeIndex,
+      exposedKeyPrefix,
+      exposedMouseKeyPrefix,
+      exposedKeyboardKeyPrefix,
+      exposedCaptureKey,
+      elementHandleKeys,
+      mouseKeys,
+      keyboardKeys,
+    }: ExposeContext) => {
       const captureOption =
         window.__birdseye_routes__[routeIndex]?.snapshot?.capture
       if (!captureOption) {
         return
       }
 
-      const pageContext = {} as PageContext
-      pageContextKeys.forEach((key) => {
+      const pageContext = {
+        mouse: {},
+        keyboard: {},
+      } as PageContext
+
+      elementHandleKeys.forEach((key) => {
         Object.defineProperty(pageContext, key, {
           get: () => (window as any)[exposedKeyPrefix + key],
+        })
+      })
+
+      mouseKeys.forEach((key) => {
+        Object.defineProperty(pageContext.mouse, key, {
+          get: () => (window as any)[exposedMouseKeyPrefix + key],
+        })
+      })
+
+      keyboardKeys.forEach((key) => {
+        Object.defineProperty(pageContext.keyboard, key, {
+          get: () => (window as any)[exposedKeyboardKeyPrefix + key],
         })
       })
 
       const captureInPage = (window as any)[exposedCaptureKey]
       return captureOption(pageContext, captureInPage)
     },
-    routeIndex,
-    exposedKeyPrefix,
-    exposedCaptureKey,
-    (pageContextKeys as unknown) as string[]
+    exposeContext as any
   )
 }
