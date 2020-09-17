@@ -145,7 +145,7 @@ export default catalogFor(MyButton, 'MyButton')
   })
 ```
 
-`capture` option is a function receiving two arguments - a page context and a capture function. The page context has methods to trigger manipulations for an element in the page. They are just aliases of [Puppeteer's ElementHandle methods](https://github.com/puppeteer/puppeteer/blob/v5.2.1/docs/api.md#class-elementhandle) except receiving the selector for the element as the first argument. Available methods are below:
+`capture` option is a function receiving two arguments - a page context and a capture function. The page context has methods to trigger manipulations for an element in the page. They are just aliases of [Puppeteer's ElementHandle methods](https://github.com/puppeteer/puppeteer/blob/v5.3.0/docs/api.md#class-elementhandle) except receiving the selector for the element as the first argument. Available methods are below:
 
 - click
 - focus
@@ -156,6 +156,8 @@ export default catalogFor(MyButton, 'MyButton')
 - type
 
 The original method arguments are supposed to placed after the second argument. For example, if you write `el.click({ button: 'right' })` with Puppeteer, the equivalent is `page.click('.selector', { button: 'right' })`.
+
+In addition, [`page.mouse`](https://github.com/puppeteer/puppeteer/blob/v5.3.0/docs/api.md#class-mouse) and [`page.keyboard`](https://github.com/puppeteer/puppeteer/blob/v5.3.0/docs/api.md#class-keyboard) are also exposed under the page context with the same name and the same interface of functions.
 
 ### Visual Regression Testing with [reg-suit](https://github.com/reg-viz/reg-suit)
 
