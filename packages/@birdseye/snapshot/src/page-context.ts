@@ -39,7 +39,7 @@ const keyboardKeys = ['down', 'up', 'press', 'sendCharacter', 'type'] as const
 
 async function exposePageContext(page: Page): Promise<void> {
   await Promise.all([
-    elementHandleKeys.map((key) => {
+    ...elementHandleKeys.map((key) => {
       return page.exposeFunction(
         exposedKeyPrefix + key,
         async (selector: string, ...args: any[]) => {
@@ -52,7 +52,7 @@ async function exposePageContext(page: Page): Promise<void> {
       )
     }),
 
-    mouseKeys.map((key) => {
+    ...mouseKeys.map((key) => {
       return page.exposeFunction(
         exposedMouseKeyPrefix + key,
         async (...args: any[]) => {
@@ -61,7 +61,7 @@ async function exposePageContext(page: Page): Promise<void> {
       )
     }),
 
-    keyboardKeys.map((key) => {
+    ...keyboardKeys.map((key) => {
       return page.exposeFunction(
         exposedKeyboardKeyPrefix + key,
         (...args: any[]) => {
