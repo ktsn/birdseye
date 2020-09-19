@@ -3842,12 +3842,12 @@ autoprefixer@^9.8.6:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-aws-sdk@^2.432.0:
-  version "2.593.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.593.0.tgz#9bd1e6964558b47883be17054cfda18185c4ff15"
-  integrity sha512-39wV1G30n9mZGg9tDUxoKHcUg2ky7OtjjdXdXf6tp4DxIXnNrl5ySA1c+LnsNa45Y0mjCxhZNVRiOdA1g/cHJQ==
+aws-sdk@^2.755.0:
+  version "2.756.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.756.0.tgz#87ec4e2a03ed838de6d7b0ce6a62f276e318b4fc"
+  integrity sha512-Hk6DzcsXq1WRg+UVHDH56iQz31kDtg/NRqtJL1A0BrZ/PtNSLTHsQQllpcAi09UxLDMzBoDXymZ8kYg0Migq8w==
   dependencies:
-    buffer "4.9.1"
+    buffer "4.9.2"
     events "1.1.1"
     ieee754 "1.1.13"
     jmespath "0.15.0"
@@ -4390,7 +4390,16 @@ buffer-xor@^1.0.3:
   resolved "https://registry.yarnpkg.com/buffer-xor/-/buffer-xor-1.0.3.tgz#26e61ed1422fb70dd42e6e36729ed51d855fe8d9"
   integrity sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=
 
-buffer@4.9.1, buffer@^4.3.0:
+buffer@4.9.2:
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.2.tgz#230ead344002988644841ab0244af8c44bbe3ef8"
+  integrity sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
+    isarray "^1.0.0"
+
+buffer@^4.3.0:
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.1.tgz#6d1bb601b07a4efced97094132093027c95bc298"
   integrity sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=
@@ -13365,15 +13374,15 @@ reg-notify-github-plugin@^0.8.5:
     request-promise "^4.2.1"
     tiny-commit-walker "^1.1.2"
 
-reg-publish-s3-plugin@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/reg-publish-s3-plugin/-/reg-publish-s3-plugin-0.9.0.tgz#6973ebfb2354140f6f97b7ee63eba6a7ac63f05e"
-  integrity sha512-fOrcVI4xIK7EKHkLvVkF8GXGPYr2I+KZYgV5EDgZfGB3ffuNZ6fyQUBMv4wr8/jkfl6tFbw4GzSammdbp5gPeA==
+reg-publish-s3-plugin@^0.10.7:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/reg-publish-s3-plugin/-/reg-publish-s3-plugin-0.10.7.tgz#1818d4b065562622f78da18cfa2213f8f2d9a3f3"
+  integrity sha512-i3mpD0JEDTE62SprElhZpiaI+wIRJy2whDI4nZW3VKhtFtOenBu5RKtwNluwXXQrqwWVGMlh1hhX05u/5Ci4gQ==
   dependencies:
-    aws-sdk "^2.432.0"
-    mkdirp "^0.5.1"
-    reg-suit-util "^0.8.5"
-    uuid "^3.1.0"
+    aws-sdk "^2.755.0"
+    mkdirp "^1.0.4"
+    reg-suit-util "^0.10.7"
+    uuid "^8.3.0"
 
 reg-suit-core@^0.10.7:
   version "0.10.7"
@@ -15677,12 +15686,7 @@ uuid@3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
-  integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
-
-uuid@^3.4.0:
+uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
