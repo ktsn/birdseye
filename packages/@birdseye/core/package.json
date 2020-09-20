@@ -44,7 +44,7 @@
     "eslint": "^7.0.0",
     "eslint-config-ktsn-vue": "^2.0.0",
     "jest": "^26.0.1",
-    "postcss": "^7.0.2",
+    "postcss": "^8.0.5",
     "prettier": "2.1.2",
     "prettier-config-ktsn": "^1.0.0",
     "rollup": "^2.0.0",
