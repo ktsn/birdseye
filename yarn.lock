@@ -10110,9 +10110,9 @@ jstransformer@1.0.0:
     promise "^7.0.1"
 
 k-css@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/k-css/-/k-css-3.0.0.tgz#2409a9c66d36b029e918e0c5274548713e59eded"
-  integrity sha512-grl326s3I3iTelvPDiJRHgNTv+F4ZdUyrvwUhw80DDcw0psRZLIKQMI6Xqo5I9pEpCUm7BUiNvVjuQsFBAhuVA==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/k-css/-/k-css-3.1.0.tgz#d2992582fe5609bfa7f623bd8811c5a09e7eb558"
+  integrity sha512-CBXW3H+d1imlQjXM1sMWwcpPFtHI0vZ+MbIjdyhYh4RiZS/y2l2rlFsvXVXQ9dp6NpOi1VlB7lZAS+509tbEOA==
 
 killable@^1.0.1:
   version "1.0.1"
