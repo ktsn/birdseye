@@ -13415,11 +13415,11 @@ reg-gh-app-interface@^1.1.0:
   integrity sha512-hTUJVbmV/67xdqXE+Z/vFpoo+1QdNlQDcrynlKc3d+7mY2trff3n70ETOwhtrxMwSzLxtCTcnHRSIqMeW4AnaQ==
 
 reg-keygen-git-hash-plugin@^0.10.3:
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.7.tgz#72251df588faf4aa422383dec252f26c184d4500"
-  integrity sha512-OnUoxaYJ7z8ttaNZD8OVqTJgpLYv1BwpC5kywAcF5lUOSraFpWX9/H7f/LqPimzpZMeff3Tw5CRcZTO23joo+Q==
+  version "0.10.8"
+  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.8.tgz#0735c0cde652175502cd420f07138a3ece2baec6"
+  integrity sha512-YeKp6ZwWGnBB0FL05UDA1cvK0EZpOv1TKlX9xXzOsDp+QxZDINJeA8LFMHslT3ki3PAftRaB/79gFQuDA+q3yQ==
   dependencies:
-    reg-suit-util "^0.10.7"
+    reg-suit-util "^0.10.8"
 
 reg-notify-github-plugin@^0.10.7:
   version "0.10.7"
