@@ -29,28 +29,23 @@ export function createInstrument(
           ((props: any) => VNode[] | undefined) | undefined
         >,
         id: null as number | null,
+
+        defaultData: null as Record<string, any> | null,
       }
     },
 
     methods: {
-      collectDefaultData(): Record<string, any> {
-        const child = this.$refs.child as Vue
-        const data = child.$options.data
-
-        if (typeof data !== 'function') {
-          return {}
-        }
-
-        return (data as Function).call(child)
-      },
-
       applyData(newData: Record<string, any>): void {
-        const child = this.$refs.child as Vue
-        if (child) {
-          const defaultData = this.collectDefaultData()
+        const child = this.$refs.child as Vue | undefined
+        if (child && this.defaultData) {
+          const defaultData = this.defaultData
 
-          Object.keys(child.$data).forEach((key) => {
-            child.$data[key] = key in newData ? newData[key] : defaultData[key]
+          // Avoid printing error when $data has computed property which comes from @vue/composition-api
+          ignoreWarning(() => {
+            Object.keys(child.$data).forEach((key) => {
+              child.$data[key] =
+                key in newData ? newData[key] : defaultData[key]
+            })
           })
         }
       },
@@ -58,7 +53,8 @@ export function createInstrument(
       updateComponent(component: Component | null, id: number | null): void {
         const vm: any = this
         vm.component = component
-        vm.id = id
+        this.id = id
+        this.defaultData = null
         this.$forceUpdate()
       },
     },
@@ -73,10 +69,18 @@ export function createInstrument(
     },
 
     updated() {
+      const child = this.$refs.child as Vue | undefined
+      if (child && !this.defaultData) {
+        this.defaultData = child.$data
+      }
       this.applyData(this.data)
     },
 
     mounted() {
+      const child = this.$refs.child as Vue | undefined
+      if (child && !this.defaultData) {
+        this.defaultData = child.$data
+      }
       this.applyData(this.data)
     },
 
@@ -230,4 +234,11 @@ function inferValueFromType(
     default:
       return undefined
   }
+}
+
+function ignoreWarning(fn: () => void): void {
+  const originalWarn = Vue.config.warnHandler
+  Vue.config.warnHandler = () => {}
+  fn()
+  Vue.config.warnHandler = originalWarn
 }

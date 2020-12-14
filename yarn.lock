@@ -3202,6 +3202,13 @@
     sass "^1.18.0"
     stylus "^0.54.5"
 
+"@vue/composition-api@^1.0.0-beta.21":
+  version "1.0.0-beta.21"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.21.tgz#d5a3c68afc8b569dfc3eccd69998388bb7f6a16c"
+  integrity sha512-tgbvDpLvKQ1GrII424wsoyzPCsG0oTFf38emMq495SfLY7RmUqhVIl81pvnC5489PPrCxDkbauJHJrhlcXfbTQ==
+  dependencies:
+    tslib "^2.0.1"
+
 "@vue/eslint-config-typescript@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@vue/eslint-config-typescript/-/eslint-config-typescript-7.0.0.tgz#220c70c2edf7a253e739298525f4d401b8ef0038"
@@ -13458,7 +13465,7 @@ reg-suit-core@^0.10.9:
     reg-suit-util "^0.10.9"
     rimraf "^3.0.2"
 
-reg-suit-util@^0.10.8, reg-suit-util@^0.10.9:
+reg-suit-util@^0.10.9:
   version "0.10.9"
   resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.9.tgz#48611c8ffcfe9278a494bd9eb17491a92f6cf6ba"
   integrity sha512-v9TsC8JFzb2buwlKtQsbGaKqV1nvGDoFAkvyTM4JrLu9UPr3pLC4N5XgMzuYSHFQu5gRa4DqruXHoRGeLW/+Vg==
@@ -15348,6 +15355,11 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
   integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
+
+tslib@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
+  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
 tslint@^5.20.1:
   version "5.20.1"

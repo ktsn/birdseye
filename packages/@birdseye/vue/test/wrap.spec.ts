@@ -1,4 +1,9 @@
 import Vue, { VNode } from 'vue'
+import CompositionApi, {
+  defineComponent,
+  ref,
+  computed,
+} from '@vue/composition-api'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import { ComponentDataType } from '@birdseye/core'
 import { createInstrument } from '../src/instrument'
@@ -233,17 +238,6 @@ describe('Wrap', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.text()).toBe('data - first')
-
-    wrapper.setProps({
-      props: {
-        foo: 'second',
-      },
-      data: {},
-    })
-
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.text()).toBe('data - second')
   })
 
   it('does not remove data when not specified', async () => {
@@ -471,6 +465,53 @@ describe('Wrap', () => {
 
       expect(mounted).toHaveBeenCalledTimes(2)
       expect(destroyed).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('composition api', () => {
+    Vue.use(CompositionApi)
+
+    const Composition = defineComponent({
+      setup() {
+        const count = ref(1)
+        const double = computed(() => count.value * 2)
+
+        return {
+          count,
+          double,
+        }
+      },
+
+      template: `
+      <div>
+        <div data-test-id="count">{{ count }}</div>
+        <div data-test-id="double">{{ double }}</div>
+      </div>
+      `,
+    })
+
+    const Wrapper = wrap(Composition)
+
+    it('handles data from composition api', async () => {
+      const wrapper = shallowMount(Wrapper, {
+        propsData: {
+          props: {},
+          data: {},
+        },
+      })
+      await Vue.nextTick()
+
+      expect(wrapper.find('[data-test-id=count]').text()).toBe('1')
+      expect(wrapper.find('[data-test-id=double]').text()).toBe('2')
+
+      await wrapper.setProps({
+        data: {
+          count: 2,
+        },
+      })
+
+      expect(wrapper.find('[data-test-id=count]').text()).toBe('2')
+      expect(wrapper.find('[data-test-id=double]').text()).toBe('4')
     })
   })
 })
