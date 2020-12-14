@@ -48,6 +48,9 @@
       "js",
       "json"
     ],
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js"
+    },
     "globals": {
       "ts-jest": {
         "tsConfig": "tsconfig.test.json"
@@ -60,6 +63,7 @@
     "@types/loader-utils": "^2.0.0",
     "@types/node": "^14.0.1",
     "@types/webpack": "^4.4.11",
+    "@vue/composition-api": "^1.0.0-beta.21",
     "@vue/test-utils": "^1.0.0-beta.29",
     "eslint": "^7.0.0",
     "eslint-config-ktsn-typescript": "^2.0.0",
