@@ -2359,7 +2359,7 @@
     once "^1.4.0"
     universal-user-agent "^4.0.0"
 
-"@rollup/pluginutils@3 || 4":
+"@rollup/pluginutils@4":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.0.tgz#0dcc61c780e39257554feb7f77207dceca13c838"
   integrity sha512-TrBhfJkFxA+ER+ew2U2/fHbebhLT/l/2pRk0hfj9KusXUuRXd2v0R58AfaZK9VXDQ4TogOSEmICVrQAA3zFnHQ==
@@ -13908,11 +13908,11 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     inherits "^2.0.1"
 
 rollup-plugin-css-only@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-3.0.0.tgz#16b78a569aed50637a0e15ddc6ea3581c3810db9"
-  integrity sha512-v6ZZuApxXl/Z07jAmH+p5HsLPMW2BHIRJ4Tpxv22S+jpINZ1QFxWoeMDMyFDd+XM1jFcQeshkjuD8xUVOJJG7Q==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-3.1.0.tgz#6a701cc5b051c6b3f0961e69b108a9a118e1b1df"
+  integrity sha512-TYMOE5uoD76vpj+RTkQLzC9cQtbnJNktHPB507FzRWBVaofg7KhIqq1kGbcVOadARSozWF883Ho9KpSPKH8gqA==
   dependencies:
-    "@rollup/pluginutils" "3 || 4"
+    "@rollup/pluginutils" "4"
 
 rollup-plugin-typescript2@^0.29.0:
   version "0.29.0"
