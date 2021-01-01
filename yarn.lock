@@ -12743,9 +12743,9 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.2
     supports-color "^6.1.0"
 
 postcss@^8.0.5:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.1.tgz#eabc5557c4558059b9d9e5b15bce7ffa9089c2a8"
-  integrity sha512-RhsqOOAQzTgh1UB/IZdca7F9WDb7SUCR2Vnv1x7DbvuuggQIpoDwjK+q0rzoPffhYvWNKX5JSwS4so4K3UC6vA==
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.2.tgz#60613b62297005084fd21024a68637798864fe26"
+  integrity sha512-HM1NDNWLgglJPQQMNwvLxgH2KcrKZklKLi/xXYIOaqQB57p/pDWEJNS83PVICYsn1Dg/9C26TiejNr422/ePaQ==
   dependencies:
     colorette "^1.2.1"
     nanoid "^3.1.20"
@@ -13474,7 +13474,7 @@ reg-suit-core@^0.10.10:
     reg-suit-util "^0.10.10"
     rimraf "^3.0.2"
 
-reg-suit-util@^0.10.10, reg-suit-util@^0.10.9:
+reg-suit-util@^0.10.10:
   version "0.10.10"
   resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.10.tgz#0a710fa32305d464285de9208a5d0c034ac1d194"
   integrity sha512-LkWJqJI3zlolm1Bd/Rvhi2IKE2NpVnvtMBWQy0j2lt1C/3MfpReB8g2rsRxUw58MIH2KwKBUWRlMKReKCiUApw==
