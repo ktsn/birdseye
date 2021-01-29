@@ -3156,7 +3156,7 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.1.0"
 
-"@vue/cli-shared-utils@^4.5.10", "@vue/cli-shared-utils@^4.5.11":
+"@vue/cli-shared-utils@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.11.tgz#fff71673ee9128f998c691515b9d327071b4f41e"
   integrity sha512-+aaQ+ThQG3+WMexfSWNl0y6f43edqVqRNbguE53F3TIH81I7saS5S750ayqXhZs2r6STJJyqorQnKtAWfHo29A==
@@ -13436,9 +13436,9 @@ reg-gh-app-interface@^1.1.0:
   integrity sha512-hTUJVbmV/67xdqXE+Z/vFpoo+1QdNlQDcrynlKc3d+7mY2trff3n70ETOwhtrxMwSzLxtCTcnHRSIqMeW4AnaQ==
 
 reg-keygen-git-hash-plugin@^0.10.3:
-  version "0.10.11"
-  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.11.tgz#93bb0f2ac7f101e1d5fe8af2da2257f61125f4f2"
-  integrity sha512-G73GYAsHwJ2S57d4TT5FxI3VLd/egGURYvzBcqRtrpUOKvSUkIecSH6nG/dbkbl3IMYvWDojGmjkGyaCxL2DoA==
+  version "0.10.12"
+  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.12.tgz#5a9f2dadd5c78e487e74f4b8873fc008c4084780"
+  integrity sha512-Lk89ZpcjG6JPhnN+wo9a9jYHR4GpvoE/hD95L45l/zrpK0VMqpx80zLT3Uo/5EgpS3BAyy0ZEN0qEzc+77Xiag==
   dependencies:
     reg-suit-util "^0.10.10"
 
