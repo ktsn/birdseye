@@ -46,6 +46,12 @@ export function createInstrument(
               child.$data[key] =
                 key in newData ? newData[key] : defaultData[key]
             })
+
+            // There is a case that the field defined in a catalog does not exist on the component yet.
+            // e.g. On a component initialization with @vue/composition-api
+            Object.keys(newData).forEach((key) => {
+              ;(child as any)[key] = newData[key]
+            })
           })
         }
       },

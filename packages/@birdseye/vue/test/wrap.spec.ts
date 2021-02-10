@@ -492,7 +492,22 @@ describe('Wrap', () => {
 
     const Wrapper = wrap(Composition)
 
-    it('handles data from composition api', async () => {
+    it('handles initial data with composition api', async () => {
+      const wrapper = shallowMount(Wrapper, {
+        propsData: {
+          props: {},
+          data: {
+            count: 2,
+          },
+        },
+      })
+      await Vue.nextTick()
+
+      expect(wrapper.find('[data-test-id=count]').text()).toBe('2')
+      expect(wrapper.find('[data-test-id=double]').text()).toBe('4')
+    })
+
+    it('handles data changes with composition api', async () => {
       const wrapper = shallowMount(Wrapper, {
         propsData: {
           props: {},
