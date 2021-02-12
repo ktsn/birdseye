@@ -13512,9 +13512,9 @@ reg-gh-app-interface@^1.1.0:
   integrity sha512-hTUJVbmV/67xdqXE+Z/vFpoo+1QdNlQDcrynlKc3d+7mY2trff3n70ETOwhtrxMwSzLxtCTcnHRSIqMeW4AnaQ==
 
 reg-keygen-git-hash-plugin@^0.10.3:
-  version "0.10.12"
-  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.12.tgz#5a9f2dadd5c78e487e74f4b8873fc008c4084780"
-  integrity sha512-Lk89ZpcjG6JPhnN+wo9a9jYHR4GpvoE/hD95L45l/zrpK0VMqpx80zLT3Uo/5EgpS3BAyy0ZEN0qEzc+77Xiag==
+  version "0.10.14"
+  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.14.tgz#154940c4eaa6b57b27267b997ad93e26c6ba4fbe"
+  integrity sha512-AK3WbrJqr2hKIwXLefxPmJiSJptt4sk4yMo4cGpeH8DLKuzUXpjocikemgi3Xl27853/ci0fIaPZPMgBM8SoLw==
   dependencies:
     reg-suit-util "^0.10.10"
 
