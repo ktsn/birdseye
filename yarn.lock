@@ -13593,17 +13593,17 @@ reg-publish-s3-plugin@^0.10.7:
     reg-suit-util "^0.10.15"
     uuid "^8.3.0"
 
-reg-suit-core@^0.10.14:
-  version "0.10.14"
-  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.14.tgz#f98774395469ec74fa0477787df886766c97ba1a"
-  integrity sha512-S0Mri6HOWR4O7xcWHGveHkJ8CRkEaaEMvUDGUVHUclPlQcy3B0cL7yiCdMeH8VEgRRVM/7a3BqfPMC+dQj9kIA==
+reg-suit-core@^0.10.15:
+  version "0.10.15"
+  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.15.tgz#004e9139d5aa6bacd34ce6f7dc7c3cefc2bdb93f"
+  integrity sha512-b7qlwSKGPaSoVsT8JA32uJ3O7/4HeLRp5rYc+65yPHsOyw/0Vb59A5r/mKpyHEJWOEYGOqaPDmqSeafMWZ+lAQ==
   dependencies:
     cpx "^1.5.0"
     reg-cli "^0.17.0"
-    reg-suit-util "^0.10.10"
+    reg-suit-util "^0.10.15"
     rimraf "^3.0.2"
 
-reg-suit-util@^0.10.10, reg-suit-util@^0.10.15:
+reg-suit-util@^0.10.15:
   version "0.10.15"
   resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.15.tgz#badd1428936df254dae1e17eb5cea33ba0ba96cc"
   integrity sha512-D02RWhyNWJ9VS7yQAOEqlMplfWX87lg3iTtcMEM4kJlAyLQeU2i3MRvcLgZKeR6udVUPpGe9WGpC4kMnj3oqbw==
@@ -13623,15 +13623,15 @@ reg-suit-util@^0.10.10, reg-suit-util@^0.10.15:
     mkdirp "^1.0.4"
 
 reg-suit@^0.10.0:
-  version "0.10.14"
-  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.14.tgz#c38a37f071b73f2e2e4f61c9cebb5f5d4d47b6a3"
-  integrity sha512-95pEIzpWGf1j45LASB1cSSnman82XIjz2DJ1wqLzh3ScroSnRvdDFU/I26BhBqqsm8ydHWdEOQfVS3w/Bj96ew==
+  version "0.10.15"
+  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.15.tgz#b288793e2ebf5d777c479cf6403c796da957428c"
+  integrity sha512-EjqdLrC0O7P2jvSqC68ZK+kihDf85vSvWk51PQf6RrQr4xN2+Bmb0d0i1OXJpuoSjPQzVJOusajcaYq3m3uFBA==
   dependencies:
     cp-file "9.0.0"
     ignore "5.1.8"
     inquirer "7.3.3"
-    reg-suit-core "^0.10.14"
-    reg-suit-util "^0.10.10"
+    reg-suit-core "^0.10.15"
+    reg-suit-util "^0.10.15"
     yargs "16.2.0"
 
 regenerate-unicode-properties@^8.1.0:
