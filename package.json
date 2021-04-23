@@ -12,6 +12,6 @@
     "catalog": "lerna run catalog"
   },
   "devDependencies": {
-    "lerna": "^3.2.1"
+    "lerna": "^4.0.0"
   }
 }
