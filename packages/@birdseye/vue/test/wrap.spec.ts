@@ -42,6 +42,7 @@ describe('Wrap', () => {
         el('foo', this.foo),
         el('bar', this.bar),
         el('baz', this.baz),
+        el('qux', this.$attrs.qux),
 
         // slots
         el('default-slot', this.$scopedSlots.default?.({ message: 'Hello' })),
@@ -70,6 +71,22 @@ describe('Wrap', () => {
     expect(wrapper.find('#foo').text()).toBe('test')
     expect(wrapper.find('#bar').text()).toBe('123')
     expect(wrapper.find('#baz').text()).toBe('baz data')
+  })
+
+  it('applies props not specified on props option', async () => {
+    const wrapper = shallowMount(Wrapper, {
+      propsData: {
+        props: {
+          foo: 'test',
+          qux: 456,
+        },
+        data: {},
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('#qux').text()).toBe('456')
   })
 
   it('applies initial slots', async () => {
