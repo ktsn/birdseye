@@ -1,6 +1,6 @@
 {
   "name": "@birdseye/vue",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": "katashin",
   "description": "Vue.js integration of Birdseye",
   "keywords": [
