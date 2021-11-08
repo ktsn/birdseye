@@ -367,7 +367,7 @@ describe('Wrap', () => {
     expect(wrapper.html()).toMatchInlineSnapshot(`
       "<div style=\\"height: 100%;\\">
         <div data-test=\\"wrapper\\">
-          <div>foo: Test, bar: 456</div>
+          <div foo=\\"Test\\">foo: Test, bar: 456</div>
         </div>
       </div>"
     `)

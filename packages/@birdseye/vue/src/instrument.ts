@@ -98,6 +98,7 @@ export function createInstrument(
 
       const wrapped = h(vm.component, {
         key: String(this.id),
+        props: this.props,
         attrs: this.props,
         ref: 'child',
         scopedSlots: this.slots,
